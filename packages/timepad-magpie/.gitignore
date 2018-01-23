@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules
+flow-typed
+
+# Logs
+npm-debug.log
+
+# Build results
+[Bb]uild/
+
+# Local development
+*.env
+*.dev
+.DS_Store
+
+# IDE
+.idea
+.vscode

@@ -1,0 +1,26 @@
+{
+  "name": "magpie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "yarn build",
+    "postinstall": "yarn flow:deps",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/ -d build/",
+    "flow:deps": "yarn flow-typed install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.63.1",
+    "flow-typed": "^2.2.3"
+  }
+}
