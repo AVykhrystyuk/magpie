@@ -7,7 +7,8 @@
     "prepublish": "yarn build",
     "postinstall": "yarn flow:deps",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src/ -d build/",
+    "build": "yarn gulp build",
+    "start": "node build/app.js",
     "flow:deps": "yarn flow-typed install"
   },
   "author": "",
@@ -20,7 +21,10 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "del": "^3.0.0",
     "flow-bin": "^0.63.1",
-    "flow-typed": "^2.2.3"
+    "flow-typed": "^2.2.3",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.0"
   }
 }
