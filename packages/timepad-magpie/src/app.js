@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @flow
 
 import TimePadEventsGrabber from './events-grabber';
@@ -7,7 +8,7 @@ const timePadApi = new TimePadApiClient();
 const timePadEventsGrabber = new TimePadEventsGrabber(timePadApi);
 
 (async () => {
-    const events = await timePadEventsGrabber.grabEvents();
-    console.log('Done grabbing timePad events');
-    console.log('Total grabbed events count: ', events.length);
+  const events = await timePadEventsGrabber.grabEvents();
+  console.log('Done grabbing timePad events');
+  console.log('Total grabbed events count: ', events.length);
 })();
