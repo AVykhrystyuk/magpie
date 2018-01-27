@@ -1,3 +1,5 @@
+// @flow
+
 export interface ITimePadEvent {
   id: number;
   name: string;
