@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "yarn gulp build",
     "lint": "yarn gulp lint",
+    "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "start": "node build/app.js",
     "flow:deps": "yarn flow-typed install"
   },
