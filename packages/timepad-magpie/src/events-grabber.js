@@ -5,8 +5,8 @@
 import util from 'util';
 
 // app
-import type TimePadApiClient, { ITimePadEventsResponse } from './api-client';
-import type { ITimePadEvent } from './event.js.flow';
+import type TimePadApiClient, {ITimePadEventsResponse} from './api-client';
+import type {ITimePadEvent} from './event.js.flow';
 
 const delay = setTimeout[util.promisify.custom];
 
@@ -61,7 +61,7 @@ export default class TimePadEventsGrabber {
       skip: this._fetchedEvents.length,
     });
 
-    const { values: events, total } = eventsResponse;
+    const {values: events, total} = eventsResponse;
 
     this._fetchedEvents.push(...events);
     this._eventsTotal = total;
