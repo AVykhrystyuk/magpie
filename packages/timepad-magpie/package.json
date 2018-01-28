@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn gulp build",
+    "build": "yarn gulp build --production",
+    "build:watch": "yarn gulp build watch",
     "lint": "yarn gulp lint",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "start": "node build/app.js",
@@ -32,6 +33,9 @@
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.2",
-    "prettier": "^1.10.2"
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "prettier": "^1.10.2",
+    "yargs": "^11.0.0"
   }
 }

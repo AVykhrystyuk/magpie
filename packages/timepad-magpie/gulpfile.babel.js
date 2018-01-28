@@ -1,12 +1,16 @@
+/* eslint-disable no-console */
 import gulp from 'gulp';
+import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
-
+import _if from 'gulp-if';
+import {argv} from 'yargs';
 import del from 'del';
 
+const isProduction = argv.production;
 const paths = {
   scripts: {
-    src: 'src/**/*.js',
+    src: 'src/**/*.{js,js.flow}',
     dest: 'build/',
   },
   config: {
@@ -32,17 +36,19 @@ export function config() {
 }
 
 export function scripts() {
-  return gulp.src(paths.scripts.src, { sourcemaps: true })
+  return gulp.src(paths.scripts.src)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+    .pipe(_if(isProduction, eslint.failAfterError()))
+    .pipe(sourcemaps.init())
     .pipe(babel())
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
 export function watch() {
-  const onFilesChange = (event) => {
-    console.log(`File ${event.path} was ${event.type}, running tasks...`);
+  const onFilesChange = (path) => {
+    console.log(`File '${path}' was changed, running tasks...`);
   };
 
   gulp.watch(paths.scripts.src, scripts).on('change', onFilesChange);
