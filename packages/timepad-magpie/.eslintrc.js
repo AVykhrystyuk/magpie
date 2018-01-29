@@ -18,6 +18,13 @@ module.exports = {
       "imports": "never",
       "exports": "never",
       "functions": "never"
-    }]
+    }],
+    'no-restricted-syntax': [
+      'error',
+      'ForInStatement',
+      //'ForOfStatement',
+      'LabeledStatement',
+      'WithStatement',
+    ],
   }
 };
