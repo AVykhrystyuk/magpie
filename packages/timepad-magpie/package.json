@@ -9,13 +9,15 @@
     "build:watch": "yarn gulp build watch",
     "lint": "yarn gulp lint",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
+    "format": "yarn pretty && yarn lint --fix",
     "start": "node build/app.js",
     "flow:deps": "yarn flow-typed install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "sanitize-html": "^1.17.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -35,7 +37,6 @@
     "gulp-eslint": "^4.0.2",
     "gulp-if": "^2.0.2",
     "gulp-sourcemaps": "^2.6.4",
-    "prettier": "^1.10.2",
-    "yargs": "^11.0.0"
+    "prettier": "^1.10.2"
   }
 }

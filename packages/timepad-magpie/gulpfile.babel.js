@@ -4,26 +4,37 @@ import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import _if from 'gulp-if';
-import {argv} from 'yargs';
 import del from 'del';
 
-const isProduction = argv.production;
+const argv = process.argv.slice(2);
+const isProduction = argv.includes('--production');
+const hasFixFlag = argv.includes('--fix');
+
+console.log('isProduction:', isProduction);
+console.log('hasFixFlag:', hasFixFlag);
+
 const paths = {
   scripts: {
     src: 'src/**/*.{js,js.flow}',
     dest: 'build/',
+    fixDest: 'src'
   },
   config: {
-    src: 'src/config/**/*.*',
-    dest: 'build/config/',
+    src: 'src/api/config/**/*.*',
+    dest: 'build/api/config/',
   },
 };
 
+const isFileFixed = file => file.eslint != null && file.eslint.fixed;
+
 export function lint() {
   return gulp.src(paths.scripts.src)
-    .pipe(eslint())
+    .pipe(eslint({
+      fix: hasFixFlag
+    }))
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(_if(!isFileFixed, eslint.failAfterError()))
+    .pipe(_if(isFileFixed, gulp.dest(paths.scripts.fixDest)));
 }
 
 export function clean() {

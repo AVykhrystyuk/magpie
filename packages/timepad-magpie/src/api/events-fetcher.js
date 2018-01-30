@@ -1,21 +1,21 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,no-await-in-loop */
 // @flow
 
 // lib
 import util from 'util';
 
 // app
-import type TimePadApiClient, {ITimePadEventsResponse} from './api-client';
-import type {ITimePadEvent} from './event.js.flow';
+import type TimePadApiClient, {IApiTimePadEventsResponse} from './api-client';
+import type {IApiTimePadEvent} from './event.js.flow';
 
 const delay = setTimeout[util.promisify.custom];
 
-export default class TimePadEventsGrabber {
+export default class ApiTimePadEventsFetcher {
   _timePadApi: TimePadApiClient;
   _requestCountPerMinute: number;
   _recordCountPerRequest: number;
 
-  _fetchedEvents: ITimePadEvent[];
+  _fetchedEvents: IApiTimePadEvent[];
   _eventsTotal: number;
   _highestEventsTotal: number;
 
@@ -26,7 +26,7 @@ export default class TimePadEventsGrabber {
     this._recordCountPerRequest = 100; // max limit  allowed by timePad
   }
 
-  async grabEvents(): Promise<ITimePadEvent[]> {
+  async fetchEvents(): Promise<IApiTimePadEvent[]> {
     this._fetchedEvents = [];
     this._eventsTotal = 0;
     this._highestEventsTotal = 0;
@@ -39,8 +39,7 @@ export default class TimePadEventsGrabber {
   async _fetchEachChunksOfEvents(): Promise<*> {
     await this._fetchNextChunkOfEvents();
 
-    const allRecordFetched = this._fetchedEvents.length >= this._eventsTotal;
-    if (!allRecordFetched) {
+    while (this._fetchedEvents.length < this._eventsTotal) {
       this._highestEventsTotal = Math.max(this._highestEventsTotal, this._eventsTotal);
 
       const requiredRequestCount = Math.ceil(this._highestEventsTotal / this._recordCountPerRequest);
@@ -51,12 +50,12 @@ export default class TimePadEventsGrabber {
         await delay(delayMilliseconds);
       }
 
-      await this._fetchEachChunksOfEvents();
+      await this._fetchNextChunkOfEvents();
     }
   }
 
   async _fetchNextChunkOfEvents(): Promise<*> {
-    const eventsResponse: ITimePadEventsResponse = await this._timePadApi.fetchEvents({
+    const eventsResponse: IApiTimePadEventsResponse = await this._timePadApi.fetchEvents({
       limit: this._recordCountPerRequest,
       skip: this._fetchedEvents.length,
     });
