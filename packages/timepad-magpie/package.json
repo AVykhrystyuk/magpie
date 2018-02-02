@@ -10,18 +10,20 @@
     "lint": "yarn gulp lint",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn pretty && yarn lint --fix",
-    "start": "node build/app.js",
+    "start": "node build/main.js",
     "flow:deps": "yarn flow-typed install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "container-ioc": "^1.7.18",
     "sanitize-html": "^1.17.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",

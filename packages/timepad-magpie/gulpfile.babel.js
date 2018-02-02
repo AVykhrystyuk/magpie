@@ -20,8 +20,8 @@ const paths = {
     fixDest: 'src'
   },
   config: {
-    src: 'src/api/config/**/*.*',
-    dest: 'build/api/config/',
+    src: 'src/api/impl/config/**/*.*',
+    dest: 'build/api/impl/config/',
   },
 };
 

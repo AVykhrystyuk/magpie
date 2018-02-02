@@ -1,19 +1,26 @@
 /* eslint-disable no-console */
 // @flow
 
-import TimePadApiClient from './api/api-client';
-import ApiTimePadEventsFetcher from './api/events-fetcher';
+// lib
+import {Injectable} from 'container-ioc';
+
+// app
 import TimePadEventsFetcher from './events-fetcher';
 
-const timePadApi = new TimePadApiClient();
-const apiTimePadEventsFetcher = new ApiTimePadEventsFetcher(timePadApi);
-const timePadEventsFetcher = new TimePadEventsFetcher(apiTimePadEventsFetcher);
+@Injectable([TimePadEventsFetcher])
+export default class App {
+  _timePadEventsFetcher: TimePadEventsFetcher;
 
-(async () => {
-  const events = await timePadEventsFetcher.fetchEvents();
-  console.log('Done grabbing timePad events');
-  console.log('Total grabbed events count: ', events.length);
+  constructor(timePadEventsFetcher: TimePadEventsFetcher) {
+    this._timePadEventsFetcher = timePadEventsFetcher;
+  }
 
-  console.log();
-  console.log(events.slice(0, 2));
-})();
+  async run(): Promise<*> {
+    const events = await this._timePadEventsFetcher.fetchEvents();
+    console.log('Done grabbing timePad events');
+    console.log('Total grabbed events count: ', events.length);
+
+    console.log();
+    console.log(events.slice(0, 2));
+  }
+}
