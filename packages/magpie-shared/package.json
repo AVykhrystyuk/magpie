@@ -1,0 +1,22 @@
+{
+  "name": "magpie-shared",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "yarn eslint 'src/**'",
+    "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'"
+  },
+  "repository": "https://github.com/AVykhrystyuk/magpie-shared",
+  "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-flowtype": "^2.42.0",
+    "eslint-plugin-import": "^2.8.0",
+    "flow-bin": "^0.65.0",
+    "prettier": "^1.10.2"
+  }
+}
