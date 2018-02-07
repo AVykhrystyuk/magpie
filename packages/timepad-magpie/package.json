@@ -13,11 +13,13 @@
     "start": "node build/main.js",
     "flow:deps": "yarn flow-typed install"
   },
-  "author": "",
+  "repository": "https://github.com/AVykhrystyuk/timepad-magpie",
+  "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
     "container-ioc": "^1.7.18",
+    "magpie-shared": "git+https://git@github.com/AVykhrystyuk/magpie-shared.git",
     "sanitize-html": "^1.17.0"
   },
   "devDependencies": {
@@ -27,7 +29,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
-    "del": "^3.0.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-flowtype": "^2.42.0",

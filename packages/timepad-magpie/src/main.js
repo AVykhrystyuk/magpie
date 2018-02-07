@@ -1,6 +1,6 @@
 // lib
 import {Container} from 'container-ioc';
-
+import {testMe} from 'magpie-shared';
 // app
 import TimePadApiClient from './api/api-client';
 import TimePadApiClientImpl from './api/impl/api-client';
@@ -9,6 +9,8 @@ import ApiTimePadEventsFetcherImpl from './api/impl/events-fetcher';
 import TimePadEventsFetcher from './events-fetcher';
 import TimePadEventsFetcherImpl from './impl/events-fetcher';
 import App from './app';
+
+testMe();
 
 const container = new Container();
 
