@@ -5,13 +5,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "yarn eslint 'src/**'",
-    "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'"
+    "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
+    "format": "yarn pretty && yarn lint --fix",
+    "build": "del dist && babel src/ -d dist/"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "del-cli": "^1.1.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-flowtype": "^2.42.0",
