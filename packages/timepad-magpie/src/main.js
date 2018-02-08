@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 // lib
 import {Container} from 'container-ioc';
-import {testMe} from 'magpie-shared';
+import {calculate} from 'magpie-shared';
 // app
 import TimePadApiClient from './api/api-client';
 import TimePadApiClientImpl from './api/impl/api-client';
@@ -10,7 +11,8 @@ import TimePadEventsFetcher from './events-fetcher';
 import TimePadEventsFetcherImpl from './impl/events-fetcher';
 import App from './app';
 
-testMe();
+const calculationResult = calculate({value1: 1, value2: 4});
+console.log('working!, result is :', calculationResult);
 
 const container = new Container();
 
