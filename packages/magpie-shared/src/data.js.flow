@@ -1,6 +1,0 @@
-// @flow
-
-export interface IData {
-  value1: number;
-  value2: number;
-}
