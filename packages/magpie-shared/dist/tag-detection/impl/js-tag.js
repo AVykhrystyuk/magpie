@@ -16,10 +16,15 @@ class JsTag extends _tag2.default {
     super();
 
     this.tagId = 'JavaScript';
+    this.keyWordsRegExp = /js(?!on)|javascript|ECMAScript/i;
   }
 
   isApplicableFor(text) {
-    return text != null;
+    if (this.keyWordsRegExp.test(text)) {
+      return true;
+    }
+
+    return false;
   }
 }
 exports.default = JsTag; /* eslint-disable class-methods-use-this */

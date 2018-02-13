@@ -7,14 +7,20 @@ import type {TagId} from '../tag';
 
 export default class JsTag extends Tag {
   tagId: TagId;
+  keyWordsRegExp: RegExp;
 
   constructor() {
     super();
 
     this.tagId = 'JavaScript';
+    this.keyWordsRegExp = /js(?!on)|javascript|ECMAScript/i;
   }
 
   isApplicableFor(text: string): boolean {
-    return text != null;
+    if (this.keyWordsRegExp.test(text)) {
+      return true;
+    }
+
+    return false;
   }
 }

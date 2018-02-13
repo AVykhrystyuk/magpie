@@ -4,6 +4,14 @@ import JsTag from './js-tag';
 
 const flatMap = (arr, selector) => [].concat(...arr.map(selector));
 
+function assertTagIsApplicable(jsTag, text) {
+  assert.ok(jsTag.isApplicableFor(text), `Tag is not applicable (but should be) for the following text: '${text}'`);
+}
+
+function assertTagIsNotApplicable(jsTag, text) {
+  assert.ok(!jsTag.isApplicableFor(text), `Tag is applicable (but should not be) for the following text: '${text}'`);
+}
+
 describe('JsTag', () => {
   let jsTag;
 
@@ -21,7 +29,7 @@ describe('JsTag', () => {
         'SuperJavaScriptMeetup',
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
     it('when "JS" is part of a word with some exceptions', () => {
@@ -34,12 +42,13 @@ describe('JsTag', () => {
       ];
 
       // prettier-ignore
-      const exceptions = [
-        'json',
+      const notApplicableTexts = [
+        'bla bla json bld',
+        'bla bla JSonium bld',
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
-      exceptions.forEach(e => assert.ok(!jsTag.isApplicableFor(e)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
     });
 
     it('when "JavaScript" or "JS" word exists in text', () => {
@@ -54,23 +63,23 @@ describe('JsTag', () => {
         'bla Javascript',
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
+    // figure out what to do with abbreviation ("ES") - https://www.thefreedictionary.com/words-containing-es
+    it('when "ECMAScript" is part of a word or exists in text as is', () => {
+      const applicableTexts = [
+        'bla ECMAScript 6 bla',
+        'bla ECMAScript6 bla',
+        'bla MoscowECMAScript bla',
 
-    // figure out what to do with: https://www.thefreedictionary.com/words-containing-es
-    // it('when "ECMAScript" or it\'s abbreviation ("ES") exists in text', () => {
-    //   const applicableTexts = [
-    //     'bla ECMAScript 6 bla',
-    //     'bla ECMAScript6 bla',
-    //
-    //     'js ES6 sds',
-    //     'ES7 Spb',
-    //     'bla ESnext',
-    //   ];
-    //
-    //   applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
-    // });
+        // 'js ES6 sds',
+        // 'ES7 Spb',
+        // 'bla ESnext',
+      ];
+
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+    });
 
     it('when very popular framework or library name exists in text', () => {
       // prettier-ignore
@@ -84,7 +93,7 @@ describe('JsTag', () => {
         'Writing on Vue',
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
     it('when very popular framework or library name is a part of a word', () => {
@@ -95,7 +104,7 @@ describe('JsTag', () => {
         'blaaaaha SamaraVue 2017'
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
     it('when React related words exist in text', () => {
@@ -143,9 +152,9 @@ describe('JsTag', () => {
         'react native'
       ];
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
-      definitelyNotApplicableTexts.forEach(text => assert.ok(!jsTag.isApplicableFor(text)));
-      applicableCollocations.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      definitelyNotApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
+      applicableCollocations.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
     it('when NodeJS Ecosystem related popular words exist in text', () => {
@@ -161,7 +170,7 @@ describe('JsTag', () => {
 
       const applicableTexts = definitelyApplicableWords.map(w => ` bla ${w} bla `);
 
-      applicableTexts.forEach(text => assert.ok(jsTag.isApplicableFor(text)));
+      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
   });
 
@@ -172,7 +181,7 @@ describe('JsTag', () => {
         "bla let's go drink beer bla bla"
       ];
 
-      notApplicableTexts.forEach(text => assert.ok(!jsTag.isApplicableFor(text)));
+      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
     });
   });
 });
