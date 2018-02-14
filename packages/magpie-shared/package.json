@@ -11,7 +11,9 @@
     "babel": "babel src/ -d dist/",
     "clear": "del dist",
     "build": "yarn clear && yarn lint && yarn babel",
-    "prepare": "yarn build"
+    "preinstall": "yarn build",
+    "prepublish": "[log]: 'prepublish'",
+    "prepare": "[log]: 'prepare'"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
