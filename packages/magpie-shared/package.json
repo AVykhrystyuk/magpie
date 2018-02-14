@@ -10,7 +10,9 @@
     "format": "yarn pretty && yarn lint --fix",
     "babel": "babel src/ -d dist/",
     "clear": "del dist",
-    "build": "yarn clear && yarn lint && yarn babel"
+    "build": "yarn clear && yarn lint && yarn babel",
+    "preinstall": "yarn prepublish",
+    "prepublish": "yarn build"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
