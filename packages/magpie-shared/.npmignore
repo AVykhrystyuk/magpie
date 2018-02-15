@@ -5,9 +5,6 @@ flow-typed
 # Logs
 npm-debug.log
 
-# Build results
-dist
-
 # Local development
 *.env
 *.dev
@@ -16,3 +13,7 @@ dist
 # IDE
 .idea
 .vscode
+
+
+# Unit-tests
+*.spec.*

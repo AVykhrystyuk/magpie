@@ -1,6 +1,6 @@
 {
   "name": "magpie-shared",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "scripts": {
     "test": "yarn build && yarn mocha",
@@ -11,7 +11,7 @@
     "babel": "babel src/ -d dist/",
     "clear": "del dist",
     "build": "yarn clear && yarn lint && yarn babel",
-    "postinstall": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
@@ -31,7 +31,7 @@
     "mocha": "^5.0.0",
     "prettier": "^1.10.2"
   },
-  "dependencies": {
-    "del": "^3.0.0"
+  "engines": {
+    "node": ">=8.9.4"
   }
 }
