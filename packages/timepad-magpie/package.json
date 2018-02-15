@@ -19,7 +19,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "container-ioc": "^1.7.18",
-    "magpie-shared": "AVykhrystyuk/magpie-shared",
+    "magpie-shared": "0.0.2",
     "sanitize-html": "^1.17.0"
   },
   "devDependencies": {

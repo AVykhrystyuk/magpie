@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 // lib
 import {Container} from 'container-ioc';
-import {calculate} from 'magpie-shared';
+import {TagDetectorImpl} from 'magpie-shared';
 // app
 import TimePadApiClient from './api/api-client';
 import TimePadApiClientImpl from './api/impl/api-client';
@@ -11,8 +11,9 @@ import TimePadEventsFetcher from './events-fetcher';
 import TimePadEventsFetcherImpl from './impl/events-fetcher';
 import App from './app';
 
-const calculationResult = calculate({value1: 1, value2: 4});
-console.log('working!, result is :', calculationResult);
+const tagDetector = new TagDetectorImpl();
+const tagIds = tagDetector.detectAll('Go to Piter.JS meetup');
+console.log(tagIds);
 
 const container = new Container();
 
