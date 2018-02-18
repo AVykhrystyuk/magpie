@@ -5,11 +5,17 @@ import JsTag from './js-tag';
 const flatMap = (arr, selector) => [].concat(...arr.map(selector));
 
 function assertTagIsApplicable(jsTag, text) {
-  assert.ok(jsTag.isApplicableFor(text), `Tag is not applicable (but should be) for the following text: '${text}'`);
+  assert.ok(
+    jsTag.isApplicableFor(text),
+    `Tag is not applicable (but should be) for the following text: '${text}'`
+  );
 }
 
 function assertTagIsNotApplicable(jsTag, text) {
-  assert.ok(!jsTag.isApplicableFor(text), `Tag is applicable (but should not be) for the following text: '${text}'`);
+  assert.ok(
+    !jsTag.isApplicableFor(text),
+    `Tag is applicable (but should not be) for the following text: '${text}'`
+  );
 }
 
 describe('JsTag', () => {
@@ -73,9 +79,11 @@ describe('JsTag', () => {
         'bla ECMAScript6 bla',
         'bla MoscowECMAScript bla',
 
-        // 'js ES6 sds',
+        // 'js ES2015 (ES6) sds',
+        // 'js ES2009 (ES5) sds',
         // 'ES7 Spb',
-        // 'bla ESnext',
+        // 'bla es.next - ES7, ES2016, or ES.Next',
+        // 'bla esNext',
       ];
 
       applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));

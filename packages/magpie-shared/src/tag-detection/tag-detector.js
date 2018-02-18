@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this, no-unused-vars */
+/* istanbul ignore file */
 // @flow
 
 import type {TagId} from './tag';

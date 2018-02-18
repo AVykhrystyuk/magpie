@@ -20,3 +20,4 @@ dist
 # Test coverage
 coverage
 .coveralls.yml
+.nyc_output

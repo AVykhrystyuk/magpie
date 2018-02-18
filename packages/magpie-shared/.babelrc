@@ -10,6 +10,13 @@
     ],
     "flow"
   ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  },
   "plugins": [
     "transform-object-rest-spread"
   ]

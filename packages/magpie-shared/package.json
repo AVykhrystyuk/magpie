@@ -3,8 +3,8 @@
   "version": "0.0.2",
   "main": "dist/index.js",
   "scripts": {
-    "test": "yarn build && yarn @mocha",
-    "cover": "yarn build && yarn @istanbul",
+    "test": "yarn @mocha",
+    "cover": "yarn @istanbul",
     "lint": "yarn eslint 'src/**'",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn pretty && yarn lint --fix",
@@ -12,9 +12,21 @@
     "build": "yarn clear && yarn lint && yarn @babel",
     "prepublishOnly": "yarn build",
     "coverageToCoveralls": "yarn cover && cat coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "@istanbul": "istanbul cover _mocha --report lcovonly -- -R spec 'dist/**/*.spec.js'",
-    "@mocha": "mocha 'dist/**/*.spec.js'",
+    "@istanbul": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
+    "@mocha": "mocha --require babel-register 'src/**/*.spec.js'",
     "@babel": "babel src/ -d dist/"
+  },
+  "nyc": {
+    "include": ["src"],
+    "exclude": ["**/*.spec.js"],
+    "require": ["babel-register"],
+    "reporter": [
+      "lcovonly",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "all": true
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
@@ -22,18 +34,21 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "babel-register": "^6.26.0",
     "coveralls": "^3.0.0",
+    "cross-env": "^5.1.3",
     "del-cli": "^1.1.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-flowtype": "^2.42.0",
     "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.65.0",
-    "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
     "prettier": "^1.10.2"
   },
   "engines": {
