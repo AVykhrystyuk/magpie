@@ -7,14 +7,14 @@ const flatMap = (arr, selector) => [].concat(...arr.map(selector));
 function assertTagIsApplicable(jsTag, text) {
   assert.ok(
     jsTag.isApplicableFor(text),
-    `Tag is not applicable (but should be) for the following text: '${text}'`
+    `Tag should be applicable for the following text: '${text}'`
   );
 }
 
 function assertTagIsNotApplicable(jsTag, text) {
   assert.ok(
     !jsTag.isApplicableFor(text),
-    `Tag is applicable (but should not be) for the following text: '${text}'`
+    `Tag should not be applicable for the following text: '${text}'`
   );
 }
 
@@ -79,18 +79,26 @@ describe('JsTag', () => {
         'bla ECMAScript6 bla',
         'bla MoscowECMAScript bla',
 
-        // 'js ES2015 (ES6) sds',
-        // 'js ES2009 (ES5) sds',
-        // 'ES7 Spb',
-        // 'bla es.next - ES7, ES2016, or ES.Next',
-        // 'bla esNext',
+        'bla ES-2015 sds', // ES6
+        'bla ES2009 sds', // ES5
+        'bla ES7 Spb',
+        'bla es.next ', // ES7, ES2016, or ES.Next
+        'bla esNext',
+      ];
+
+      const notApplicableTexts = [
+        'bla ES-2015dsda sds',
+        'bla essential dsds',
+        'ES7dsd Spb',
+        'bla es.nextdsad',
+        'bla esNextaaaa',
       ];
 
       applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
     });
 
     xit('when very popular framework or library name exists in text', () => {
-      // prettier-ignore
       const applicableTexts = [
         'bla Angular 6 bla',
         'bla Ember bla',
