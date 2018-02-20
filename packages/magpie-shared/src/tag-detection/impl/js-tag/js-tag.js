@@ -4,7 +4,7 @@
 // app
 import Tag from '../../tag';
 import TextChecker from '../text-checker';
-import {ECMAScriptCheck} from './checkers';
+import {ECMAScriptChecker, FrameworksChecker} from './checkers';
 import type {TagId} from '../../tag';
 
 export default class JsTag extends Tag {
@@ -15,7 +15,11 @@ export default class JsTag extends Tag {
   constructor() {
     super();
 
-    this._checkers = [new ECMAScriptCheck()];
+    // prettier-ignore
+    this._checkers = [
+      new ECMAScriptChecker(),
+      new FrameworksChecker()
+    ];
 
     this.tagId = 'JavaScript';
     this._keyWordsRegExp = /js(?!on)|javascript/i;

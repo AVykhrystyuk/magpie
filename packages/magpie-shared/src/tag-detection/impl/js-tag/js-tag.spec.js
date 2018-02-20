@@ -98,7 +98,7 @@ describe('JsTag', () => {
       notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
     });
 
-    xit('when very popular framework or library name exists in text', () => {
+    it('when very popular framework or library name exists in text', () => {
       const applicableTexts = [
         'bla Angular 6 bla',
         'bla Ember bla',
@@ -112,7 +112,7 @@ describe('JsTag', () => {
       applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
     });
 
-    xit('when very popular framework or library name is a part of a word', () => {
+    it('when very popular framework or library name is a part of a word', () => {
       // prettier-ignore
       const applicableTexts = [
         'bla AngularPiter',

@@ -2,7 +2,7 @@
 
 import TextChecker from '../../text-checker';
 
-export default class ECMAScriptChecker extends TextChecker {
+export default class FrameworksChecker extends TextChecker {
   _regExps: RegExp[];
 
   constructor() {
@@ -10,8 +10,7 @@ export default class ECMAScriptChecker extends TextChecker {
 
     // prettier-ignore
     this._regExps = [
-      /\bES(-?\d{1,4}|\.?next)\b/i,
-      /ECMAScript/i
+      /Angular|Ember|Vue/i
     ];
   }
 
