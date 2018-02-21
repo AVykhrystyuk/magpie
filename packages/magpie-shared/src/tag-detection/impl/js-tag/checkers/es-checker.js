@@ -1,21 +1,14 @@
 // @flow
 
-import TextChecker from '../../text-checker';
+import RegExpChecker from './regexp-checker';
 
-export default class ECMAScriptChecker extends TextChecker {
-  _regExps: RegExp[];
-
+export default class ECMAScriptChecker extends RegExpChecker {
   constructor() {
-    super();
-
     // prettier-ignore
-    this._regExps = [
+    const regExps = [
       /\bES(-?\d{1,4}|\.?next)\b/i,
       /ECMAScript/i
     ];
-  }
-
-  check(text: string): boolean {
-    return this._regExps.some(e => e.test(text));
+    super(regExps);
   }
 }

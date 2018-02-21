@@ -2,16 +2,16 @@ import assert from 'assert';
 
 import JsTag from './js-tag';
 
-const flatMap = (arr, selector) => [].concat(...arr.map(selector));
+// const flatMap = (arr, selector) => [].concat(...arr.map(selector));
 
-function assertTagIsApplicable(jsTag, text) {
+function assertJsTagIsApplicable(jsTag, text) {
   assert.ok(
     jsTag.isApplicableFor(text),
     `Tag should be applicable for the following text: '${text}'`
   );
 }
 
-function assertTagIsNotApplicable(jsTag, text) {
+function assertJsTagIsNotApplicable(jsTag, text) {
   assert.ok(
     !jsTag.isApplicableFor(text),
     `Tag should not be applicable for the following text: '${text}'`
@@ -19,10 +19,13 @@ function assertTagIsNotApplicable(jsTag, text) {
 }
 
 describe('JsTag', () => {
-  let jsTag;
+  let assertTextAppliesToJsTag;
+  let assertTextDoesNotApplyToJsTag;
 
   beforeEach(() => {
-    jsTag = new JsTag();
+    const jsTag = new JsTag();
+    assertTextAppliesToJsTag = assertJsTagIsApplicable.bind(null, jsTag);
+    assertTextDoesNotApplyToJsTag = assertJsTagIsNotApplicable.bind(null, jsTag);
   });
 
   describe('Text case insensitive discovering', () => {
@@ -35,7 +38,8 @@ describe('JsTag', () => {
         'SuperJavaScriptMeetup',
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
     it('when "JS" is part of a word with some exceptions', () => {
@@ -53,8 +57,9 @@ describe('JsTag', () => {
         'bla bla JSonium bld',
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
-      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
 
     it('when "JavaScript" or "JS" word exists in text', () => {
@@ -69,7 +74,8 @@ describe('JsTag', () => {
         'bla Javascript',
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
     // figure out what to do with abbreviation ("ES") - https://www.thefreedictionary.com/words-containing-es
@@ -94,8 +100,9 @@ describe('JsTag', () => {
         'bla esNextaaaa',
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
-      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
 
     it('when very popular framework or library name exists in text', () => {
@@ -109,7 +116,7 @@ describe('JsTag', () => {
         'Writing on Vue',
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
     it('when very popular framework or library name is a part of a word', () => {
@@ -120,12 +127,14 @@ describe('JsTag', () => {
         'blaaaaha SamaraVue 2017'
       ];
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
-    xit('when React related words exist in text', () => {
+    it('when React related words exist in text', () => {
       const helpedWords = [
         'meetup',
+        'meet-up',
         'conf',
 
         'dom',
@@ -145,48 +154,44 @@ describe('JsTag', () => {
         'front-end',
       ];
 
-      // prettier-ignore
-      const yetNotApplicableTexts = [
-        'bla react'
-      ];
+      const reactWithHelperWords = helpedWords.map(w => ` bla React bla ${w} bla `);
 
       // prettier-ignore
-      const applicableTexts = flatMap(
-        yetNotApplicableTexts,
-        text => helpedWords.map(w => ` bla ${text} bla ${w} bla `)
-      );
+      const applicableTitles = [
+        'React Finland',
+        'dsds. React Moscow 2016. dsds'
+      ];
 
       const definitelyNotApplicableTexts = [
         'bla react moscow',
         'dude, just react!',
         'she reacted really weird',
         'wow this is god damn reaction',
+        'ds Reactive Spring',
+        'reaction sub-native',
       ];
 
       // prettier-ignore
-      const applicableCollocations = [
+      const applicableTexts = [
         'react native'
       ];
+      applicableTexts.push(...applicableTitles);
+      applicableTexts.push(...reactWithHelperWords);
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
-      definitelyNotApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
-      applicableCollocations.forEach(text => assertTagIsApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
+      definitelyNotApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
 
-    xit('when NodeJS Ecosystem related popular words exist in text', () => {
-      const definitelyApplicableWords = [
-        'npm',
-        'yarn',
-        'grunt',
-        'gulp',
-        'webpack',
-        'express',
-        'koa',
-      ];
+    it('when NodeJS Ecosystem related popular words exist in text', () => {
+      const definitelyApplicableWords = ['npm', 'yarn', 'grunt', 'gulp', 'webpack'];
 
       const applicableTexts = definitelyApplicableWords.map(w => ` bla ${w} bla `);
+      const notApplicableTexts = definitelyApplicableWords.map(w => ` bla${w}bla `);
 
-      applicableTexts.forEach(text => assertTagIsApplicable(jsTag, text));
+      // assert
+      applicableTexts.forEach(assertTextAppliesToJsTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
   });
 
@@ -197,7 +202,8 @@ describe('JsTag', () => {
         "bla let's go drink beer bla bla"
       ];
 
-      notApplicableTexts.forEach(text => assertTagIsNotApplicable(jsTag, text));
+      // assert
+      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
   });
 });

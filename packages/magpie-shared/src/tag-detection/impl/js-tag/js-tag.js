@@ -4,12 +4,17 @@
 // app
 import Tag from '../../tag';
 import TextChecker from '../text-checker';
-import {ECMAScriptChecker, FrameworksChecker} from './checkers';
+import {
+  RegExpChecker,
+  ECMAScriptChecker,
+  FrameworksChecker,
+  NodeJsEcoChecker,
+  ReactChecker
+} from './checkers';
 import type {TagId} from '../../tag';
 
 export default class JsTag extends Tag {
   tagId: TagId;
-  _keyWordsRegExp: RegExp;
   _checkers: TextChecker[];
 
   constructor() {
@@ -17,19 +22,17 @@ export default class JsTag extends Tag {
 
     // prettier-ignore
     this._checkers = [
+      new RegExpChecker([/js(?!on)|javascript/i]),
       new ECMAScriptChecker(),
-      new FrameworksChecker()
+      new FrameworksChecker(),
+      new NodeJsEcoChecker(),
+      new ReactChecker()
     ];
 
     this.tagId = 'JavaScript';
-    this._keyWordsRegExp = /js(?!on)|javascript/i;
   }
 
   isApplicableFor(text: string): boolean {
-    if (this._keyWordsRegExp.test(text)) {
-      return true;
-    }
-
     return this._checkers.some(c => c.check(text));
   }
 }

@@ -2,11 +2,11 @@
 
 import RegExpChecker from './regexp-checker';
 
-export default class FrameworksChecker extends RegExpChecker {
+export default class NodeJsEcoChecker extends RegExpChecker {
   constructor() {
     // prettier-ignore
     const regExps = [
-      /Angular|Ember|Vue/i
+      /\b(npm|yarn|grunt|gulp|webpack)\b/i
     ];
 
     super(regExps);
