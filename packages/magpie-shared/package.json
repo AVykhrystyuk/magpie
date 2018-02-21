@@ -1,6 +1,6 @@
 {
   "name": "magpie-shared",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "scripts": {
     "test": "yarn @mocha",
@@ -17,9 +17,15 @@
     "@babel": "babel src/ -d dist/"
   },
   "nyc": {
-    "include": ["src"],
-    "exclude": ["**/*.spec.js"],
-    "require": ["babel-register"],
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "**/*.spec.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
     "reporter": [
       "lcovonly",
       "text"
