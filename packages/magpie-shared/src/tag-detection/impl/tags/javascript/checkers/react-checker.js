@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 // @flow
 
-import TextChecker from '../../text-checker';
+import TextChecker from '../../../../text-checker';
 
 export default class ReactChecker extends TextChecker {
   check(text: string): boolean {

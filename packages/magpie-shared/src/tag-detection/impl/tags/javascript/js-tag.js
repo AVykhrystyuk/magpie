@@ -2,16 +2,16 @@
 // @flow
 
 // app
-import Tag from '../../tag';
-import TextChecker from '../text-checker';
+import Tag from '../../../tag';
+import TextChecker from '../../../text-checker';
 import {
   RegExpChecker,
   ECMAScriptChecker,
   FrameworksChecker,
   NodeJsEcoChecker,
   ReactChecker
-} from './checkers';
-import type {TagId} from '../../tag';
+} from './checkers/index';
+import type {TagId} from '../../../tag';
 
 export default class JsTag extends Tag {
   tagId: TagId;
@@ -20,13 +20,12 @@ export default class JsTag extends Tag {
   constructor() {
     super();
 
-    // prettier-ignore
     this._checkers = [
       new RegExpChecker([/js(?!on)|javascript/i]),
       new ECMAScriptChecker(),
       new FrameworksChecker(),
       new NodeJsEcoChecker(),
-      new ReactChecker()
+      new ReactChecker(),
     ];
 
     this.tagId = 'JavaScript';

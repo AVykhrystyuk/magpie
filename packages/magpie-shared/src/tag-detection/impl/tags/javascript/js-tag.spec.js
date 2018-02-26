@@ -1,17 +1,22 @@
+// @flow
+
+// lib
+import {describe, it, beforeEach} from 'mocha';
 import assert from 'assert';
 
+// app
 import JsTag from './js-tag';
 
 // const flatMap = (arr, selector) => [].concat(...arr.map(selector));
 
-function assertJsTagIsApplicable(jsTag, text) {
+function assertJsTagIsApplicable(jsTag: JsTag, text: string): void {
   assert.ok(
     jsTag.isApplicableFor(text),
     `Tag should be applicable for the following text: '${text}'`
   );
 }
 
-function assertJsTagIsNotApplicable(jsTag, text) {
+function assertJsTagIsNotApplicable(jsTag: JsTag, text: string): void {
   assert.ok(
     !jsTag.isApplicableFor(text),
     `Tag should not be applicable for the following text: '${text}'`

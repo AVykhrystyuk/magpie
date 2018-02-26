@@ -1,20 +1,30 @@
+/* eslint-disable class-methods-use-this */
 // @flow
 
 // app
 import type Tag, {TagId} from '../tag';
 import TagDetector from '../tag-detector';
-import {JsTag} from './js-tag';
 
 export default class TagDetectorImpl extends TagDetector {
-  _allTags: Tag[];
+  _tags: Tag[];
 
-  constructor() {
+  constructor(tags: Tag[]) {
     super();
-    this._allTags = [new JsTag()];
+    this._tags = tags;
   }
 
   detectAll(text: string): TagId[] {
-    // TODO: filter negative words like 'Курс'
-    return this._allTags.filter(t => t.isApplicableFor(text)).map(t => t.tagId);
+    if (this._isBlankString(text)) {
+      return [];
+    }
+
+    // prettier-ignore
+    return this._tags
+      .filter(t => t.isApplicableFor(text))
+      .map(t => t.tagId);
+  }
+
+  _isBlankString(text: string): boolean {
+    return !text || /^\s*$/.test(text);
   }
 }

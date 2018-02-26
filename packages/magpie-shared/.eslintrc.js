@@ -31,6 +31,6 @@ module.exports = {
       'LabeledStatement',
       'WithStatement',
     ],
-    // 'newline-per-chained-call': ['error', {ignoreChainWithDepth: 2}],
+    'newline-per-chained-call': ['error', {ignoreChainWithDepth: 2}],
   }
 };
