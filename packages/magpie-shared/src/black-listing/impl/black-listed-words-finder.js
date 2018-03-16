@@ -5,18 +5,12 @@
 import BlackListedWordsFinder from '../black-listed-words-finder';
 
 export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
-  _regExps: RegExp[];
-
-  constructor() {
-    super();
-
-    this._regExps = [
-      /курс/i,
-      /тренинг/i,
-      /бизнес/i,
-      /предприниматель/i, // предприниматель(ство)?
-    ];
-  }
+  _regExps: RegExp[] = [
+    /курс/i,
+    /тренинг/i,
+    /бизнес/i,
+    /предприниматель/i, // предприниматель(ство)?
+  ];
 
   find(text: string): string[] {
     const foundWords = [];

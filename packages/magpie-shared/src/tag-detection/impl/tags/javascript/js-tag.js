@@ -14,22 +14,15 @@ import {
 import type {TagId} from '../../../tag';
 
 export default class JsTag extends Tag {
-  tagId: TagId;
-  _checkers: TextChecker[];
+  tagId: TagId = 'JavaScript';
 
-  constructor() {
-    super();
-
-    this._checkers = [
-      new RegExpChecker([/js(?!on)|javascript/i]),
-      new ECMAScriptChecker(),
-      new FrameworksChecker(),
-      new NodeJsEcoChecker(),
-      new ReactChecker(),
-    ];
-
-    this.tagId = 'JavaScript';
-  }
+  _checkers: TextChecker[] = [
+    new RegExpChecker([/js(?!on)|javascript/i]),
+    new ECMAScriptChecker(),
+    new FrameworksChecker(),
+    new NodeJsEcoChecker(),
+    new ReactChecker(),
+  ];
 
   isApplicableFor(text: string): boolean {
     return this._checkers.some(c => c.check(text));

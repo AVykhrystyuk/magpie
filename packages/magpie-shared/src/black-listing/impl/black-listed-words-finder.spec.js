@@ -32,7 +32,7 @@ describe('BlackListedWordsFinderImpl', () => {
         'Курс',
         'Тренинг',
         'бизнеС',
-        'предпринимательство'
+        'преДприниматель'
       ];
       const inputText = blackListedWords.join(' ');
 
