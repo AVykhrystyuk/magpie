@@ -16,24 +16,6 @@
     "@mocha": "mocha --require babel-register 'src/**/*.spec.js'",
     "@babel": "babel src/ -d dist/"
   },
-  "nyc": {
-    "include": [
-      "src"
-    ],
-    "exclude": [
-      "**/*.spec.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
-    "reporter": [
-      "lcovonly",
-      "text"
-    ],
-    "sourceMap": false,
-    "instrument": false,
-    "all": true
-  },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
@@ -61,5 +43,26 @@
   },
   "engines": {
     "node": ">=8.9.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "nyc": {
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "**/*.spec.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcovonly",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "all": true
   }
 }
