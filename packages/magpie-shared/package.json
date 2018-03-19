@@ -3,18 +3,16 @@
   "version": "0.0.4",
   "main": "dist/index.js",
   "scripts": {
-    "test": "yarn @mocha",
-    "cover": "yarn @istanbul",
+    "test": "mocha --require babel-register 'src/**/*.spec.js'",
+    "cover": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
     "lint": "yarn eslint 'src/**'",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn pretty && yarn lint --fix",
     "clear": "del dist",
-    "build": "yarn clear && yarn lint && yarn @babel",
+    "build": "yarn clear && yarn lint && yarn @babelBuild",
     "prepublishOnly": "yarn build",
     "coverageToCoveralls": "yarn cover && cat coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "@istanbul": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
-    "@mocha": "mocha --require babel-register 'src/**/*.spec.js'",
-    "@babel": "babel src/ -d dist/"
+    "@babelBuild": "babel src/ -d dist/ --ignore '**/*.spec.js'"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
