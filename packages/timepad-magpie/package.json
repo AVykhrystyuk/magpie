@@ -5,22 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn gulp build --production",
-    "build:watch": "yarn gulp build watch",
+    "build": "yarn flow:check && yarn gulp build",
+    "build:dev": "yarn build",
+    "build:prod": "yarn build -- --production",
+    "build:watch": "yarn build -- watch",
     "lint": "yarn gulp lint",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn pretty && yarn lint --fix",
-    "start": "node build/main.js",
-    "flow:deps": "yarn flow-typed install"
+    "start": "yarn build && node build/main.js",
+    "flow:deps": "yarn flow-typed install",
+    "flow:check": "yarn flow check"
   },
   "repository": "https://github.com/AVykhrystyuk/timepad-magpie",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1",
-    "container-ioc": "^1.7.18",
-    "magpie-shared": "0.0.2",
-    "sanitize-html": "^1.17.0"
+    "axios": "^0.18.0",
+    "container-ioc": "^1.7.19",
+    "magpie-shared": "^0.0.6",
+    "sanitize-html": "^1.18.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -35,7 +38,7 @@
     "eslint-plugin-flowtype": "^2.42.0",
     "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.63.1",
-    "flow-typed": "^2.2.3",
+    "flow-typed": "^2.4.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.2",

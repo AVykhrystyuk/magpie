@@ -13,15 +13,15 @@ import type {ITimePadEvent} from '../event.js.flow';
 
 @Injectable([ApiTimePadEventsFetcher])
 export default class TimePadEventsFetcherImpl extends TimePadEventsFetcher {
-  _eventsFetcher: ApiTimePadEventsFetcher;
+  _apiEventsFetcher: ApiTimePadEventsFetcher;
 
-  constructor(eventsFetcher: ApiTimePadEventsFetcher) {
+  constructor(apiEventsFetcher: ApiTimePadEventsFetcher) {
     super();
-    this._eventsFetcher = eventsFetcher;
+    this._apiEventsFetcher = apiEventsFetcher;
   }
 
   async fetchEvents(): Promise<ITimePadEvent[]> {
-    const apiEvents = await this._eventsFetcher.fetchEvents();
+    const apiEvents = await this._apiEventsFetcher.fetchEvents();
     return apiEvents
       .filter(TimePadEventsFetcherImpl._filterEvent)
       .map(TimePadEventsFetcherImpl._createEvent);
@@ -32,7 +32,7 @@ export default class TimePadEventsFetcherImpl extends TimePadEventsFetcher {
       ? stripHtml(apiEvent.description_html)
       : apiEvent.description_short;
 
-    return descriptionText != null;
+    return descriptionText !== null;
   }
 
   static _createEvent(apiEvent: IApiTimePadEvent): ITimePadEvent {
