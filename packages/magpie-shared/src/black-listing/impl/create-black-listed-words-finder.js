@@ -6,8 +6,6 @@
 import BlackListWordsFinder from '../black-listed-words-finder';
 import BlackListWordsFinderImpl from './black-listed-words-finder';
 
-export default class BlackListWordsFinderFactory {
-  create(): BlackListWordsFinder {
-    return new BlackListWordsFinderImpl();
-  }
+export default function createBlackListWordsFinder(): BlackListWordsFinder {
+  return new BlackListWordsFinderImpl();
 }

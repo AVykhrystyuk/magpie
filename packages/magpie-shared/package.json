@@ -8,11 +8,11 @@
     "lint": "yarn eslint 'src/**'",
     "pretty": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn pretty && yarn lint --fix",
-    "clear": "del dist",
-    "build": "yarn clear && yarn lint && yarn @babelBuild",
+    "build": "yarn build:clear && yarn lint && yarn build:babel",
+    "build:babel": "babel src/ -d dist/ --ignore '**/*.spec.js'",
+    "build:clear": "del dist",
     "prepublishOnly": "yarn build",
-    "coverageToCoveralls": "yarn cover && cat coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "@babelBuild": "babel src/ -d dist/ --ignore '**/*.spec.js'"
+    "coverageToCoveralls": "yarn cover && cat coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
