@@ -1,9 +1,14 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,arrow-body-style */
 // @flow
 
 // lib
 import {Container} from 'container-ioc';
-import {createTagDetector, TagDetector, createBlackListedWordsFinder, BlackListedWordsFinder} from 'magpie-shared';
+import {
+  createTagDetector,
+  TagDetector,
+  createBlackListedWordsFinder,
+  BlackListedWordsFinder
+} from 'magpie-shared';
 // app
 import TimePadApiClient from './api/api-client';
 import TimePadApiClientImpl from './api/impl/api-client';

@@ -7,8 +7,9 @@ import {TagDetector, BlackListedWordsFinder} from 'magpie-shared';
 
 // app
 import TimePadEventsFetcher from './events-fetcher';
+import {writeRowsToFile} from './tools';
 
-@Injectable([TimePadEventsFetcher])
+@Injectable([TimePadEventsFetcher, BlackListedWordsFinder, TagDetector])
 export default class App {
   _timePadEventsFetcher: TimePadEventsFetcher;
   _blackListedWordsFinder: BlackListedWordsFinder;
@@ -37,5 +38,11 @@ export default class App {
 
     console.log();
     console.log(events.slice(0, 2));
+
+    const rows: Array<Array<string>> = [
+      ['Id', 'Name', 'Short Description'],
+      ...events.map(e => [e.id.toString(), e.name, e.__description_short__]),
+    ];
+    await writeRowsToFile(rows);
   }
 }

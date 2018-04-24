@@ -23,7 +23,8 @@
     "axios": "^0.18.0",
     "container-ioc": "^1.7.19",
     "magpie-shared": "^0.0.6",
-    "sanitize-html": "^1.18.2"
+    "sanitize-html": "^1.18.2",
+    "xlsx": "^0.12.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -43,6 +44,7 @@
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.2",
     "gulp-if": "^2.0.2",
+    "gulp-notify": "^3.2.0",
     "gulp-sourcemaps": "^2.6.4",
     "prettier": "^1.10.2"
   }

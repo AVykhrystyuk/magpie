@@ -26,5 +26,7 @@ module.exports = {
       'LabeledStatement',
       'WithStatement',
     ],
+    'function-paren-newline': ["error", "consistent"],
+    'arrow-parens': ["error", "as-needed"]
   }
 };

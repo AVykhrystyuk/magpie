@@ -2,7 +2,7 @@
 // @flow
 
 // lib
-import util from 'util';
+import {promisify} from 'util';
 import {Injectable} from 'container-ioc';
 
 // app
@@ -12,7 +12,7 @@ import TimePadApiClient from '../api-client';
 import type {IApiTimePadEventsResponse} from '../api-client';
 import type {IApiTimePadEvent} from '../event.js.flow';
 
-const delay = setTimeout[util.promisify.custom];
+const delay = setTimeout[promisify.custom];
 
 @Injectable([TimePadApiClient])
 export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
