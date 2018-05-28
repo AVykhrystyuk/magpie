@@ -1,9 +1,0 @@
-// @flow
-
-export interface ITimePadEvent {
-  id: number;
-  name: string;
-  descriptionHtml: string;
-  __description_html__: string;
-  __description_short__: string;
-}

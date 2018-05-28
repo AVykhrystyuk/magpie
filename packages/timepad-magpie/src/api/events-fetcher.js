@@ -2,7 +2,7 @@
 // @flow
 
 // app
-import type {IApiTimePadEvent} from './event.js.flow';
+import type {IApiTimePadEvent} from './event';
 
 export default class ApiTimePadEventsFetcher {
   fetchEvents(): Promise<IApiTimePadEvent[]> {

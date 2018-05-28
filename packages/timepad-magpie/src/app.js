@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,dot-notation */
 // @flow
 
 // lib
@@ -6,8 +6,10 @@ import {Injectable} from 'container-ioc';
 import {TagDetector, BlackListedWordsFinder} from 'magpie-shared';
 
 // app
+import type {ITimePadEvent} from './event';
+import type {IProcessedTimePadEvent} from './processed-event';
 import TimePadEventsFetcher from './events-fetcher';
-import {writeRowsToFile} from './tools';
+import writeProcessedEventsToFiles from './write-processed-events-to-files';
 
 @Injectable([TimePadEventsFetcher, BlackListedWordsFinder, TagDetector])
 export default class App {
@@ -26,12 +28,6 @@ export default class App {
   }
 
   async run(): Promise<*> {
-    const blackListedWords = this._blackListedWordsFinder.find('Курс по С#');
-    console.log('[BlackListedWordsFinder]:', blackListedWords);
-
-    const tagIds = this._tagDetector.detectAll('Go to Piter.JS meetup');
-    console.log('[TagDetector]:', tagIds);
-
     const events = await this._timePadEventsFetcher.fetchEvents();
     console.log('Done grabbing timePad events');
     console.log('Total grabbed events count: ', events.length);
@@ -39,10 +35,39 @@ export default class App {
     console.log();
     console.log(events.slice(0, 2));
 
-    const rows: Array<Array<string>> = [
-      ['Id', 'Name', 'Short Description'],
-      ...events.map(e => [e.id.toString(), e.name, e.__description_short__]),
-    ];
-    await writeRowsToFile(rows);
+    const processedEvents = events.map(e => this._createProcessedEvent(e));
+    await writeProcessedEventsToFiles(processedEvents);
+  }
+
+  _createProcessedEvent(event: ITimePadEvent): IProcessedTimePadEvent {
+    const blackWords = this._findBlackWords(event);
+    const tagIds = this._findTagIds(event);
+    return {
+      event,
+      blackListedWords: blackWords,
+      detectedTagIds: tagIds,
+    };
+  }
+
+  _findBlackWords(event: ITimePadEvent): string[] {
+    const {name, sanitizedDescription} = event;
+
+    const nameBlackWords = this._blackListedWordsFinder.find(name);
+    if (nameBlackWords.length !== 0) {
+      return nameBlackWords;
+    }
+
+    return this._blackListedWordsFinder.find(sanitizedDescription);
+  }
+
+  _findTagIds(event: ITimePadEvent): string[] {
+    const {name, sanitizedDescription} = event;
+
+    const nameTagIds = this._tagDetector.detectAll(name);
+    if (nameTagIds.length !== 0) {
+      return nameTagIds;
+    }
+
+    return this._tagDetector.detectAll(sanitizedDescription);
   }
 }

@@ -10,7 +10,7 @@ import ApiTimePadEventsFetcher from '../events-fetcher';
 
 import TimePadApiClient from '../api-client';
 import type {IApiTimePadEventsResponse} from '../api-client';
-import type {IApiTimePadEvent} from '../event.js.flow';
+import type {IApiTimePadEvent} from '../event';
 
 const delay = setTimeout[promisify.custom];
 
