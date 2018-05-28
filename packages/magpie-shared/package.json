@@ -1,6 +1,6 @@
 {
   "name": "magpie-shared",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha --require babel-register 'src/**/*.spec.js'",
