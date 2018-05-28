@@ -15,34 +15,37 @@ describe('BlackListedWordsFinderImpl', () => {
   });
 
   describe('Word search', () => {
-    it('finds used black list word', () => {
+    it('finds a used black listed word in the middle of a sentence', () => {
       // arrange
 
       // act
-      const wordsFound = blackListedWordsFinderImpl.find('Курс по С#');
+      const wordsFound = blackListedWordsFinderImpl.find('Этот чудный курс по С#');
 
       // assert
-      assert.equal(wordsFound[0], 'Курс', 'Used black list word is not found');
+      assert.equal(wordsFound[0], 'курс', 'Used black listed word is not found');
     });
 
-    it('finds all used black list words', () => {
+    it('finds all used black listed words', () => {
       // arrange
       // prettier-ignore
-      const blackListedWords = [
-        'Курс',
-        'Тренинг',
-        'бизнеС',
-        'преДприниматель'
+      const expectedToBeFoundWords = [
+        'Курс', 'курсы',
+        'Тренинг', 'тренинги',
+        'бизнеС', 'бизнесмен',
+        'преДприниматель', 'предпринимательство',
+        'трудоустройство', 'трудоустроить',
+        'вакансии', 'вакансия',
+        'семинар'
       ];
-      const inputText = blackListedWords.join(' ');
+      const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
       // act
       const wordsFound = blackListedWordsFinderImpl.find(inputText);
 
       // assert
-      wordsFound.forEach((wordFound, index) => {
-        const expectedWord = blackListedWords[index];
-        assert.equal(wordFound, expectedWord, 'Used black list word is not found');
+      expectedToBeFoundWords.forEach((expectedWord, index) => {
+        const wordFound = wordsFound[index];
+        assert.equal(wordFound, expectedWord, `'${expectedWord}' is not found in the text`);
       });
     });
 
@@ -54,7 +57,7 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       // prettier-ignore
-      assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black list words in valid text');
+      assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black listed words in valid text');
     });
   });
 });
