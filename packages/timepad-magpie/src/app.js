@@ -2,10 +2,11 @@
 // @flow
 
 // lib
-import {Injectable} from 'container-ioc';
 import {TagDetector, BlackListedWordsFinder} from 'magpie-shared';
+import autobind from 'autobind-decorator';
 
 // app
+import {Injectable} from './ioc';
 import type {ITimePadEvent} from './event';
 import type {IProcessedTimePadEvent} from './processed-event';
 import TimePadEventsFetcher from './events-fetcher';
@@ -35,10 +36,11 @@ export default class App {
     console.log();
     console.log(events.slice(0, 2));
 
-    const processedEvents = events.map(e => this._createProcessedEvent(e));
+    const processedEvents = events.map(this._createProcessedEvent);
     await writeProcessedEventsToFiles(processedEvents);
   }
 
+  @autobind
   _createProcessedEvent(event: ITimePadEvent): IProcessedTimePadEvent {
     const blackWords = this._findBlackWords(event);
     const tagIds = this._findTagIds(event);

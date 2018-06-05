@@ -1,10 +1,8 @@
 /* eslint-disable no-irregular-whitespace,max-len,camelcase */
 // @flow
 
-// lib
-import {Injectable} from 'container-ioc';
-
 // app
+import {Injectable} from '../ioc';
 import TimePadEventsFetcher from '../events-fetcher';
 import ApiTimePadEventsFetcher from '../api/events-fetcher';
 import {stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty} from './utils';

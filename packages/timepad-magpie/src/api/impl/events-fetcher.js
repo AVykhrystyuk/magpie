@@ -3,9 +3,9 @@
 
 // lib
 import {promisify} from 'util';
-import {Injectable} from 'container-ioc';
 
 // app
+import {Injectable} from '../../ioc';
 import ApiTimePadEventsFetcher from '../events-fetcher';
 
 import TimePadApiClient from '../api-client';
@@ -17,8 +17,8 @@ const delay = setTimeout[promisify.custom];
 @Injectable([TimePadApiClient])
 export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
   _timePadApi: TimePadApiClient;
-  _requestCountPerMinute: number;
-  _recordCountPerRequest: number;
+  _requestCountPerMinute: number = 60; // max limit  allowed by timePad
+  _recordCountPerRequest: number = 100; // max limit  allowed by timePad
 
   _fetchedEvents: IApiTimePadEvent[];
   _eventsTotal: number;
@@ -27,8 +27,6 @@ export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher
   constructor(timePadApi: TimePadApiClient) {
     super();
     this._timePadApi = timePadApi;
-    this._requestCountPerMinute = 60; // max limit  allowed by timePad
-    this._recordCountPerRequest = 100; // max limit  allowed by timePad
   }
 
   async fetchEvents(): Promise<IApiTimePadEvent[]> {

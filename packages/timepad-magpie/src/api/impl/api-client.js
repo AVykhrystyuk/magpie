@@ -3,9 +3,9 @@
 // lib
 import axios from 'axios';
 import type {Axios} from 'axios';
-import {Injectable} from 'container-ioc';
 
 // app
+import {Injectable} from '../../ioc';
 import TimePadApiClient from '../api-client';
 import type {IApiTimePadRequestParams, IApiTimePadEventsResponse} from '../api-client';
 import categories from './config/categories.json';
