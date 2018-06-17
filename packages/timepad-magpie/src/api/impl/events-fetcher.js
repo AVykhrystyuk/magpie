@@ -17,16 +17,20 @@ const delay = setTimeout[promisify.custom];
 @Injectable([TimePadApiClient])
 export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
   _timePadApi: TimePadApiClient;
-  _requestCountPerMinute: number = 60; // max limit  allowed by timePad
-  _recordCountPerRequest: number = 100; // max limit  allowed by timePad
 
   _fetchedEvents: IApiTimePadEvent[];
   _eventsTotal: number;
   _highestEventsTotal: number;
 
+  _maxRecordsPerRequest: number;
+  _maxRequestsPerMinute: number;
+
   constructor(timePadApi: TimePadApiClient) {
     super();
     this._timePadApi = timePadApi;
+
+    this._maxRecordsPerRequest = this._timePadApi.maxRecordsPerRequest;
+    this._maxRequestsPerMinute = this._timePadApi.maxRequestsPerMinute;
   }
 
   async fetchEvents(): Promise<IApiTimePadEvent[]> {
@@ -45,10 +49,10 @@ export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher
     while (this._fetchedEvents.length < this._eventsTotal) {
       this._highestEventsTotal = Math.max(this._highestEventsTotal, this._eventsTotal);
 
-      const requiredRequestCount = Math.ceil(this._highestEventsTotal / this._recordCountPerRequest);
-      const delayRequired = requiredRequestCount > this._requestCountPerMinute;
+      const requiredRequestCount = Math.ceil(this._highestEventsTotal / this._maxRecordsPerRequest);
+      const delayRequired = requiredRequestCount > this._maxRequestsPerMinute;
       if (delayRequired) {
-        const delayMilliseconds = Math.ceil(60 / this._requestCountPerMinute) * 1000;
+        const delayMilliseconds = Math.ceil(60 / this._maxRequestsPerMinute) * 1000;
         console.log('next request required delay (milliseconds): ', delayMilliseconds);
         await delay(delayMilliseconds);
       }
@@ -59,7 +63,7 @@ export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher
 
   async _fetchNextChunkOfEvents(): Promise<*> {
     const eventsResponse: IApiTimePadEventsResponse = await this._timePadApi.fetchEvents({
-      limit: this._recordCountPerRequest,
+      limit: this._maxRecordsPerRequest,
       skip: this._fetchedEvents.length,
     });
 

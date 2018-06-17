@@ -2,9 +2,10 @@
 
 // lib
 import sanitizeHtml from 'sanitize-html';
+import type {SanitizeOptions} from 'sanitize-html';
 
 // prettier-ignore
-const sanitizeOptions = {
+const sanitizeOptions: SanitizeOptions = {
   allowedTags: [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a',
     'ul', 'ol', 'li',

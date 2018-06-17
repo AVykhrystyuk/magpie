@@ -15,6 +15,14 @@ export interface IApiTimePadEventsResponse {
 }
 
 export default class TimePadApiClient {
+  get maxRequestsPerMinute(): number {
+    throw new TypeError('Abstract getter');
+  }
+
+  get maxRecordsPerRequest(): number {
+    throw new TypeError('Abstract getter');
+  }
+
   fetchEvents(params: IApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
     throw new TypeError('Abstract method');
   }

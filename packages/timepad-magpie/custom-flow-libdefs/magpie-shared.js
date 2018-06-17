@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/no-types-missing-file-annotation */
+
 declare module 'magpie-shared' {
   declare type TagId = string;
 
