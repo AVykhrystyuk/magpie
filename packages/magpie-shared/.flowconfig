@@ -5,6 +5,7 @@
 [include]
 
 [libs]
+./custom-flow-libdefs/
 
 [lints]
 

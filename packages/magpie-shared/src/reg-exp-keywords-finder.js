@@ -8,18 +8,36 @@ export default class RegExpKeywordsFinder {
     this._regExps = keywordRegExps;
   }
 
-  find(text: string): string[] {
+  findAll(text: string): string[] {
     const foundWords = [];
 
     for (const regExp of this._regExps) {
-      const matches = this._findAllMatches(text, regExp);
-      foundWords.push(...matches);
+      if (regExp.global) {
+        const matches = this._findGlobalMatches(text, regExp);
+        foundWords.push(...matches);
+      } else {
+        const match = regExp.exec(text);
+        if (match != null) {
+          foundWords.push(match[0]);
+        }
+      }
     }
 
     return foundWords;
   }
 
-  _findAllMatches(text: string, regExp: RegExp): string[] {
+  findOne(text: string): ?string {
+    for (const regExp of this._regExps) {
+      const match = regExp.exec(text);
+      if (match != null) {
+        return match[0];
+      }
+    }
+
+    return null;
+  }
+
+  _findGlobalMatches(text: string, regExp: RegExp): string[] {
     const matches = [];
 
     let match;

@@ -3,7 +3,11 @@
 // @flow
 
 export default class WhiteListedWordsFinder {
-  find(text: string): string[] {
+  findAll(text: string): string[] {
+    throw new TypeError('Abstract method');
+  }
+
+  findOne(text: string): ?string {
     throw new TypeError('Abstract method');
   }
 }

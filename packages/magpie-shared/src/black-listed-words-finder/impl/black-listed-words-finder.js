@@ -15,7 +15,11 @@ export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
     /семинары?/gi,
   ]);
 
-  find(text: string): string[] {
-    return this._regExpWordsFinder.find(text);
+  findAll(text: string): string[] {
+    return this._regExpWordsFinder.findAll(text);
+  }
+
+  findOne(text: string): ?string {
+    return this._regExpWordsFinder.findOne(text);
   }
 }

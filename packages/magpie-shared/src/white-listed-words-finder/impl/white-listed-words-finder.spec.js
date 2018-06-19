@@ -1,3 +1,5 @@
+// @flow
+
 // lib
 import {beforeEach, describe, it} from 'mocha';
 import assert from 'assert';
@@ -6,7 +8,7 @@ import assert from 'assert';
 import WhiteListedWordsFinderImpl from './white-listed-words-finder';
 
 describe('WhiteListedWordsFinderImpl', () => {
-  let whiteListedWordsFinderImpl;
+  let whiteListedWordsFinderImpl: WhiteListedWordsFinderImpl;
 
   beforeEach(() => {
     whiteListedWordsFinderImpl = new WhiteListedWordsFinderImpl();
@@ -17,7 +19,7 @@ describe('WhiteListedWordsFinderImpl', () => {
       // arrange
 
       // act
-      const wordsFound = whiteListedWordsFinderImpl.find('Этот чудный митап по С#');
+      const wordsFound = whiteListedWordsFinderImpl.findAll('Этот чудный митап по С#');
 
       // assert
       assert.equal(wordsFound[0], 'митап', 'Used white listed word is not found');
@@ -27,13 +29,13 @@ describe('WhiteListedWordsFinderImpl', () => {
       // arrange
       // prettier-ignore
       const expectedToBeFoundWords = [
-        'митап', 'meet-up', 'meetup',
+        'митап', 'митапы', 'meet-up', 'meetup', 'meet-ups',
         'конференция', 'conference', 'docker.conf'
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
       // act
-      const wordsFound = whiteListedWordsFinderImpl.find(inputText);
+      const wordsFound = whiteListedWordsFinderImpl.findAll(inputText);
 
       // assert
       const notFoundWord = expectedToBeFoundWords.find(w => !wordsFound.includes(w));
@@ -42,15 +44,44 @@ describe('WhiteListedWordsFinderImpl', () => {
       }
     });
 
-    it('does not find anything for valid text', () => {
+    it('finds only one used white listed words', () => {
+      // arrange
+      // prettier-ignore
+      const expectedToBeFoundWords = [
+        'митап', 'митапы', 'meet-up', 'meetup', 'meet-ups',
+        'конференция', 'conference', 'docker.conf'
+      ];
+      const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
+
+      // act
+      const wordFound = whiteListedWordsFinderImpl.findOne(inputText);
+
+      // assert
+      if (!expectedToBeFoundWords.includes(wordFound)) {
+        assert.fail('Not fond any of used words in the text');
+      }
+    });
+
+    it('does not find anything for valid text using findAll', () => {
       // arrange
 
       // act
-      const wordsFound = whiteListedWordsFinderImpl.find('This is pretty much valid text');
+      const wordsFound = whiteListedWordsFinderImpl.findAll('This is pretty much valid text');
 
       // assert
       // prettier-ignore
       assert.equal(wordsFound.length, 0, '[Incorrect search]: Found white listed words in valid text');
+    });
+
+    it('does not find anything for valid text using findOne', () => {
+      // arrange
+
+      // act
+      const wordFound = whiteListedWordsFinderImpl.findOne('This is pretty much valid text');
+
+      // assert
+      // prettier-ignore
+      assert.equal(wordFound, null, '[Incorrect search]: Found white listed words in valid text');
     });
   });
 });

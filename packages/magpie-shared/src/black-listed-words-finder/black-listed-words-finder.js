@@ -3,7 +3,10 @@
 // @flow
 
 export default class BlackListedWordsFinder {
-  find(text: string): string[] {
+  findAll(text: string): string[] {
+    throw new TypeError('Abstract method');
+  }
+  findOne(text: string): ?string {
     throw new TypeError('Abstract method');
   }
 }

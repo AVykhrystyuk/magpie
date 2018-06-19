@@ -1,3 +1,5 @@
+// @flow
+
 // lib
 import {beforeEach, describe, it} from 'mocha';
 import assert from 'assert';
@@ -6,7 +8,7 @@ import assert from 'assert';
 import BlackListedWordsFinderImpl from './black-listed-words-finder';
 
 describe('BlackListedWordsFinderImpl', () => {
-  let blackListedWordsFinderImpl;
+  let blackListedWordsFinderImpl: BlackListedWordsFinderImpl;
 
   beforeEach(() => {
     blackListedWordsFinderImpl = new BlackListedWordsFinderImpl();
@@ -17,7 +19,7 @@ describe('BlackListedWordsFinderImpl', () => {
       // arrange
 
       // act
-      const wordsFound = blackListedWordsFinderImpl.find('Этот чудный курс по С#');
+      const wordsFound = blackListedWordsFinderImpl.findAll('Этот чудный курс по С#');
 
       // assert
       assert.equal(wordsFound[0], 'курс', 'Used black listed word is not found');
@@ -38,12 +40,35 @@ describe('BlackListedWordsFinderImpl', () => {
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
       // act
-      const wordsFound = blackListedWordsFinderImpl.find(inputText);
+      const wordsFound = blackListedWordsFinderImpl.findAll(inputText);
 
       // assert
       const notFoundWord = expectedToBeFoundWords.find(w => !wordsFound.includes(w));
       if (notFoundWord) {
         assert.fail(`'${notFoundWord}' is not found in the text`);
+      }
+    });
+
+    it('finds all used black listed words', () => {
+      // arrange
+      // prettier-ignore
+      const expectedToBeFoundWords = [
+        'Курс', 'курсы',
+        'Тренинг', 'тренинги',
+        'бизнеС', 'бизнесмен',
+        'преДприниматель', 'предпринимательство',
+        'трудоустройство', 'трудоустроить',
+        'вакансии', 'вакансия',
+        'семинар'
+      ];
+      const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
+
+      // act
+      const wordFound = blackListedWordsFinderImpl.findOne(inputText);
+
+      // assert
+      if (!expectedToBeFoundWords.includes(wordFound)) {
+        assert.fail('Not fond any of used words in the text');
       }
     });
 
@@ -57,22 +82,33 @@ describe('BlackListedWordsFinderImpl', () => {
       const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
 
       // act
-      const wordsFound = blackListedWordsFinderImpl.find(inputText);
+      const wordsFound = blackListedWordsFinderImpl.findAll(inputText);
 
       // assert
       // prettier-ignore
       assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black listed words in valid text');
     });
 
-    it('does not find anything for valid text', () => {
+    it('does not find anything for valid text using findAll', () => {
       // arrange
 
       // act
-      const wordsFound = blackListedWordsFinderImpl.find('This is pretty much valid text');
+      const wordsFound = blackListedWordsFinderImpl.findAll('This is pretty much valid text');
 
       // assert
       // prettier-ignore
       assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black listed words in valid text');
+    });
+
+    it('does not find anything for valid text using findOne', () => {
+      // arrange
+
+      // act
+      const wordFound = blackListedWordsFinderImpl.findOne('This is pretty much valid text');
+
+      // assert
+      // prettier-ignore
+      assert.equal(wordFound, null, '[Incorrect search]: Found black listed words in valid text');
     });
   });
 });
