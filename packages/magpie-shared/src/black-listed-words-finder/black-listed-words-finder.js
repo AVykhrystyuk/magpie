@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 // @flow
 
-export default class BlackListWordsFinder {
+export default class BlackListedWordsFinder {
   find(text: string): string[] {
     throw new TypeError('Abstract method');
   }

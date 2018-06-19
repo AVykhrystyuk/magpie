@@ -1,6 +1,6 @@
 // @flow
 
-import RegExpChecker from './regexp-checker';
+import RegExpChecker from './reg-exp-checker';
 
 export default class ECMAScriptChecker extends RegExpChecker {
   constructor() {

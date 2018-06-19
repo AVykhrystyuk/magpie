@@ -31,8 +31,8 @@ describe('TagDetectorImpl', () => {
 
       // assert
       results.forEach((a) => {
-        assert(a instanceof Array, 'Resulted tagID array should be an array');
-        assert.equal(a.length, 0, 'Resulted tagID array should be empty');
+        assert(a instanceof Array, 'Each result of detectAll should be an array');
+        assert.equal(a.length, 0, 'The resulted array should be empty');
       });
     });
 

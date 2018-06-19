@@ -10,7 +10,7 @@ import {
   FrameworksChecker,
   NodeJsEcoChecker,
   ReactChecker
-} from './checkers/index';
+} from './checkers';
 import type {TagId} from '../../../tag';
 
 export default class JsTag extends Tag {
