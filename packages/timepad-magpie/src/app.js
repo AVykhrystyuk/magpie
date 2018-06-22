@@ -54,12 +54,12 @@ export default class App {
   _findBlackWords(event: ITimePadEvent): string[] {
     const {name, sanitizedDescription} = event;
 
-    const nameBlackWords = this._blackListedWordsFinder.find(name);
+    const nameBlackWords = this._blackListedWordsFinder.findAll(name);
     if (nameBlackWords.length !== 0) {
       return nameBlackWords;
     }
 
-    return this._blackListedWordsFinder.find(sanitizedDescription);
+    return this._blackListedWordsFinder.findAll(sanitizedDescription);
   }
 
   _findTagIds(event: ITimePadEvent): string[] {

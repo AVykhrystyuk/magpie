@@ -1913,9 +1913,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flow-bin@^0.74.0:
-  version "0.74.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
+flow-bin@^0.75.0:
+  version "0.75.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.75.0.tgz#b96d1ee99d3b446a3226be66b4013224ce9df260"
 
 flow-typed@^2.4.0:
   version "2.4.0"
@@ -2914,7 +2914,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.17.10, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -2941,9 +2941,9 @@ lru-queue@0.1:
   dependencies:
     es5-ext "~0.10.2"
 
-magpie-shared@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.8.tgz#a9ec830161385922832f5e4f73f0af24803e0126"
+magpie-shared@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.9.tgz#c1b6d27ce78eb552e1f455f7e0d553e316dc730d"
 
 make-iterator@^1.0.0:
   version "1.0.1"

@@ -9,9 +9,19 @@ declare module 'magpie-shared' {
 
   declare export function createTagDetector(): TagDetector;
 
+
   declare export class BlackListedWordsFinder {
-    find(text: string): string[];
+    findAll(text: string): string[];
+    findOne(text: string): ?string;
   }
 
   declare export function createBlackListedWordsFinder(): BlackListedWordsFinder;
+
+
+  declare export class WhiteListedWordsFinder {
+    findAll(text: string): string[];
+    findOne(text: string): ?string;
+  }
+
+  declare export function createWhiteListedWordsFinder(): WhiteListedWordsFinder;
 }

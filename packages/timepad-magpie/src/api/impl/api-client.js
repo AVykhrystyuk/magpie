@@ -52,7 +52,7 @@ export default class TimePadApiClientImpl extends TimePadApiClient {
   async fetchEvents(params: IApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
     const requestParams = {
       ...this._defaultParams,
-      ...params
+      ...params,
     };
 
     if (requestParams.limit > MAX_RECORDS_PER_REQUEST) {
@@ -60,9 +60,12 @@ export default class TimePadApiClientImpl extends TimePadApiClient {
     }
 
     const requestConfig = {
-      params: requestParams
+      params: requestParams,
     };
-    const response : $AxiosXHR<IApiTimePadEventsResponse> = await this._apiClient.get('/events.json', requestConfig);
+    const response: $AxiosXHR<IApiTimePadEventsResponse> = await this._apiClient.get(
+      '/events.json',
+      requestConfig
+    );
     return response.data;
   }
 }
