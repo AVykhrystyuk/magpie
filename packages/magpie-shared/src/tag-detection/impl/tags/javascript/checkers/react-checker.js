@@ -17,11 +17,13 @@ export default class ReactChecker extends TextChecker {
   }
 
   static hasHelperWords(text: string): boolean {
-    if (/\b(meet-?up|conf|dom|render|web|ui|interface|user|front-?end)\b/i.test(text)) {
+    if (
+      /\b(meet-?ups?|conf|dom|render|components?|web|ui|interfaces?|users?|front-?ends?)\b/i.test(text)
+    ) {
       return true;
     }
 
-    return /\b(dev|develop(ing|ment)?)\b/i.test(text);
+    return /\b(devs?|develop(ing|ments?|ers?)?)\b/i.test(text);
   }
 
   static hasPossibleTitle(text: string): boolean {

@@ -2,7 +2,7 @@
 
 // app
 import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
-import WhiteListedWordsFinder from '../white-listed-words-finder';
+import WhiteListedWordsFinder from '../white-words-finder';
 
 export default class WhiteListedWordsFinderImpl extends WhiteListedWordsFinder {
   _regExpWordsFinder = new RegExpKeywordsFinder([

@@ -2,7 +2,7 @@
 
 // app
 import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
-import BlackListedWordsFinder from '../black-listed-words-finder';
+import BlackListedWordsFinder from '../black-words-finder';
 
 export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
   _regExpWordsFinder = new RegExpKeywordsFinder([

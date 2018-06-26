@@ -6,7 +6,7 @@ export default class FrameworksChecker extends RegExpChecker {
   constructor() {
     // prettier-ignore
     const regExps = [
-      /Angular|Ember|Vue/i
+      /Angular|(?<!\bm)Ember|Vue/i
     ];
 
     super(regExps);

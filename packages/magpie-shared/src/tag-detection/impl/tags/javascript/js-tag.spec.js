@@ -19,7 +19,7 @@ function assertJsTagIsApplicable(jsTag: JsTag, text: string): void {
 function assertJsTagIsNotApplicable(jsTag: JsTag, text: string): void {
   assert.ok(
     !jsTag.isApplicableFor(text),
-    `Tag should not be applicable for the following text: '${text}'`
+    `Tag should NOT be applicable for the following text: '${text}'`
   );
 }
 
@@ -43,7 +43,6 @@ describe('JsTag', () => {
         'SuperJavaScriptMeetup',
       ];
 
-      // assert
       applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
@@ -62,7 +61,6 @@ describe('JsTag', () => {
         'bla bla JSonium bld',
       ];
 
-      // assert
       applicableTexts.forEach(assertTextAppliesToJsTag);
       notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
@@ -79,7 +77,6 @@ describe('JsTag', () => {
         'bla Javascript',
       ];
 
-      // assert
       applicableTexts.forEach(assertTextAppliesToJsTag);
     });
 
@@ -105,35 +102,41 @@ describe('JsTag', () => {
         'bla esNextaaaa',
       ];
 
-      // assert
       applicableTexts.forEach(assertTextAppliesToJsTag);
       notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
     });
 
-    it('when very popular framework or library name exists in text', () => {
-      const applicableTexts = [
-        'bla Angular 6 bla',
-        'bla Ember bla',
-        'bla Vue sds',
-        ' Angular 6 bla',
-        'Ember bla',
-        ' Vue sds',
-        'Writing on Vue',
-      ];
+    describe('Framework related', () => {
+      it('frameworks/libs in text as a separated word', () => {
+        const applicableTexts = [
+          'bla Angular 6 bla',
+          'bla Ember bla',
+          'bla Vue sds',
+          ' Angular 6 bla',
+          'Ember bla',
+          ' Vue sds',
+          'Writing on Vue',
+        ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
-    });
+        applicableTexts.forEach(assertTextAppliesToJsTag);
+      });
 
-    it('when very popular framework or library name is a part of a word', () => {
-      // prettier-ignore
-      const applicableTexts = [
-        'bla AngularPiter',
-        'EmberMoscow bla',
-        'blaaaaha SamaraVue 2017'
-      ];
+      it('frameworks/libs as prefix or postfix', () => {
+        // prettier-ignore
+        const applicableTexts = [
+          'bla AngularPiter',
+          'EmberMoscow bla',
+          'blaaaaha SamaraVue 2017'
+        ];
 
-      // assert
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+        applicableTexts.forEach(assertTextAppliesToJsTag);
+      });
+
+      it('ignores not applicable words contain frameworks inside', () => {
+        const notApplicableTexts = ['whose mEmBeRs include'];
+
+        notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      });
     });
 
     it('when React related words exist in text', () => {
