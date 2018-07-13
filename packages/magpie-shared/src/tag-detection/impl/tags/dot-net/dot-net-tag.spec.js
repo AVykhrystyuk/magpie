@@ -52,7 +52,10 @@ describe('DotNetTag', () => {
       const applicableTexts = [
         'тест .NET тест',
         'тест .Net core демо ',
-        'тест .neT-corE демо '
+        'тест .neT-corE демо ',
+        'текст ASP.NET Core ого',
+        'текст ASP.NET MVC Core ого',
+        'текст ASP.NET WebApi Core ого'
       ];
 
       applicableTexts.forEach(assertTextAppliesToJsTag);

@@ -13,7 +13,7 @@ export default class DotNetTag extends TextCheckableTag {
   // prettier-ignore
   checkers: TextChecker[] = [
     new RegExpChecker([
-      /(?:^|\s|[,.;!?])\.net(?:[\s-]?core)?/i, // .NET, .net core, .net-core,
+      /(?:^|\s|[,.;!?])(?:asp)?\.net(?:[\s-]?core)?/i, // .NET, .net core, .net-core, asp.net
       /(?:dot[\s-]?)net(?:[\s-]?core)?/i, // dotnet, dot-net-core, dotnetcore
       /CSharp|C#/i
     ]),
