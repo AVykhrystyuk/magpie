@@ -4,9 +4,13 @@
 // app
 import TagDetector from '../tag-detector';
 import TagDetectorImpl from './tag-detector';
-import {JsTag} from './tags';
+import {JsTag, DotNetTag} from './tags';
 
 export default function createTagDetector(): TagDetector {
-  const tags = [new JsTag()];
+  // prettier-ignore
+  const tags = [
+    new JsTag(),
+    new DotNetTag()
+  ];
   return new TagDetectorImpl(tags);
 }

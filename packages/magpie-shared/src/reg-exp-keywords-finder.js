@@ -30,7 +30,7 @@ export default class RegExpKeywordsFinder {
     for (const regExp of this._regExps) {
       const match = regExp.exec(text);
       if (match != null) {
-        return match[0];
+        return match[0].trim();
       }
     }
 
@@ -43,7 +43,7 @@ export default class RegExpKeywordsFinder {
     let match;
     // eslint-disable-next-line no-cond-assign
     while ((match = regExp.exec(text)) != null) {
-      matches.push(match[0]);
+      matches.push(match[0].trim());
     }
 
     return matches;

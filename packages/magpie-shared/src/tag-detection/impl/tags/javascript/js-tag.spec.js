@@ -7,8 +7,6 @@ import assert from 'assert';
 // app
 import JsTag from './js-tag';
 
-// const flatMap = (arr, selector) => [].concat(...arr.map(selector));
-
 function assertJsTagIsApplicable(jsTag: JsTag, text: string): void {
   assert.ok(
     jsTag.isApplicableFor(text),
@@ -26,11 +24,16 @@ function assertJsTagIsNotApplicable(jsTag: JsTag, text: string): void {
 describe('JsTag', () => {
   let assertTextAppliesToJsTag;
   let assertTextDoesNotApplyToJsTag;
+  let tag;
 
   beforeEach(() => {
-    const jsTag = new JsTag();
-    assertTextAppliesToJsTag = assertJsTagIsApplicable.bind(null, jsTag);
-    assertTextDoesNotApplyToJsTag = assertJsTagIsNotApplicable.bind(null, jsTag);
+    tag = new JsTag();
+    assertTextAppliesToJsTag = assertJsTagIsApplicable.bind(null, tag);
+    assertTextDoesNotApplyToJsTag = assertJsTagIsNotApplicable.bind(null, tag);
+  });
+
+  it('it has tagId equals to "JavaScript"', () => {
+    assert.equal(tag.tagId, 'JavaScript');
   });
 
   describe('Text case insensitive discovering', () => {
@@ -87,9 +90,9 @@ describe('JsTag', () => {
         'bla ECMAScript6 bla',
         'bla MoscowECMAScript bla',
 
-        'bla ES-2015 sds', // ES6
-        'bla ES2009 sds', // ES5
-        'bla ES7 Spb',
+        'bla тест ES-2015 тест sds', // ES6
+        'bla тест ES2009 тест sds', // ES5
+        'bla текст ES7 текст Spb',
         'bla es.next ', // ES7, ES2016, or ES.Next
         'bla esNext',
       ];

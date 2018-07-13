@@ -35,7 +35,8 @@ describe('BlackListedWordsFinderImpl', () => {
         'преДприниматель', 'предпринимательство',
         'трудоустройство', 'трудоустроить',
         'вакансии', 'вакансия',
-        'семинар'
+        'семинар',
+        'мастер-класс', 'мастер-классы'
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
@@ -49,7 +50,7 @@ describe('BlackListedWordsFinderImpl', () => {
       }
     });
 
-    it('finds all used black listed words', () => {
+    it('finds only one used black listed words', () => {
       // arrange
       // prettier-ignore
       const expectedToBeFoundWords = [
@@ -59,7 +60,8 @@ describe('BlackListedWordsFinderImpl', () => {
         'преДприниматель', 'предпринимательство',
         'трудоустройство', 'трудоустроить',
         'вакансии', 'вакансия',
-        'семинар'
+        'семинар',
+        'мастер-класс', 'мастер-классы'
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
@@ -78,6 +80,8 @@ describe('BlackListedWordsFinderImpl', () => {
       const expectedNotToBeFoundExceptions = [
         'текст бизнеС Логика текст',
         'текст бизнес-логика текст',
+        'посетить небольшую экскурсию по офису',
+        'поесть на территории бизнес-центра и '
       ];
       const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
 
@@ -86,7 +90,7 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       // prettier-ignore
-      assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black listed words in valid text');
+      assert.equal(wordsFound.length, 0, `[Incorrect search]: Found black listed words in valid text: ${wordsFound.join(', ')}`);
     });
 
     it('does not find anything for valid text using findAll', () => {

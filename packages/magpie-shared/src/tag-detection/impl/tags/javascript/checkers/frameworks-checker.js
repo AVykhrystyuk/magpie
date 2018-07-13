@@ -1,14 +1,10 @@
 // @flow
 
-import RegExpChecker from './reg-exp-checker';
+import {RegExpChecker} from '../../../checkers';
 
 export default class FrameworksChecker extends RegExpChecker {
-  constructor() {
-    // prettier-ignore
-    const regExps = [
-      /Angular|(?<!\bm)Ember|Vue/i
-    ];
-
-    super(regExps);
-  }
+  // prettier-ignore
+  regExps: RegExp[] = [
+    /Angular|(?<!\bm)Ember|Vue/i
+  ];
 }

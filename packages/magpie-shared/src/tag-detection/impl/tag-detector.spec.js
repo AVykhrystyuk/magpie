@@ -30,7 +30,7 @@ describe('TagDetectorImpl', () => {
       ];
 
       // assert
-      results.forEach((a) => {
+      results.forEach(a => {
         assert(a instanceof Array, 'Each result of detectAll should be an array');
         assert.equal(a.length, 0, 'The resulted array should be empty');
       });

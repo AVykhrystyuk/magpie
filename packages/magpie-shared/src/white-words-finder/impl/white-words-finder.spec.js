@@ -49,7 +49,7 @@ describe('WhiteListedWordsFinderImpl', () => {
       // prettier-ignore
       const expectedToBeFoundWords = [
         'митап', 'митапы', 'meet-up', 'meetup', 'meet-ups',
-        'конференция', 'conference', 'docker.conf'
+        'конференция', 'conference', 'docker.conf', 'jsconf', 'ng-conf'
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
@@ -60,6 +60,22 @@ describe('WhiteListedWordsFinderImpl', () => {
       if (!expectedToBeFoundWords.includes(wordFound)) {
         assert.fail('Not fond any of used words in the text');
       }
+    });
+
+    it('does not find exceptions for white listed words', () => {
+      // arrange
+      // prettier-ignore
+      const expectedNotToBeFoundExceptions = [
+        'Работа Django-сайта и urlconf.',
+      ];
+      const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
+
+      // act
+      const wordsFound = whiteListedWordsFinderImpl.findAll(inputText);
+
+      // assert
+      // prettier-ignore
+      assert.equal(wordsFound.length, 0, `[Incorrect search]: Found white listed words in valid text: ${wordsFound.join(', ')}`);
     });
 
     it('does not find anything for valid text using findAll', () => {

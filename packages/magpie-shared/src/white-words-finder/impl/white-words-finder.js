@@ -6,11 +6,12 @@ import WhiteListedWordsFinder from '../white-words-finder';
 
 export default class WhiteListedWordsFinderImpl extends WhiteListedWordsFinder {
   _regExpWordsFinder = new RegExpKeywordsFinder([
-    /meet-?up\S*/gi,
-    /мит-?ап\S*/gi,
-    /conferenc\S*/gi,
-    /\S*conf\b/i,
-    /конференци\S*/gi,
+    /meet-?up\w*/gi,
+    /conferenc\w*/gi,
+    /\w\S*(?<!url)conf\b/i,
+
+    /мит-?ап[а-яё]*/gi,
+    /конференци[а-яё]*/gi,
   ]);
 
   findAll(text: string): string[] {

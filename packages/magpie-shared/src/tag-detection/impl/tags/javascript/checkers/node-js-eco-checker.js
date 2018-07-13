@@ -1,14 +1,10 @@
 // @flow
 
-import RegExpChecker from './reg-exp-checker';
+import {RegExpChecker} from '../../../checkers';
 
 export default class NodeJsEcoChecker extends RegExpChecker {
-  constructor() {
-    // prettier-ignore
-    const regExps = [
-      /\b(npm|yarn|grunt|gulp|webpack)\b/i
-    ];
-
-    super(regExps);
-  }
+  // prettier-ignore
+  regExps: RegExp[] = [
+    /\b(?:npm|yarn|grunt|gulp|webpack)\b/i
+  ];
 }

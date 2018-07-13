@@ -1,14 +1,11 @@
 // @flow
 
-import RegExpChecker from './reg-exp-checker';
+import {RegExpChecker} from '../../../checkers';
 
 export default class ECMAScriptChecker extends RegExpChecker {
-  constructor() {
-    // prettier-ignore
-    const regExps = [
-      /\bES(-?\d{1,4}|\.?next)\b/i,
-      /ECMAScript/i
-    ];
-    super(regExps);
-  }
+  // prettier-ignore
+  regExps: RegExp[] = [
+    /\bES(?:-?\d{1,4}|\.?next)\b/i,
+    /ECMAScript/i
+  ];
 }

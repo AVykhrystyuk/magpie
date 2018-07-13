@@ -6,13 +6,14 @@ import BlackListedWordsFinder from '../black-words-finder';
 
 export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
   _regExpWordsFinder = new RegExpKeywordsFinder([
-    /курс[а-яё]*/gi,
+    /(?:^|\s|[,.;!?])курс[а-яё]*/gi,
     /тренинг[а-яё]*/gi,
-    /бизнес[а-яё]*(?![\s-]логика)/gi,
+    /бизнес[а-яё]*(?![\s-](логик[а-яё]*|центр[а-яё]*))/gi,
     /предприниматель[а-яё]*/gi, // предприниматель(ство)?
     /трудоустро[а-яё]+/gi, // трудоустро(йство|ить)?
-    /ваканси[ия]/gi, // вакансии, вакансия
-    /семинары?/gi,
+    /ваканси[а-яё]*/gi, // вакансии, вакансия, вакансий
+    /семинар[а-яё]*/gi,
+    /мастер-класс[а-яё]*/gi, // мастер-классов, мастер-классы
   ]);
 
   findAll(text: string): string[] {
