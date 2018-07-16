@@ -40,10 +40,13 @@ export default class RegExpKeywordsFinder {
   _findGlobalMatches(text: string, regExp: RegExp): string[] {
     const matches = [];
 
-    let match;
-    // eslint-disable-next-line no-cond-assign
-    while ((match = regExp.exec(text)) != null) {
-      matches.push(match[0].trim());
+    for (;;) {
+      const match = regExp.exec(text);
+      if (match != null) {
+        matches.push(match[0].trim());
+      } else {
+        break;
+      }
     }
 
     return matches;
