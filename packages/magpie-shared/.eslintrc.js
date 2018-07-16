@@ -7,6 +7,9 @@ module.exports = {
   extends: [
     "airbnb-base",
     "plugin:flowtype/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/standard",
   ],
 
   plugins: [
