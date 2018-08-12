@@ -15,7 +15,7 @@ module.exports = {
     "comma-dangle": ["error", {
       "arrays": "only-multiline",
       "objects": "only-multiline",
-      "imports": "never",
+      "imports": "only-multiline",
       "exports": "never",
       "functions": "never"
     }],

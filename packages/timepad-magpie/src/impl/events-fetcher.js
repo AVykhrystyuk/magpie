@@ -1,6 +1,9 @@
 /* eslint-disable no-irregular-whitespace,max-len,camelcase */
 // @flow
 
+// lib
+import os from 'os';
+
 // app
 import {Injectable} from '../ioc';
 import TimePadEventsFetcher from '../events-fetcher';
@@ -18,7 +21,7 @@ function createEvent(apiEvent: IApiTimePadEvent): ITimePadEvent {
     id, name, description_html, description_short
   } = apiEvent;
 
-  const description = removeZeroWidthSpace(description_short + description_html);
+  const description = removeZeroWidthSpace(description_short + os.EOL + description_html);
   const descriptionHtml = sanitizeHtml(description);
   const sanitizedDescription = stripLinks(stripHtml(description));
 

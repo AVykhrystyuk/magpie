@@ -1,26 +1,30 @@
 // @flow
 
 // app
-import {writeRowsToFile, groupBy} from './utils';
+import {writeRowsToFile, groupBy} from './impl/utils';
 import type {IProcessedTimePadEvent} from './processed-event';
 
 function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[]> {
   const columns = [
     'Id',
     'Name',
-    'BlackListedWords',
-    'DetectedTagIds',
+    'TagIds',
+    'WhiteWords',
+    'BlackWords',
     'Description',
     'Description HTML',
   ];
   const rows = processedEvents.map(processedEvent => {
-    const {event, blackListedWords, detectedTagIds} = processedEvent;
+    const {
+      event, whiteWords, blackWords, tagIds
+    } = processedEvent;
 
     return [
       event.id.toString(),
       event.name,
-      blackListedWords.join(', '),
-      detectedTagIds.join(', '),
+      tagIds.join(', '),
+      whiteWords.join(', '),
+      blackWords.join(', '),
       event.sanitizedDescription,
       event.descriptionHtml,
     ];
@@ -29,7 +33,21 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
 }
 
 function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
-  return event.blackListedWords.length === 0 && event.detectedTagIds.length > 0;
+  const {whiteWords, blackWords, tagIds} = event;
+  if (tagIds.length <= 0) {
+    return false;
+  }
+
+  if (whiteWords.length > 0) {
+    return true;
+  }
+
+  return blackWords.length === 0;
+}
+
+function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
+  const {whiteWords, blackWords, tagIds} = event;
+  return tagIds.length === 0 && whiteWords.length === 0 && blackWords.length === 0;
 }
 
 export async function writeEventsToFile(events: IProcessedTimePadEvent[], filename: string): Promise<*> {
@@ -37,7 +55,7 @@ export async function writeEventsToFile(events: IProcessedTimePadEvent[], filena
   await writeRowsToFile(rows, filename);
 }
 
-export default async function writeProcessedEventsToFiles(
+export default function writeProcessedEventsToFiles(
   processedEvents: IProcessedTimePadEvent[]
 ): Promise<*> {
   const eventsByValidity: Map<boolean, IProcessedTimePadEvent[]> = groupBy(
@@ -48,11 +66,27 @@ export default async function writeProcessedEventsToFiles(
   const validEvents = eventsByValidity.get(true);
   const invalidEvents = eventsByValidity.get(false);
 
-  if (validEvents) {
-    await writeEventsToFile(validEvents, 'valid-events.xlsx');
+  const promises = [];
+  if (validEvents != null) {
+    promises.push(writeEventsToFile(validEvents, 'valid-events.xlsx'));
   }
 
-  if (invalidEvents) {
-    await writeEventsToFile(invalidEvents, 'invalid-events.xlsx');
+  if (invalidEvents != null) {
+    const invalidEventsByEmptiness: Map<boolean, IProcessedTimePadEvent[]> = groupBy(
+      invalidEvents,
+      isProcessedEventEmpty
+    );
+
+    const emptyInvalidEvents = invalidEventsByEmptiness.get(true);
+    if (emptyInvalidEvents != null) {
+      promises.push(writeEventsToFile(emptyInvalidEvents, 'empty-invalid-events.xlsx'));
+    }
+
+    const notEmptyInvalidEvents = invalidEventsByEmptiness.get(false);
+    if (notEmptyInvalidEvents != null) {
+      promises.push(writeEventsToFile(notEmptyInvalidEvents, 'non-empty-invalid-events.xlsx'));
+    }
   }
+
+  return Promise.all(promises);
 }

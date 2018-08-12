@@ -1913,9 +1913,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flow-bin@^0.75.0:
-  version "0.75.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.75.0.tgz#b96d1ee99d3b446a3226be66b4013224ce9df260"
+flow-bin@^0.76.0:
+  version "0.76.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.76.0.tgz#eb00036991c3abc106743fcbc7ee321f02aa4faa"
 
 flow-typed@^2.4.0:
   version "2.4.0"
@@ -2941,9 +2941,9 @@ lru-queue@0.1:
   dependencies:
     es5-ext "~0.10.2"
 
-magpie-shared@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.9.tgz#c1b6d27ce78eb552e1f455f7e0d553e316dc730d"
+magpie-shared@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.10.tgz#69a4aff5dfdf50cb6630666dc6cf774e8ec333ac"
 
 make-iterator@^1.0.0:
   version "1.0.1"
