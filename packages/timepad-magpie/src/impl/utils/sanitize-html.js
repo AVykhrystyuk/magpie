@@ -2,7 +2,7 @@
 
 // lib
 import sanitizeHtml from 'sanitize-html';
-import type {SanitizeOptions} from 'sanitize-html';
+import type { SanitizeOptions } from 'sanitize-html';
 
 const sharedOptions: SanitizeOptions = {
   textFilter(text) {

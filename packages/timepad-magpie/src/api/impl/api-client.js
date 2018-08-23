@@ -3,12 +3,12 @@
 
 // lib
 import axios from 'axios';
-import type {$AxiosXHR, Axios} from 'axios';
+import type { $AxiosXHR, Axios } from 'axios';
 
 // app
-import {Injectable} from '../../ioc';
+import { Injectable } from '../../ioc';
 import TimePadApiClient from '../api-client';
-import type {IApiTimePadRequestParams, IApiTimePadEventsResponse} from '../api-client';
+import type { IApiTimePadRequestParams, IApiTimePadEventsResponse } from '../api-client';
 import categories from './config/categories.json';
 import excludedOrganizations from './config/excluded-organizations.json';
 

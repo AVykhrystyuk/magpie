@@ -1,8 +1,8 @@
 // @flow
 
 import fs from 'fs';
-import {promisify} from 'util';
-import {write, utils} from 'xlsx';
+import { promisify } from 'util';
+import { write, utils } from 'xlsx';
 
 const writeFile = promisify(fs.writeFile);
 
@@ -15,7 +15,7 @@ export default function writeRowsToFile(
   const workbook = utils.book_new();
   utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-  const buffer = write(workbook, {type: 'buffer', bookType: 'xlsx'});
+  const buffer = write(workbook, { type: 'buffer', bookType: 'xlsx' });
   return writeFile(filename, buffer);
 
   // writeFile(workbook, 'SheetJS.xlsx');

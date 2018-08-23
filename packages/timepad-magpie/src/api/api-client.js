@@ -2,7 +2,7 @@
 // @flow
 
 // app
-import type {IApiTimePadEvent} from './event';
+import type { IApiTimePadEvent } from './event';
 
 export interface IApiTimePadRequestParams {
   limit: number;

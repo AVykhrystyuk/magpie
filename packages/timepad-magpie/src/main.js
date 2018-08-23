@@ -2,7 +2,7 @@
 // @flow
 
 // lib
-import {Container} from 'container-ioc';
+import { Container } from 'container-ioc';
 import {
   createTagDetector,
   TagDetector,
@@ -23,13 +23,13 @@ import App from './app';
 const container = new Container();
 
 container.register([
-  {token: TimePadApiClient, useClass: TimePadApiClientImpl},
-  {token: ApiTimePadEventsFetcher, useClass: ApiTimePadEventsFetcherImpl},
-  {token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl},
-  {token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl},
-  {token: BlackListedWordsFinder, useFactory: createBlackListedWordsFinder},
-  {token: WhiteListedWordsFinder, useFactory: createWhiteListedWordsFinder},
-  {token: TagDetector, useFactory: createTagDetector},
+  { token: TimePadApiClient, useClass: TimePadApiClientImpl },
+  { token: ApiTimePadEventsFetcher, useClass: ApiTimePadEventsFetcherImpl },
+  { token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl },
+  { token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl },
+  { token: BlackListedWordsFinder, useFactory: createBlackListedWordsFinder },
+  { token: WhiteListedWordsFinder, useFactory: createWhiteListedWordsFinder },
+  { token: TagDetector, useFactory: createTagDetector },
   App,
 ]);
 

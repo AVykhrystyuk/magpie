@@ -1,7 +1,7 @@
 // @flow
 
 // app
-import type {ITimePadEvent} from './event';
+import type { ITimePadEvent } from './event';
 
 export interface IProcessedTimePadEvent {
   event: ITimePadEvent;

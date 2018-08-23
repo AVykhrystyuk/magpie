@@ -1,8 +1,8 @@
 // @flow
 
 // app
-import {writeRowsToFile, groupBy} from './impl/utils';
-import type {IProcessedTimePadEvent} from './processed-event';
+import { writeRowsToFile, groupBy } from './impl/utils';
+import type { IProcessedTimePadEvent } from './processed-event';
 
 function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[]> {
   const columns = [
@@ -33,7 +33,7 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
 }
 
 function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
-  const {whiteWords, blackWords, tagIds} = event;
+  const { whiteWords, blackWords, tagIds } = event;
   if (tagIds.length <= 0) {
     return false;
   }
@@ -46,7 +46,7 @@ function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
 }
 
 function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
-  const {whiteWords, blackWords, tagIds} = event;
+  const { whiteWords, blackWords, tagIds } = event;
   return tagIds.length === 0 && whiteWords.length === 0 && blackWords.length === 0;
 }
 

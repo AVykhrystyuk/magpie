@@ -1,7 +1,7 @@
 // @flow
 
 // lib
-import {Injectable as InjectableImpl} from 'container-ioc';
+import { Injectable as InjectableImpl } from 'container-ioc';
 
 export type InjectionToken = Object;
 export type DecorateFunction = (target: Object) => void;

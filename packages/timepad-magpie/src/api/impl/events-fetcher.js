@@ -2,15 +2,15 @@
 // @flow
 
 // lib
-import {promisify} from 'util';
+import { promisify } from 'util';
 
 // app
-import {Injectable} from '../../ioc';
+import { Injectable } from '../../ioc';
 import ApiTimePadEventsFetcher from '../events-fetcher';
 
 import TimePadApiClient from '../api-client';
-import type {IApiTimePadEventsResponse} from '../api-client';
-import type {IApiTimePadEvent} from '../event';
+import type { IApiTimePadEventsResponse } from '../api-client';
+import type { IApiTimePadEvent } from '../event';
 
 const delay = setTimeout[promisify.custom];
 
@@ -67,7 +67,7 @@ export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher
       skip: this._fetchedEvents.length,
     });
 
-    const {values: events, total} = eventsResponse;
+    const { values: events, total } = eventsResponse;
 
     this._fetchedEvents.push(...events);
     this._eventsTotal = total;

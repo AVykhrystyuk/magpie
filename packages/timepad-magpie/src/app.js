@@ -2,13 +2,13 @@
 // @flow
 
 // lib
-import {TagDetector, BlackListedWordsFinder, WhiteListedWordsFinder} from 'magpie-shared';
+import { TagDetector, BlackListedWordsFinder, WhiteListedWordsFinder } from 'magpie-shared';
 import autobind from 'autobind-decorator';
 
 // app
-import {Injectable} from './ioc';
-import type {ITimePadEvent} from './event';
-import type {IProcessedTimePadEvent} from './processed-event';
+import { Injectable } from './ioc';
+import type { ITimePadEvent } from './event';
+import type { IProcessedTimePadEvent } from './processed-event';
 import TimePadEventsFetcher from './events-fetcher';
 import writeProcessedEventsToFiles from './write-processed-events-to-files';
 
@@ -57,7 +57,7 @@ export default class App {
   }
 
   _findBlackWords(event: ITimePadEvent): string[] {
-    const {name, sanitizedDescription} = event;
+    const { name, sanitizedDescription } = event;
 
     const blackWords = this._blackListedWordsFinder.findAll(name);
     if (blackWords.length !== 0) {
@@ -68,7 +68,7 @@ export default class App {
   }
 
   _findWhiteWords(event: ITimePadEvent): string[] {
-    const {name, sanitizedDescription} = event;
+    const { name, sanitizedDescription } = event;
 
     const whiteWords = this._whiteListedWordsFinder.findAll(name);
     if (whiteWords.length !== 0) {
@@ -79,7 +79,7 @@ export default class App {
   }
 
   _findTagIds(event: ITimePadEvent): string[] {
-    const {name, sanitizedDescription} = event;
+    const { name, sanitizedDescription } = event;
 
     const tagIds = this._tagDetector.detectAll(name);
     if (tagIds.length !== 0) {

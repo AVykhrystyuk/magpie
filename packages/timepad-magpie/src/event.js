@@ -1,7 +1,7 @@
 // @flow
 
 // app
-import type {IApiTimePadEvent} from './api/event';
+import type { IApiTimePadEvent } from './api/event';
 
 export interface ITimePadEvent {
   id: number;
