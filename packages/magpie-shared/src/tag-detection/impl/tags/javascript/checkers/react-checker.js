@@ -21,7 +21,9 @@ export default class ReactChecker extends TextChecker {
       return true;
     }
 
-    if (/\b(?:dom|render|components?|web|ui|interfaces?|users?|front-?ends?)\b/i.test(text)) {
+    if (
+      /\b(?:dom|render|components?|web|ui|interfaces?|users?|front-?end(?:er|ers)?)\b/i.test(text)
+    ) {
       return true;
     }
 
