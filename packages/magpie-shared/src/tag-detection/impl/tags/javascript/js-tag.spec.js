@@ -7,29 +7,29 @@ import assert from 'assert';
 // app
 import JsTag from './js-tag';
 
-function assertJsTagIsApplicable(jsTag: JsTag, text: string): void {
+function assertTagIsApplicable(tag: JsTag, text: string): void {
   assert.ok(
-    jsTag.isApplicableFor(text),
+    tag.isApplicableFor(text),
     `Tag should be applicable for the following text: '${text}'`
   );
 }
 
-function assertJsTagIsNotApplicable(jsTag: JsTag, text: string): void {
+function assertTagIsNotApplicable(tag: JsTag, text: string): void {
   assert.ok(
-    !jsTag.isApplicableFor(text),
+    !tag.isApplicableFor(text),
     `Tag should NOT be applicable for the following text: '${text}'`
   );
 }
 
 describe('JsTag', () => {
-  let assertTextAppliesToJsTag;
-  let assertTextDoesNotApplyToJsTag;
+  let assertTextAppliesToTag;
+  let assertTextDoesNotApplyToTag;
   let tag;
 
   beforeEach(() => {
     tag = new JsTag();
-    assertTextAppliesToJsTag = assertJsTagIsApplicable.bind(null, tag);
-    assertTextDoesNotApplyToJsTag = assertJsTagIsNotApplicable.bind(null, tag);
+    assertTextAppliesToTag = assertTagIsApplicable.bind(null, tag);
+    assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
   });
 
   it('it has tagId equals to "JavaScript"', () => {
@@ -46,7 +46,7 @@ describe('JsTag', () => {
         'SuperJavaScriptMeetup',
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
     });
 
     it('when "JS" is part of a word with some exceptions', () => {
@@ -64,8 +64,8 @@ describe('JsTag', () => {
         'bla bla JSonium bld',
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
-      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
 
     it('when "JavaScript" or "JS" word exists in text', () => {
@@ -80,7 +80,7 @@ describe('JsTag', () => {
         'bla Javascript',
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
     });
 
     // figure out what to do with abbreviation ("ES") - https://www.thefreedictionary.com/words-containing-es
@@ -105,8 +105,8 @@ describe('JsTag', () => {
         'bla esNextaaaa',
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
-      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
 
     describe('Framework related', () => {
@@ -121,7 +121,7 @@ describe('JsTag', () => {
           'Writing on Vue',
         ];
 
-        applicableTexts.forEach(assertTextAppliesToJsTag);
+        applicableTexts.forEach(assertTextAppliesToTag);
       });
 
       it('frameworks/libs as prefix or postfix', () => {
@@ -132,13 +132,13 @@ describe('JsTag', () => {
           'blaaaaha SamaraVue 2017'
         ];
 
-        applicableTexts.forEach(assertTextAppliesToJsTag);
+        applicableTexts.forEach(assertTextAppliesToTag);
       });
 
       it('ignores not applicable words contain frameworks inside', () => {
         const notApplicableTexts = ['whose mEmBeRs include'];
 
-        notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+        notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
       });
     });
 
@@ -190,8 +190,8 @@ describe('JsTag', () => {
       applicableTexts.push(...reactWithHelperWords);
 
       // assert
-      applicableTexts.forEach(assertTextAppliesToJsTag);
-      definitelyNotApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
+      definitelyNotApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
 
     it('when NodeJS Ecosystem related popular words exist in text', () => {
@@ -201,8 +201,8 @@ describe('JsTag', () => {
       const notApplicableTexts = definitelyApplicableWords.map(w => ` bla${w}bla `);
 
       // assert
-      applicableTexts.forEach(assertTextAppliesToJsTag);
-      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
   });
 
@@ -214,7 +214,7 @@ describe('JsTag', () => {
       ];
 
       // assert
-      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
   });
 });

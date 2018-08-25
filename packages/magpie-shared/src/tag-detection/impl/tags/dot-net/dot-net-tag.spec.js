@@ -7,29 +7,29 @@ import assert from 'assert';
 // app
 import DotNetTag from './dot-net-tag';
 
-function assertJsTagIsApplicable(jsTag: DotNetTag, text: string): void {
+function assertTagIsApplicable(tag: DotNetTag, text: string): void {
   assert.ok(
-    jsTag.isApplicableFor(text),
+    tag.isApplicableFor(text),
     `Tag should be applicable for the following text: '${text}'`
   );
 }
 
-function assertJsTagIsNotApplicable(jsTag: DotNetTag, text: string): void {
+function assertTagIsNotApplicable(tag: DotNetTag, text: string): void {
   assert.ok(
-    !jsTag.isApplicableFor(text),
+    !tag.isApplicableFor(text),
     `Tag should NOT be applicable for the following text: '${text}'`
   );
 }
 
 describe('DotNetTag', () => {
-  let assertTextAppliesToJsTag;
-  let assertTextDoesNotApplyToJsTag;
+  let assertTextAppliesToTag;
+  let assertTextDoesNotApplyToTag;
   let tag;
 
   beforeEach(() => {
     tag = new DotNetTag();
-    assertTextAppliesToJsTag = assertJsTagIsApplicable.bind(null, tag);
-    assertTextDoesNotApplyToJsTag = assertJsTagIsNotApplicable.bind(null, tag);
+    assertTextAppliesToTag = assertTagIsApplicable.bind(null, tag);
+    assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
   });
 
   it('it has tagId equals to "DotNet"', () => {
@@ -44,7 +44,7 @@ describe('DotNetTag', () => {
         'тест PiterDotNet2017 демо ',
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
     });
 
     it('when "." is used', () => {
@@ -58,7 +58,7 @@ describe('DotNetTag', () => {
         'текст ASP.NET WebApi Core ого'
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
     });
 
     it('when "C#" is used', () => {
@@ -68,7 +68,7 @@ describe('DotNetTag', () => {
         'тест CSharp тест'
       ];
 
-      applicableTexts.forEach(assertTextAppliesToJsTag);
+      applicableTexts.forEach(assertTextAppliesToTag);
     });
   });
 
@@ -80,7 +80,7 @@ describe('DotNetTag', () => {
       ];
 
       // assert
-      notApplicableTexts.forEach(assertTextDoesNotApplyToJsTag);
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
   });
 });
