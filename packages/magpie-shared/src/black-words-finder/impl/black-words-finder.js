@@ -14,6 +14,8 @@ export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
     /ваканси[а-яё]*/gi, // вакансии, вакансия, вакансий
     /семинар[а-яё]*/gi,
     /мастер-класс[а-яё]*/gi, // мастер-классов, мастер-классы
+    /интенсив[а-яё]*/gi, //интенсив, интенсивы
+    /воркшоп[а-яё]*/gi, //воркшоп, воркшопы
   ]);
 
   findAll(text: string): string[] {
