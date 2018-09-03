@@ -15,7 +15,7 @@ describe('BlackListedWordsFinderImpl', () => {
   });
 
   describe('Word search', () => {
-    it('finds a used black listed word in the middle of a sentence', () => {
+    it('finds a used black listed word ("курс") in the middle of a sentence', () => {
       // arrange
 
       // act
@@ -23,6 +23,18 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       assert.equal(wordsFound[0], 'курс', 'Used black listed word is not found');
+    });
+
+    it('finds a used black listed word ("маркетолог") in the middle of a sentence', () => {
+      // arrange
+
+      // act
+      const wordsFound = blackListedWordsFinderImpl.findAll(
+        'Этот чудный интернет-маркетолог все испортил'
+      );
+
+      // assert
+      assert.equal(wordsFound[0], 'маркетолог', 'Used black listed word is not found');
     });
 
     it('finds all used black listed words', () => {
@@ -37,8 +49,13 @@ describe('BlackListedWordsFinderImpl', () => {
         'вакансии', 'вакансия',
         'семинар',
         'мастер-класс', 'мастер-классы',
+        'занятие', 'занятия', 'занятий',
+        'вебинар', 'вебинары', 'вебинаров',
         'интенсив',
-        'воркшоп'
+        'воркшоп',
+        'маркетинг',
+        'маркетолог',
+        'продаж', 'продажи', 'продаю', 'продать', 'продавать',
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
@@ -85,7 +102,8 @@ describe('BlackListedWordsFinderImpl', () => {
         'текст бизнеС Логика текст',
         'текст бизнес-логика текст',
         'посетить небольшую экскурсию по офису',
-        'поесть на территории бизнес-центра и '
+        'поесть на территории бизнес-центра и ',
+        'проведем конкурс сразу после'
       ];
       const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
 

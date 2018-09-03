@@ -210,7 +210,7 @@ describe('JsTag', () => {
     it('for not related to any tag text', () => {
       // prettier-ignore
       const notApplicableTexts = [
-        "bla let's go drink beer bla bla"
+        "bla let's go drink beer bla bla",
       ];
 
       // assert

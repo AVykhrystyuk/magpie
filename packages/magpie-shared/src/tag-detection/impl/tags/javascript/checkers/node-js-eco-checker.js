@@ -1,10 +1,31 @@
 // @flow
 
-import {RegExpChecker} from '../../../checkers';
+import TextChecker from '../../../../text-checker';
 
-export default class NodeJsEcoChecker extends RegExpChecker {
+export default class NodeJsEcoChecker extends TextChecker {
   // prettier-ignore
-  regExps: RegExp[] = [
-    /\b(?:npm|yarn|grunt|gulp|webpack)\b/i
+  commonRegExps: RegExp[] = [
+    /\b(?:npm|grunt|gulp|webpack)\b/i
   ];
+
+  check(text: string): boolean {
+    const hasSome = this.commonRegExps.some(e => e.test(text));
+    if (hasSome) {
+      return true;
+    }
+
+    return NodeJsEcoChecker.hasYarnWord(text);
+  }
+
+  static hasYarnWord(text: string): boolean {
+    if (/\byarn\b/i.test(text)) {
+      return !NodeJsEcoChecker.hasHadoop(text);
+    }
+
+    return false;
+  }
+
+  static hasHadoop(text: string): boolean {
+    return /\bHadoop\b/i.test(text);
+  }
 }

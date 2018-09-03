@@ -14,22 +14,22 @@ function assertTagIsApplicable(tag: IosTag, text: string): void {
   );
 }
 
-function assertTagIsNotApplicable(tag: IosTag, text: string): void {
-  assert.ok(
-    !tag.isApplicableFor(text),
-    `Tag should NOT be applicable for the following text: '${text}'`
-  );
-}
+// function assertTagIsNotApplicable(tag: IosTag, text: string): void {
+//   assert.ok(
+//     !tag.isApplicableFor(text),
+//     `Tag should NOT be applicable for the following text: '${text}'`
+//   );
+// }
 
 describe('IosTag', () => {
   let assertTextAppliesToTag;
-  let assertTextDoesNotApplyToTag;
+  // let assertTextDoesNotApplyToTag;
   let tag;
 
   beforeEach(() => {
     tag = new IosTag();
     assertTextAppliesToTag = assertTagIsApplicable.bind(null, tag);
-    assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
+    // assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
   });
 
   it('it has tagId equals to "iOS"', () => {
