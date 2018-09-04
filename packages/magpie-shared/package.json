@@ -9,7 +9,6 @@
     "eslint-prettier-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "prettify": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn prettify && yarn lint --fix",
-    "flow:status": "yarn flow status",
     "build": "yarn run-s build:clear lint flow:status build:babel",
     "build:babel": "babel src/ -d dist/ --ignore '**/*.spec.js'",
     "build:clear": "del dist",
