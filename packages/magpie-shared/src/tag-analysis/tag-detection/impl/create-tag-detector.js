@@ -4,7 +4,7 @@
 // app
 import TagDetector from '../tag-detector';
 import TagDetectorImpl from './tag-detector';
-import {JsTag, DotNetTag, FrontEndTag} from './tags';
+import {JsTag, DotNetTag, FrontEndTag} from './tags/index';
 
 export default function createTagDetector(): TagDetector {
   // prettier-ignore
