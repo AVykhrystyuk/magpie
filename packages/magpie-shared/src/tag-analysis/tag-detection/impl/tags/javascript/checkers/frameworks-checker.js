@@ -1,6 +1,6 @@
 // @flow
 
-import {RegExpChecker} from '../../../checkers/index';
+import { RegExpChecker } from '../../../checkers/index';
 
 export default class FrameworksChecker extends RegExpChecker {
   // prettier-ignore

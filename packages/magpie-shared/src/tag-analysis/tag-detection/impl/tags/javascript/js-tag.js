@@ -10,8 +10,8 @@ import {
   NodeJsEcoChecker,
   ReactChecker,
 } from './checkers/index';
-import {RegExpChecker} from '../../checkers/index';
-import type {TagId} from '../../../tag';
+import { RegExpChecker } from '../../checkers/index';
+import type { TagId } from '../../../tag';
 
 export default class JsTag extends TextCheckableTag {
   tagId: TagId = 'JavaScript';

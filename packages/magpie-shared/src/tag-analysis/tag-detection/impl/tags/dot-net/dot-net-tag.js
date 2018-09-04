@@ -4,8 +4,8 @@
 // app
 import TextCheckableTag from '../../text-checkable-tag';
 import TextChecker from '../../../text-checker';
-import {RegExpChecker} from '../../checkers/index';
-import type {TagId} from '../../../tag';
+import { RegExpChecker } from '../../checkers/index';
+import type { TagId } from '../../../tag';
 
 export default class DotNetTag extends TextCheckableTag {
   tagId: TagId = 'DotNet';

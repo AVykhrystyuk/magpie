@@ -2,7 +2,7 @@
 // @flow
 
 // app
-import type Tag, {TagId} from '../tag';
+import type Tag, { TagId } from '../tag';
 import TagDetector from '../tag-detector';
 
 export default class TagDetectorImpl extends TagDetector {

@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 // @flow
 
-import type {TagId} from './tag';
+import type { TagId } from './tag';
 
 export default class TagDetector {
   detectAll(text: string): TagId[] {

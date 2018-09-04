@@ -1,7 +1,7 @@
 // @flow
 
 // lib
-import {describe, it, beforeEach} from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import assert from 'assert';
 
 // app
