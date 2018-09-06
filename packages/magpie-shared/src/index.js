@@ -2,6 +2,7 @@
 
 // prettier-ignore
 export {
+  TagAnalyzer, createTagAnalyzer,
   BlackListedWordsFinder, createBlackListedWordsFinder,
   WhiteListedWordsFinder, createWhiteListedWordsFinder,
   TagDetector, createTagDetector
