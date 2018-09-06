@@ -8,8 +8,9 @@ import sinon from 'sinon';
 // app
 import TagDetectorImpl from './tag-detector';
 import Tag from '../tag';
+import type { TagId } from '../tag';
 
-function mockTag(tagId: string): Tag {
+function mockTag(tagId: TagId): Tag {
   const mock = sinon.createStubInstance(Tag);
   mock.tagId = tagId;
   mock.isApplicableFor = sinon.spy(text => text && text.includes(tagId));
