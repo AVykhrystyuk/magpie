@@ -32,7 +32,7 @@ function mockWhiteListedWordsFinder(foundWhiteWords: string[]): WhiteListedWords
 }
 
 function emptyResultCollectionExpected(collectionName: string): string {
-  return 'Result should not have collection of ' + collectionName;
+  return `Result should not have collection of ${collectionName}`;
 }
 
 const invalidResultExpectedErrorMessage = 'Result should not be valid';
@@ -47,10 +47,10 @@ describe('TagAnalyzerImpl', () => {
 
         // act
         const results: Array<TagAnalysisResult> = [
-          tagAnalyzerImpl.analize(''),
-          tagAnalyzerImpl.analize('   '),
-          tagAnalyzerImpl.analize((null: any)),
-          tagAnalyzerImpl.analize((undefined: any)),
+          tagAnalyzerImpl.analyze(''),
+          tagAnalyzerImpl.analyze('   '),
+          tagAnalyzerImpl.analyze((null: any)),
+          tagAnalyzerImpl.analyze((undefined: any)),
         ];
 
         // assert
@@ -71,7 +71,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 0);
@@ -89,7 +89,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 0);
@@ -107,7 +107,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 0);
@@ -125,7 +125,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 0);
@@ -145,7 +145,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 2);
@@ -163,7 +163,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 2);
@@ -181,7 +181,7 @@ describe('TagAnalyzerImpl', () => {
         );
 
         // act
-        const result = tagAnalyzerImpl.analize(' some text ');
+        const result = tagAnalyzerImpl.analyze(' some text ');
 
         // assert
         assert.equal(result.tagIds.length, 2);

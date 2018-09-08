@@ -10,7 +10,7 @@ declare module 'magpie-shared' {
   |};
 
   declare export class TagAnalyzer {
-    analize(text: string): TagAnalysisResult;
+    analyze(text: string): TagAnalysisResult;
   }
 
   declare export function createTagAnalyzer(): TagAnalyzer;

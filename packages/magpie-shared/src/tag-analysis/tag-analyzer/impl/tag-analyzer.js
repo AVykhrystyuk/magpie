@@ -24,7 +24,7 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     this._whiteListedWordsFinder = whiteListedWordsFinder;
   }
 
-  analize(text: string): TagAnalysisResult {
+  analyze(text: string): TagAnalysisResult {
     const empty = isWhitespaceOrEmpty(text);
     if (empty) {
       return {
@@ -39,7 +39,7 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     const blackWords = this._blackListedWordsFinder.findAll(text);
     const tagIds = this._tagDetector.detectAll(text);
 
-    const valid = this._validate(whiteWords, blackWords, tagIds);
+    const valid = TagAnalyzerImpl._validate(whiteWords, blackWords, tagIds);
 
     return {
       whiteWords: whiteWords,
@@ -49,7 +49,7 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     };
   }
 
-  _validate(whiteWords: string[], blackWords: string[], tagIds: string[]): boolean {
+  static _validate(whiteWords: string[], blackWords: string[], tagIds: string[]): boolean {
     if (tagIds.length <= 0) {
       return false;
     }
