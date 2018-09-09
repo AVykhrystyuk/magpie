@@ -3,9 +3,8 @@ language: node_js
 node_js:
   - 8.11.3
 
-
 script:
-  - yarn cover
+  - yarn test
 
-# Send coverage data to Coveralls
-after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js && rm -rf coverage"
+after_script:
+  - "cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage"     # Send coverage to Coveralls

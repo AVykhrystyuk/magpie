@@ -42,10 +42,10 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     const valid = TagAnalyzerImpl._validate(whiteWords, blackWords, tagIds);
 
     return {
-      whiteWords: whiteWords,
-      blackWords: blackWords,
-      tagIds: tagIds,
-      valid: valid,
+      whiteWords,
+      blackWords,
+      tagIds,
+      valid,
     };
   }
 

@@ -3,17 +3,20 @@
   "version": "0.0.11",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha --require babel-register 'src/**/*.spec.js'",
-    "cover": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
+    "pretest": "yarn build:check",
+    "test": "cross-env NODE_ENV=test nyc yarn test-mocha",
+    "test-mocha": "mocha --require babel-register 'src/**/*.spec.js'",
     "lint": "yarn eslint 'src/**/*.js'",
+    "flow:status": "flow status",
     "eslint-prettier-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "prettify": "yarn prettier --write 'src/**/*.js'",
     "format": "yarn prettify && yarn lint --fix",
-    "build": "yarn run-s build:clear lint flow:status build:babel",
-    "build:babel": "babel src/ -d dist/ --ignore '**/*.spec.js'",
+    "build": "yarn run-s build:clear build:check build:babel",
+    "build:check": "yarn run-s lint flow:status",
+    "build:babel": "babel src/ -d dist/ --ignore 'src/**/*.spec.js'",
     "build:clear": "del dist",
     "prepublishOnly": "yarn build",
-    "coverageToCoveralls": "yarn cover && cat coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "sendCoverageToCoveralls": "yarn test && cat coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
@@ -38,7 +41,7 @@
     "flow-bin": "0.80.0",
     "mocha": "^5.0.0",
     "npm-run-all": "^4.1.3",
-    "nyc": "^11.4.1",
+    "nyc": "^11.9.0",
     "prettier": "^1.14.2",
     "sinon": "^4.4.1"
   },
@@ -49,14 +52,11 @@
     "dist"
   ],
   "nyc": {
-    "include": [
-      "src"
-    ],
     "exclude": [
-      "**/*.spec.js"
-    ],
-    "require": [
-      "babel-register"
+      "coverage/**",
+      "dist/**",
+      "src/**/*.spec.js",
+      "flow-types.js"
     ],
     "reporter": [
       "lcovonly",
@@ -64,6 +64,7 @@
     ],
     "sourceMap": false,
     "instrument": false,
+    "cache": true,
     "all": true
   }
 }

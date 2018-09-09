@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* istanbul ignore file */
 // @flow
 
 // app
