@@ -5,9 +5,9 @@
   "scripts": {
     "test": "mocha --require babel-register 'src/**/*.spec.js'",
     "cover": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
-    "lint": "yarn eslint 'src/**/*.{js,js.flow}'",
+    "lint": "yarn eslint 'src/**/*.js'",
     "eslint-prettier-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "prettify": "yarn prettier --write 'src/**/*.{js,js.flow}'",
+    "prettify": "yarn prettier --write 'src/**/*.js'",
     "format": "yarn prettify && yarn lint --fix",
     "build": "yarn run-s build:clear lint flow:status build:babel",
     "build:babel": "babel src/ -d dist/ --ignore '**/*.spec.js'",
