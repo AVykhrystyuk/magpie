@@ -6,31 +6,24 @@ module.exports = {
 
   extends: [
     'airbnb-base',
-    'plugin:flowtype/recommended',
-    'prettier',
-    'prettier/flowtype',
-    'prettier/standard',
+    'plugin:flowtype/recommended'
   ],
 
-  plugins: ['flowtype'],
+  plugins: [
+    'flowtype'
+  ],
 
   rules: {
     'no-underscore-dangle': 0,
-    'max-len': [
-      'error',
-      { code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true },
-    ],
+    'max-len': ['error', { code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
     'object-curly-spacing': ['error', 'always'],
-    'comma-dangle': [
-      'error',
-      {
-        arrays: 'only-multiline',
-        objects: 'only-multiline',
-        imports: 'only-multiline',
-        exports: 'never',
-        functions: 'never',
-      },
-    ],
+    'comma-dangle': ['error', {
+      arrays: 'only-multiline',
+      objects: 'only-multiline',
+      imports: 'only-multiline',
+      exports: 'never',
+      functions: 'never',
+    }],
     'no-restricted-syntax': [
       'error',
       'ForInStatement',
@@ -39,5 +32,7 @@ module.exports = {
       'WithStatement',
     ],
     'newline-per-chained-call': ['error', { ignoreChainWithDepth: 2 }],
+    'function-paren-newline': ['error', 'consistent'],
+    'arrow-parens': ['error', 'as-needed']
   },
 };
