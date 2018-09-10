@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 // @flow
 
 export default class RegExpKeywordsFinder {
@@ -13,7 +12,7 @@ export default class RegExpKeywordsFinder {
 
     for (const regExp of this._regExps) {
       if (regExp.global) {
-        const matches = this._findGlobalMatches(text, regExp);
+        const matches = RegExpKeywordsFinder._findGlobalMatches(text, regExp);
         foundWords.push(...matches);
       } else {
         const match = regExp.exec(text);
@@ -37,7 +36,7 @@ export default class RegExpKeywordsFinder {
     return null;
   }
 
-  _findGlobalMatches(text: string, regExp: RegExp): string[] {
+  static _findGlobalMatches(text: string, regExp: RegExp): string[] {
     const matches = [];
 
     for (;;) {

@@ -1,9 +1,9 @@
-/* eslint-disable class-methods-use-this */
 // @flow
 
 // app
 import type Tag, { TagId } from '../tag';
 import TagDetector from '../tag-detector';
+import { isWhitespaceOrEmpty } from '../../../utils';
 
 export default class TagDetectorImpl extends TagDetector {
   _tags: Tag[];
@@ -14,7 +14,7 @@ export default class TagDetectorImpl extends TagDetector {
   }
 
   detectAll(text: string): TagId[] {
-    if (this._isBlankString(text)) {
+    if (isWhitespaceOrEmpty(text)) {
       return [];
     }
 
@@ -22,9 +22,5 @@ export default class TagDetectorImpl extends TagDetector {
     return this._tags
       .filter(t => t.isApplicableFor(text))
       .map(t => t.tagId);
-  }
-
-  _isBlankString(text: string): boolean {
-    return !text || /^\s*$/.test(text);
   }
 }

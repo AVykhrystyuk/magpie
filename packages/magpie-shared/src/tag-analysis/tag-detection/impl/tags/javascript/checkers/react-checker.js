@@ -5,7 +5,7 @@ import TextChecker from '../../../../text-checker';
 
 export default class ReactChecker extends TextChecker {
   check(text: string): boolean {
-    if (/\breact\b/i.test(text) && ReactChecker.hasHelperWords(text)) {
+    if (/\breact\b/i.test(text) && ReactChecker._hasHelperWords(text)) {
       return true;
     }
 
@@ -13,10 +13,10 @@ export default class ReactChecker extends TextChecker {
       return true;
     }
 
-    return ReactChecker.hasPossibleTitle(text);
+    return ReactChecker._hasPossibleTitle(text);
   }
 
-  static hasHelperWords(text: string): boolean {
+  static _hasHelperWords(text: string): boolean {
     if (/\b(?:meet-?ups?|conf|conferenc\w*)\b/i.test(text)) {
       return true;
     }
@@ -30,7 +30,7 @@ export default class ReactChecker extends TextChecker {
     return /\b(?:devs?|develop(?:ing|ments?|ers?)?)\b/i.test(text);
   }
 
-  static hasPossibleTitle(text: string): boolean {
+  static _hasPossibleTitle(text: string): boolean {
     return /\bReact\s+[A-Z]+\w+/.test(text);
   }
 }
