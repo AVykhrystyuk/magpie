@@ -26,6 +26,6 @@ export default class NodeJsEcoChecker extends TextChecker {
   }
 
   static hasHadoop(text: string): boolean {
-    return /\bHadoop\b/i.test(text);
+    return /\bHadoop\b/i.test(text); // Apache Hadoop
   }
 }

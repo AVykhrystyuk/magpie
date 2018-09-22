@@ -55,7 +55,10 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     }
 
     if (whiteWords.length > 0) {
-      return true;
+      const whiteWordsMoreThanHalfOfBlackWords = whiteWords.length * 2 >= blackWords.length;
+      if (whiteWordsMoreThanHalfOfBlackWords) {
+        return true;
+      }
     }
 
     return blackWords.length === 0;

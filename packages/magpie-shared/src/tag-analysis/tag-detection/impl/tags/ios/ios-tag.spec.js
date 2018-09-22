@@ -14,22 +14,22 @@ function assertTagIsApplicable(tag: IosTag, text: string): void {
   );
 }
 
-// function assertTagIsNotApplicable(tag: IosTag, text: string): void {
-//   assert.ok(
-//     !tag.isApplicableFor(text),
-//     `Tag should NOT be applicable for the following text: '${text}'`
-//   );
-// }
+function assertTagIsNotApplicable(tag: IosTag, text: string): void {
+  assert.ok(
+    !tag.isApplicableFor(text),
+    `Tag should NOT be applicable for the following text: '${text}'`
+  );
+}
 
 describe('IosTag', () => {
   let assertTextAppliesToTag;
-  // let assertTextDoesNotApplyToTag;
+  let assertTextDoesNotApplyToTag;
   let tag;
 
   beforeEach(() => {
     tag = new IosTag();
     assertTextAppliesToTag = assertTagIsApplicable.bind(null, tag);
-    // assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
+    assertTextDoesNotApplyToTag = assertTagIsNotApplicable.bind(null, tag);
   });
 
   it('it has tagId equals to "iOS"', () => {
@@ -66,19 +66,27 @@ describe('IosTag', () => {
 
       applicableTexts.forEach(assertTextAppliesToTag);
     });
+
+    it('when "Swift" is used as part of the word with a context', () => {
+      // prettier-ignore
+      const applicableTexts = [
+        'тест Swiftify тест mobile dev ',
+      ];
+
+      applicableTexts.forEach(assertTextAppliesToTag);
+    });
   });
 
-  /*
   describe('Text ignoring', () => {
-    it('for not related to any tag text', () => {
+    it('for not related to tag text', () => {
       // prettier-ignore
       const notApplicableTexts = [
-        "bla let's go drink beer bla bla"
+        ' Внешние системы мониторинга: Zabbix, JMX, Grafana, Nagios, Ganglia ',
+        ' Ничего общего '
       ];
 
       // assert
       notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
   });
-  */
 });

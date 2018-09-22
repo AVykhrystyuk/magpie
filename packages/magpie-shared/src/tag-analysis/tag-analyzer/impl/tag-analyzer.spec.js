@@ -154,6 +154,24 @@ describe('TagAnalyzerImpl', () => {
         assert.ok(result.valid, validResultExpectedErrorMessage);
       });
 
+      it('when text has "Tags" and both "White" and "Black" words but "Black" words dominate', () => {
+        // arrange
+        const tagAnalyzerImpl = new TagAnalyzerImpl(
+          mockTagDetector(['JavaScript', 'DotNet']),
+          mockBlackListedWordsFinder(Array(6).fill('Воркшоп')),
+          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+        );
+
+        // act
+        const result = tagAnalyzerImpl.analyze(' some text ');
+
+        // assert
+        assert.equal(result.tagIds.length, 2);
+        assert.equal(result.blackWords.length, 6);
+        assert.equal(result.whiteWords.length, 2);
+        assert.ok(!result.valid, invalidResultExpectedErrorMessage);
+      });
+
       it('when text has "Tags" and "White" words (does NOT have "Black" words)', () => {
         // arrange
         const tagAnalyzerImpl = new TagAnalyzerImpl(

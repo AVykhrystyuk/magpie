@@ -112,7 +112,7 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       // prettier-ignore
-      assert.equal(wordsFound.length, 0, `[Incorrect search]: Found black listed words in valid text: ${wordsFound.join(', ')}`);
+      assert.equal(wordsFound.length, 0, `Found black listed words in valid text: ${wordsFound.map(w => `'${w}'`).join(', ')}`);
     });
 
     it('does not find anything for valid text using findAll', () => {
@@ -123,7 +123,7 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       // prettier-ignore
-      assert.equal(wordsFound.length, 0, '[Incorrect search]: Found black listed words in valid text');
+      assert.equal(wordsFound.length, 0, 'Found black listed words in valid text');
     });
 
     it('does not find anything for valid text using findOne', () => {
@@ -134,7 +134,7 @@ describe('BlackListedWordsFinderImpl', () => {
 
       // assert
       // prettier-ignore
-      assert.equal(wordFound, null, '[Incorrect search]: Found black listed words in valid text');
+      assert.equal(wordFound, null, 'Found black listed words in valid text');
     });
   });
 });
