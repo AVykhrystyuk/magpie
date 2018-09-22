@@ -74,8 +74,8 @@ describe('WhiteListedWordsFinderImpl', () => {
       // prettier-ignore
       const expectedNotToBeFoundExceptions = [
         'Работа Django-сайта и urlconf.',
-        //'более десятка программ для вас', // программ
-        //'нашу программу.' // программу
+        // 'более десятка программ для вас', // программ
+        // 'нашу программу.' // программу
       ];
       const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
 

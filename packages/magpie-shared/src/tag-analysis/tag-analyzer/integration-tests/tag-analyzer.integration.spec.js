@@ -23,10 +23,10 @@ function readInvalidFile(fileName: string): Promise<string> {
   return readFile(filePath, 'utf8');
 }
 
-function readValidFile(fileName: string): Promise<string> {
-  const filePath = path.join(validDir, fileName);
-  return readFile(filePath, 'utf8');
-}
+// function readValidFile(fileName: string): Promise<string> {
+//   const filePath = path.join(validDir, fileName);
+//   return readFile(filePath, 'utf8');
+// }
 
 function readValidFrontEndFile(fileName: string): Promise<string> {
   const filePath = path.join(validDir, 'FrontEnd', fileName);
@@ -48,15 +48,15 @@ function assertIncludes(field: string, allValues: string[], valuesToFind: string
   assert.fail(`The following ${field} '${notFoundValue}' is not found in [${allValuesJoined}]`);
 }
 
-function assertDoesNotIncludes(field: string, allValues: string[], valuesToFind: string[]): void {
-  const foundValue = valuesToFind.find(v => allValues.includes(v));
-  if (foundValue == null) {
-    return;
-  }
-
-  const allValuesJoined = allValues.map(v => `'${v}'`).join(', ');
-  assert.fail(`The following ${field} '${foundValue}' is found in [${allValuesJoined}]`);
-}
+// function assertDoesNotIncludes(field: string, allValues: string[], valuesToFind: string[]): void {
+//   const foundValue = valuesToFind.find(v => allValues.includes(v));
+//   if (foundValue == null) {
+//     return;
+//   }
+//
+//   const allValuesJoined = allValues.map(v => `'${v}'`).join(', ');
+//   assert.fail(`The following ${field} '${foundValue}' is found in [${allValuesJoined}]`);
+// }
 
 function assertTagIdsIncludes(allValues: string[], valuesToFind: string[]): void {
   assertIncludes('tag ids', allValues, valuesToFind);
@@ -70,9 +70,9 @@ function assertWhiteWordIncludes(allValues: string[], valuesToFind: string[]): v
   assertIncludes('white word', allValues, valuesToFind);
 }
 
-function assertWhiteWordDoesNotIncludes(allValues: string[], valuesToFind: string[]): void {
-  assertDoesNotIncludes('white word', allValues, valuesToFind);
-}
+// function assertWhiteWordDoesNotIncludes(allValues: string[], valuesToFind: string[]): void {
+//   assertDoesNotIncludes('white word', allValues, valuesToFind);
+// }
 
 describe('[Integration tests]: TagAnalyzer', () => {
   describe('Text analysis', () => {
@@ -145,7 +145,7 @@ describe('[Integration tests]: TagAnalyzer', () => {
           assert.equal(result.valid, true, resultInvalidMessage);
           assertTagIdsIncludes(result.tagIds, ['DotNet']);
           assertBlackWordIncludes(result.blackWords, []);
-          //prettier-ignore
+          // prettier-ignore
           assertWhiteWordIncludes(result.whiteWords, ['MeetUp', 'митап', 'разработка', 'программиста']);
         });
 
@@ -196,7 +196,7 @@ describe('[Integration tests]: TagAnalyzer', () => {
           assert.equal(result.valid, true, resultInvalidMessage);
           assertTagIdsIncludes(result.tagIds, ['FrontEnd']);
           assertBlackWordIncludes(result.blackWords, ['семинар']);
-          //prettier-ignore
+          // prettier-ignore
           assertWhiteWordIncludes(result.whiteWords, ['митап', 'разработчики', 'технологий']);
         });
 
@@ -229,7 +229,6 @@ describe('[Integration tests]: TagAnalyzer', () => {
           const result = tagAnalyzer.analyze(file);
 
           // assert
-          //assert.strictEqual(result, {});
           assert.equal(result.valid, true, resultValidMessage);
           assertTagIdsIncludes(result.tagIds, ['FrontEnd', 'JavaScript']);
           assertBlackWordIncludes(result.blackWords, []);
@@ -247,7 +246,7 @@ describe('[Integration tests]: TagAnalyzer', () => {
             'разработки',
             'технологиях',
           ]);
-          //assertWhiteWordDoesNotIncludes(result.whiteWords, ['программ', 'программу']);
+          // assertWhiteWordDoesNotIncludes(result.whiteWords, ['программ', 'программу']);
         });
       });
     });
