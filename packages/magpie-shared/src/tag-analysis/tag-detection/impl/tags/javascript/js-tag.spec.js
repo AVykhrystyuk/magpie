@@ -216,5 +216,17 @@ describe('JsTag', () => {
       // assert
       notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
     });
+
+    it('for markup script tag', () => {
+      // prettier-ignore
+      const notApplicableTexts = [
+        `&lt;script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="//timepad.ru/js/tpwf/loader.min.js" data-timepad-widget="org_subscribe"&gt;
+(function(){return {"orgtag":"zhenechka","orgid":"129622"}; })();
+&lt;/script&gt;`
+      ];
+
+      // assert
+      notApplicableTexts.forEach(assertTextDoesNotApplyToTag);
+    });
   });
 });

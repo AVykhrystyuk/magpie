@@ -171,10 +171,7 @@ describe('[Integration tests]: TagAnalyzer', () => {
         // assert
         assert.equal(result.valid, false, resultValidMessage);
         assertTagIdsIncludes(result.tagIds, ['iOS']);
-        assertBlackWordIncludes(result.blackWords, [
-          'курсе',
-          'трудоустройства',
-        ]);
+        assertBlackWordIncludes(result.blackWords, ['курсе', 'трудоустройства']);
         assertWhiteWordIncludes(result.whiteWords, []);
       });
 

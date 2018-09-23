@@ -22,4 +22,15 @@ export default class JsTag extends TextCheckableTag {
     new NodeJsEcoChecker(),
     new ReactChecker(),
   ];
+
+  guardRegexps: RegExp[] = [/\bscript.*?text\/javascript\b/];
+
+  isApplicableFor(text: string): boolean {
+    const found = this.guardRegexps.some(regexp => regexp.test(text));
+    if (found) {
+      return false;
+    }
+
+    return super.isApplicableFor(text);
+  }
 }
