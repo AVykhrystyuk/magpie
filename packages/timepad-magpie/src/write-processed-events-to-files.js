@@ -12,11 +12,14 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
     'WhiteWords',
     'BlackWords',
     'Description',
+    'IT-RelatedWords',
     'Description HTML',
   ];
   const rows = processedEvents.map(processedEvent => {
     const { event, analysisResult } = processedEvent;
-    const { whiteWords, blackWords, tagIds } = analysisResult;
+    const {
+      whiteWords, blackWords, tagIds, itRelatedWords
+    } = analysisResult;
 
     return [
       event.id.toString(),
@@ -25,6 +28,7 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
       whiteWords.join(', '),
       blackWords.join(', '),
       event.sanitizedDescription,
+      itRelatedWords.join(', '),
       event.descriptionHtml,
     ];
   });
@@ -36,8 +40,16 @@ function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
 }
 
 function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
-  const { whiteWords, blackWords, tagIds } = event.analysisResult;
-  return tagIds.length === 0 && whiteWords.length === 0 && blackWords.length === 0;
+  const {
+    whiteWords, blackWords, tagIds, itRelatedWords
+  } = event.analysisResult;
+
+  return (
+    tagIds.length === 0 &&
+    whiteWords.length === 0 &&
+    blackWords.length === 0 &&
+    itRelatedWords.length === 0
+  );
 }
 
 export async function writeEventsToFile(events: IProcessedTimePadEvent[], filename: string): Promise<*> {

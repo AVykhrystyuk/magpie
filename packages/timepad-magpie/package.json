@@ -24,7 +24,7 @@
     "autobind-decorator": "^2.1.0",
     "axios": "^0.18.0",
     "container-ioc": "^1.7.19",
-    "magpie-shared": "^0.0.13",
+    "magpie-shared": "^0.0.15",
     "sanitize-html": "^1.18.2",
     "xlsx": "^0.12.9"
   },
