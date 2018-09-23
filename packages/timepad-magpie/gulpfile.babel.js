@@ -27,6 +27,7 @@ const paths = {
 };
 
 const isFileFixed = file => file.eslint != null && file.eslint.fixed;
+const isFileNotFixed = file => !isFileFixed(file);
 
 export function lint() {
   return gulp
@@ -37,7 +38,7 @@ export function lint() {
       })
     )
     .pipe(eslint.format())
-    .pipe(_if(!isFileFixed, eslint.failAfterError()))
+    .pipe(_if(isFileNotFixed, eslint.failAfterError()))
     .pipe(_if(isFileFixed, gulp.dest(paths.javascript.fixDest)));
 }
 
