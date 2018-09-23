@@ -15,9 +15,8 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
     'Description HTML',
   ];
   const rows = processedEvents.map(processedEvent => {
-    const {
-      event, whiteWords, blackWords, tagIds
-    } = processedEvent;
+    const { event, analysisResult } = processedEvent;
+    const { whiteWords, blackWords, tagIds } = analysisResult;
 
     return [
       event.id.toString(),
@@ -33,20 +32,11 @@ function convertToRows(processedEvents: IProcessedTimePadEvent[]): Array<string[
 }
 
 function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
-  const { whiteWords, blackWords, tagIds } = event;
-  if (tagIds.length <= 0) {
-    return false;
-  }
-
-  if (whiteWords.length > 0) {
-    return true;
-  }
-
-  return blackWords.length === 0;
+  return event.analysisResult.valid;
 }
 
 function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
-  const { whiteWords, blackWords, tagIds } = event;
+  const { whiteWords, blackWords, tagIds } = event.analysisResult;
   return tagIds.length === 0 && whiteWords.length === 0 && blackWords.length === 0;
 }
 

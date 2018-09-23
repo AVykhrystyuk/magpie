@@ -4,7 +4,7 @@
 [include]
 
 [libs]
-./custom-flow-libdefs/
+./node_modules/magpie-shared/flow-types.js
 
 [lints]
 

@@ -2,7 +2,8 @@
 // @flow
 
 // lib
-import { TagDetector, BlackListedWordsFinder, WhiteListedWordsFinder } from 'magpie-shared';
+import os from 'os';
+import { TagAnalyzer } from 'magpie-shared';
 import autobind from 'autobind-decorator';
 
 // app
@@ -12,23 +13,14 @@ import type { IProcessedTimePadEvent } from './processed-event';
 import TimePadEventsFetcher from './events-fetcher';
 import writeProcessedEventsToFiles from './write-processed-events-to-files';
 
-@Injectable([TimePadEventsFetcher, BlackListedWordsFinder, WhiteListedWordsFinder, TagDetector])
+@Injectable([TimePadEventsFetcher, TagAnalyzer])
 export default class App {
   _timePadEventsFetcher: TimePadEventsFetcher;
-  _blackListedWordsFinder: BlackListedWordsFinder;
-  _whiteListedWordsFinder: WhiteListedWordsFinder;
-  _tagDetector: TagDetector;
+  _tagAnalyzer: TagAnalyzer;
 
-  constructor(
-    timePadEventsFetcher: TimePadEventsFetcher,
-    blackListedWordsFinder: BlackListedWordsFinder,
-    whiteListedWordsFinder: WhiteListedWordsFinder,
-    tagDetector: TagDetector
-  ) {
+  constructor(timePadEventsFetcher: TimePadEventsFetcher, tagAnalyzer: TagAnalyzer) {
     this._timePadEventsFetcher = timePadEventsFetcher;
-    this._blackListedWordsFinder = blackListedWordsFinder;
-    this._whiteListedWordsFinder = whiteListedWordsFinder;
-    this._tagDetector = tagDetector;
+    this._tagAnalyzer = tagAnalyzer;
   }
 
   async run(): Promise<*> {
@@ -45,47 +37,13 @@ export default class App {
 
   @autobind
   _createProcessedEvent(event: ITimePadEvent): IProcessedTimePadEvent {
-    const whiteWords = this._findWhiteWords(event);
-    const blackWords = this._findBlackWords(event);
-    const tagIds = this._findTagIds(event);
+    const { name, sanitizedDescription } = event;
+    const text = name + os.EOL + sanitizedDescription;
+    const analysisResult = this._tagAnalyzer.analyze(text);
+
     return {
       event,
-      whiteWords,
-      blackWords,
-      tagIds,
+      analysisResult,
     };
-  }
-
-  _findBlackWords(event: ITimePadEvent): string[] {
-    const { name, sanitizedDescription } = event;
-
-    const blackWords = this._blackListedWordsFinder.findAll(name);
-    if (blackWords.length !== 0) {
-      return blackWords;
-    }
-
-    return this._blackListedWordsFinder.findAll(sanitizedDescription);
-  }
-
-  _findWhiteWords(event: ITimePadEvent): string[] {
-    const { name, sanitizedDescription } = event;
-
-    const whiteWords = this._whiteListedWordsFinder.findAll(name);
-    if (whiteWords.length !== 0) {
-      return whiteWords;
-    }
-
-    return this._whiteListedWordsFinder.findAll(sanitizedDescription);
-  }
-
-  _findTagIds(event: ITimePadEvent): string[] {
-    const { name, sanitizedDescription } = event;
-
-    const tagIds = this._tagDetector.detectAll(name);
-    if (tagIds.length !== 0) {
-      return tagIds;
-    }
-
-    return this._tagDetector.detectAll(sanitizedDescription);
   }
 }

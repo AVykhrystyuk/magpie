@@ -2941,9 +2941,9 @@ lru-queue@0.1:
   dependencies:
     es5-ext "~0.10.2"
 
-magpie-shared@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.10.tgz#69a4aff5dfdf50cb6630666dc6cf774e8ec333ac"
+magpie-shared@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/magpie-shared/-/magpie-shared-0.0.13.tgz#f867c9236fa8fa0102b7a8efa2b49c7b73335a84"
 
 make-iterator@^1.0.0:
   version "1.0.1"

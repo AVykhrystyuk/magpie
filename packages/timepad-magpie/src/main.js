@@ -3,14 +3,7 @@
 
 // lib
 import { Container } from 'container-ioc';
-import {
-  createTagDetector,
-  TagDetector,
-  createBlackListedWordsFinder,
-  BlackListedWordsFinder,
-  createWhiteListedWordsFinder,
-  WhiteListedWordsFinder,
-} from 'magpie-shared';
+import { createTagAnalyzer, TagAnalyzer } from 'magpie-shared';
 // app
 import TimePadApiClient from './api/api-client';
 import TimePadApiClientImpl from './api/impl/api-client';
@@ -26,10 +19,7 @@ container.register([
   { token: TimePadApiClient, useClass: TimePadApiClientImpl },
   { token: ApiTimePadEventsFetcher, useClass: ApiTimePadEventsFetcherImpl },
   { token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl },
-  { token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl },
-  { token: BlackListedWordsFinder, useFactory: createBlackListedWordsFinder },
-  { token: WhiteListedWordsFinder, useFactory: createWhiteListedWordsFinder },
-  { token: TagDetector, useFactory: createTagDetector },
+  { token: TagAnalyzer, useFactory: createTagAnalyzer },
   App,
 ]);
 
