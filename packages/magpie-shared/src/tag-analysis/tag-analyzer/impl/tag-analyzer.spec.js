@@ -12,6 +12,7 @@ import { TagDetector } from '../../tag-detection';
 import type { TagId } from '../../tag-detection/tag';
 import { BlackListedWordsFinder } from '../../black-words-finder';
 import { WhiteListedWordsFinder } from '../../white-words-finder';
+import { ItRelatedWordsFinder } from '../../it-related-words-finder';
 
 function mockTagDetector(foundTagIds: TagId[]): TagDetector {
   const mock = sinon.createStubInstance(TagDetector);
@@ -31,6 +32,12 @@ function mockWhiteListedWordsFinder(foundWhiteWords: string[]): WhiteListedWords
   return mock;
 }
 
+function mockItRelatedWordsFinder(foundWords: string[]): ItRelatedWordsFinder {
+  const mock = sinon.createStubInstance(ItRelatedWordsFinder);
+  mock.findAll = sinon.spy(text => (text ? foundWords : []));
+  return mock;
+}
+
 function emptyResultCollectionExpected(collectionName: string): string {
   return `Result should not have collection of ${collectionName}`;
 }
@@ -43,7 +50,7 @@ describe('TagAnalyzerImpl', () => {
     describe('returns invalid result', () => {
       it('for blank text', () => {
         // arrange
-        const tagAnalyzerImpl = new TagAnalyzerImpl([]);
+        const tagAnalyzerImpl = new TagAnalyzerImpl(null, null, null, null);
 
         // act
         const results: Array<TagAnalysisResult> = [
@@ -67,7 +74,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector([]),
           mockBlackListedWordsFinder([]),
-          mockWhiteListedWordsFinder([])
+          mockWhiteListedWordsFinder([]),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -85,7 +93,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector([]),
           mockBlackListedWordsFinder([]),
-          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+          mockWhiteListedWordsFinder(['meet-up', 'conference']),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -103,7 +112,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector([]),
           mockBlackListedWordsFinder(['Воркшоп', 'Тренинг']),
-          mockWhiteListedWordsFinder([])
+          mockWhiteListedWordsFinder([]),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -121,7 +131,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector([]),
           mockBlackListedWordsFinder(['Воркшоп', 'Тренинг']),
-          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+          mockWhiteListedWordsFinder(['meet-up', 'conference']),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -141,7 +152,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector(['JavaScript', 'DotNet']),
           mockBlackListedWordsFinder(['Воркшоп', 'Тренинг']),
-          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+          mockWhiteListedWordsFinder(['meet-up', 'conference']),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -159,7 +171,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector(['JavaScript', 'DotNet']),
           mockBlackListedWordsFinder(Array(6).fill('Воркшоп')),
-          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+          mockWhiteListedWordsFinder(['meet-up', 'conference']),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -177,7 +190,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector(['JavaScript', 'DotNet']),
           mockBlackListedWordsFinder([]),
-          mockWhiteListedWordsFinder(['meet-up', 'conference'])
+          mockWhiteListedWordsFinder(['meet-up', 'conference']),
+          mockItRelatedWordsFinder([])
         );
 
         // act
@@ -195,7 +209,8 @@ describe('TagAnalyzerImpl', () => {
         const tagAnalyzerImpl = new TagAnalyzerImpl(
           mockTagDetector(['JavaScript', 'DotNet']),
           mockBlackListedWordsFinder([]),
-          mockWhiteListedWordsFinder([])
+          mockWhiteListedWordsFinder([]),
+          mockItRelatedWordsFinder([])
         );
 
         // act

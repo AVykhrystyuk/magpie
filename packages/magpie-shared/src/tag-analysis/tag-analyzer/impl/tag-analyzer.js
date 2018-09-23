@@ -5,23 +5,27 @@ import type { TagAnalysisResult } from '../tag-analyzer';
 import { TagDetector } from '../../tag-detection';
 import { BlackListedWordsFinder } from '../../black-words-finder';
 import { WhiteListedWordsFinder } from '../../white-words-finder';
+import { ItRelatedWordsFinder } from '../../it-related-words-finder';
 import { isWhitespaceOrEmpty } from '../../../utils';
 
 export default class TagAnalyzerImpl extends TagAnalyzer {
   _tagDetector: TagDetector;
   _blackListedWordsFinder: BlackListedWordsFinder;
   _whiteListedWordsFinder: WhiteListedWordsFinder;
+  _itRelatedWordsFinder: ItRelatedWordsFinder;
 
   constructor(
     tagDetector: TagDetector,
     blackListedWordsFinder: BlackListedWordsFinder,
-    whiteListedWordsFinder: WhiteListedWordsFinder
+    whiteListedWordsFinder: WhiteListedWordsFinder,
+    itRelatedWordsFinder: ItRelatedWordsFinder
   ) {
     super();
 
     this._tagDetector = tagDetector;
     this._blackListedWordsFinder = blackListedWordsFinder;
     this._whiteListedWordsFinder = whiteListedWordsFinder;
+    this._itRelatedWordsFinder = itRelatedWordsFinder;
   }
 
   analyze(text: string): TagAnalysisResult {
@@ -32,12 +36,14 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
         blackWords: [],
         tagIds: [],
         valid: false,
+        itRelatedWords: [],
       };
     }
 
     const whiteWords = this._whiteListedWordsFinder.findAll(text);
     const blackWords = this._blackListedWordsFinder.findAll(text);
     const tagIds = this._tagDetector.detectAll(text);
+    const itRelatedWords = this._itRelatedWordsFinder.findAll(text);
 
     const valid = TagAnalyzerImpl._validate(whiteWords, blackWords, tagIds);
 
@@ -46,6 +52,7 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
       blackWords,
       tagIds,
       valid,
+      itRelatedWords,
     };
   }
 
@@ -55,8 +62,13 @@ export default class TagAnalyzerImpl extends TagAnalyzer {
     }
 
     if (whiteWords.length > 0) {
-      const whiteWordsMoreThanHalfOfBlackWords = whiteWords.length * 2 >= blackWords.length;
-      if (whiteWordsMoreThanHalfOfBlackWords) {
+      /*
+      if (whiteWords.length >= blackWords.length / 2) {
+        return true;
+      }
+      */
+
+      if (whiteWords.length >= blackWords.length) {
         return true;
       }
     }

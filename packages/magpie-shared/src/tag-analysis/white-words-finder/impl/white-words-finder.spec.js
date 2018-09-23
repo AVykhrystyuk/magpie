@@ -29,15 +29,8 @@ describe('WhiteListedWordsFinderImpl', () => {
       // arrange
       // prettier-ignore
       const expectedToBeFoundWords = [
-        'develop', 'developer',
-        'software',
-        'engineers', 'engineer', 'engineering',
         'митап', 'митапы', 'meet-up', 'meetup', 'meet-ups',
         'конференция', 'conference', 'docker.conf',
-        'программ', 'программы', 'программисты', 'программированием',
-        'разработчик', 'разработкой',
-        'специалисты', 'технологиями',
-        'инженеры', 'инженеров'
       ];
       const inputText = `  ${expectedToBeFoundWords.join(' ')}  `;
 
@@ -74,8 +67,6 @@ describe('WhiteListedWordsFinderImpl', () => {
       // prettier-ignore
       const expectedNotToBeFoundExceptions = [
         'Работа Django-сайта и urlconf.',
-        // 'более десятка программ для вас', // программ
-        // 'нашу программу.' // программу
       ];
       const inputText = `  ${expectedNotToBeFoundExceptions.join(' ')}  `;
 

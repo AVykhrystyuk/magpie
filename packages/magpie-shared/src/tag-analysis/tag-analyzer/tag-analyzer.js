@@ -7,6 +7,7 @@ export type TagAnalysisResult = {|
   whiteWords: string[],
   blackWords: string[],
   tagIds: string[],
+  itRelatedWords: string[],
 |};
 
 export default class TagAnalyzer {

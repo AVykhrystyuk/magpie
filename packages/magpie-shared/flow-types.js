@@ -5,6 +5,7 @@ declare module 'magpie-shared' {
     whiteWords: string[],
     blackWords: string[],
     tagIds: string[],
+    itRelatedWords: string[],
   |};
 
   declare export class TagAnalyzer {
@@ -41,4 +42,11 @@ declare module 'magpie-shared' {
 
   declare export function createWhiteListedWordsFinder(): WhiteListedWordsFinder;
 
+
+  declare export class ItRelatedWordsFinder {
+    findAll(text: string): string[];
+    findOne(text: string): ?string;
+  }
+
+  declare export function createItRelatedWordsFinder(): ItRelatedWordsFinder;
 }
