@@ -4,8 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "pretest": "yarn build:check",
-    "test": "cross-env NODE_ENV=test nyc yarn test-mocha",
-    "test-mocha": "mocha --require babel-register 'src/**/*.spec.js'",
+    "test": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
+    "only-mocha": "mocha --require babel-register 'src/**/*.spec.js'",
     "lint": "yarn eslint 'src/**/*.js'",
     "flow:status": "flow status",
     "prettify": "yarn prettier --write 'src/**/*.js'",
@@ -56,6 +56,9 @@
       "dist/**",
       "src/**/*.spec.js",
       "flow-types.js"
+    ],
+    "require": [
+      "babel-register"
     ],
     "reporter": [
       "lcovonly",
