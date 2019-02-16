@@ -29,7 +29,7 @@ const sanitizeOptions: SanitizeOptions = {
 const stripOptions: SanitizeOptions = {
   ...sharedOptions,
   allowedTags: [],
-  allowedAttributes: [],
+  allowedAttributes: {},
 };
 
 export function stripHtml(html: string): string {

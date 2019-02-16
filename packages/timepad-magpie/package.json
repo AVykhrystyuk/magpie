@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn flow:status && yarn gulp build",
+    "prebuild": "yarn flow:status",
+    "build": "yarn gulp build",
     "build:dev": "yarn build",
     "build:prod": "yarn build -- --production",
     "build:watch": "yarn build -- watch",
     "lint": "yarn gulp lint",
     "prettify": "yarn prettier --write 'src/**/*.{js,js.flow}'",
-    "format": "yarn prettify && yarn lint --fix",
+    "format": "yarn run-s prettify 'lint --fix'",
     "start": "yarn build && node build/main.js",
     "flow:deps": "yarn flow-typed install -s --ignoreDeps dev",
     "flow:status": "yarn flow status",
@@ -25,6 +26,7 @@
     "axios": "^0.18.0",
     "container-ioc": "^1.7.19",
     "magpie-shared": "^0.0.15",
+    "npm-run-all": "^4.1.5",
     "sanitize-html": "^1.18.2",
     "xlsx": "^0.12.9"
   },
@@ -41,14 +43,14 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-flowtype": "^2.42.0",
     "eslint-plugin-import": "^2.8.0",
-    "flow-bin": "^0.76.0",
-    "flow-typed": "^2.4.0",
+    "flow-bin": "^0.93.0",
+    "flow-typed": "^2.5.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.2",
     "gulp-if": "^2.0.2",
     "gulp-notify": "^3.2.0",
     "gulp-sourcemaps": "^2.6.4",
-    "prettier": "^1.10.2"
+    "prettier": "^1.16.4"
   }
 }
