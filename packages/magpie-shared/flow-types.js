@@ -1,5 +1,6 @@
-declare module 'magpie-shared' {
+/* eslint-disable flowtype/no-types-missing-file-annotation */
 
+declare module 'magpie-shared' {
   declare export type TagAnalysisResult = {|
     valid: boolean,
     whiteWords: string[],
@@ -15,7 +16,6 @@ declare module 'magpie-shared' {
   declare export function createTagAnalyzer(): TagAnalyzer;
 
 
-
   declare type TagId = string;
 
   declare export class TagDetector {
@@ -25,14 +25,12 @@ declare module 'magpie-shared' {
   declare export function createTagDetector(): TagDetector;
 
 
-
   declare export class BlackListedWordsFinder {
     findAll(text: string): string[];
     findOne(text: string): ?string;
   }
 
   declare export function createBlackListedWordsFinder(): BlackListedWordsFinder;
-
 
 
   declare export class WhiteListedWordsFinder {

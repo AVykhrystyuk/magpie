@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/no-types-missing-file-annotation */
+
 declare module 'assert' {
   declare class AssertionError extends Error {}
   declare module.exports: {
@@ -5,7 +7,7 @@ declare module 'assert' {
     ok(value: any, message?: string): void,
 
     fail(actual: any, expected: any, message: string, operator: string): void,
-    fail(message: string): void,
+    fail(message?: string | Error): void,
 
     equal(actual: any, expected: any, message?: string): void,
     notEqual(actual: any, expected: any, message?: string): void,
