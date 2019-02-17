@@ -1,27 +1,10 @@
 /* eslint-disable no-console,arrow-body-style */
 // @flow
 
-// lib
-import { Container } from 'container-ioc';
-import { createTagAnalyzer, TagAnalyzer } from 'magpie-shared';
 // app
-import TimePadApiClient from './api/api-client';
-import TimePadApiClientImpl from './api/impl/api-client';
-import ApiTimePadEventsFetcher from './api/events-fetcher';
-import ApiTimePadEventsFetcherImpl from './api/impl/events-fetcher';
-import TimePadEventsFetcher from './events-fetcher';
-import TimePadEventsFetcherImpl from './impl/events-fetcher';
 import App from './app';
+import { buildDependencyResolver } from './ioc';
 
-const container = new Container();
-
-container.register([
-  { token: TimePadApiClient, useClass: TimePadApiClientImpl },
-  { token: ApiTimePadEventsFetcher, useClass: ApiTimePadEventsFetcherImpl },
-  { token: TimePadEventsFetcher, useClass: TimePadEventsFetcherImpl },
-  { token: TagAnalyzer, useFactory: createTagAnalyzer },
-  App,
-]);
-
-const app = container.resolve(App);
+const resolver = buildDependencyResolver();
+const app = resolver.resolve(App);
 app.run();

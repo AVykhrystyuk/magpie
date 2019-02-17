@@ -5,7 +5,6 @@
 import os from 'os';
 
 // app
-import { Injectable } from '../ioc';
 import TimePadEventsFetcher from '../events-fetcher';
 import ApiTimePadEventsFetcher from '../api/events-fetcher';
 import { stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty } from './utils';
@@ -39,7 +38,6 @@ function hasDescription(event: ITimePadEvent): boolean {
   return !isWhitespaceOrEmpty(descriptionHtml) && !isWhitespaceOrEmpty(sanitizedDescription);
 }
 
-@Injectable([ApiTimePadEventsFetcher])
 export default class TimePadEventsFetcherImpl extends TimePadEventsFetcher {
   _apiEventsFetcher: ApiTimePadEventsFetcher;
 

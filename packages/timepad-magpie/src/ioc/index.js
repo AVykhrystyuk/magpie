@@ -1,4 +1,4 @@
 /* eslint-disable import/prefer-default-export */
 // @flow
 
-export { default as Injectable } from './injectable';
+export { default as buildDependencyResolver } from './build-dependency-resolver';

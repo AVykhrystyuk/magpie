@@ -7,13 +7,11 @@ import { TagAnalyzer } from 'magpie-shared';
 import autobind from 'autobind-decorator';
 
 // app
-import { Injectable } from './ioc';
 import type { ITimePadEvent } from './event';
 import type { IProcessedTimePadEvent } from './processed-event';
 import TimePadEventsFetcher from './events-fetcher';
 import writeProcessedEventsToFiles from './write-processed-events-to-files';
 
-@Injectable([TimePadEventsFetcher, TagAnalyzer])
 export default class App {
   _timePadEventsFetcher: TimePadEventsFetcher;
   _tagAnalyzer: TagAnalyzer;
