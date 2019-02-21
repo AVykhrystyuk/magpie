@@ -5,7 +5,7 @@
   "scripts": {
     "pretest": "yarn build:check",
     "test": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
-    "test-only": "mocha --require babel-register 'src/**/*.spec.js'",
+    "test-only": "mocha --require @babel/register 'src/**/*.spec.js'",
     "lint": "yarn eslint 'src/**/*.js'",
     "flow:status": "flow status",
     "prettify": "yarn prettier --write 'src/**/*.js'",
@@ -21,14 +21,15 @@
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.1",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^4.1.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-register": "^6.26.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "eslint": "^4.17.0",
@@ -59,7 +60,7 @@
       "src/**/*.js"
     ],
     "require": [
-      "babel-register"
+      "@babel/register"
     ],
     "reporter": [
       "lcovonly",
