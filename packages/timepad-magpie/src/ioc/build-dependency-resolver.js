@@ -1,4 +1,4 @@
-/* eslint-disable no-console,arrow-body-style */
+/* eslint-disable no-console */
 // @flow
 
 // lib
@@ -17,19 +17,20 @@ import App from '../app';
 export default function buildDependencyResolver(): DependencyResolver {
   const container = new DependencyInjectionContainer();
 
+  // prettier-ignore
   container.registerAll([
     { token: TimePadApiClient, factory: () => new TimePadApiClientImpl() },
     {
       token: ApiTimePadEventsFetcher,
       factory: r => new ApiTimePadEventsFetcherImpl(
         r.resolve(TimePadApiClient)
-      )
+      ),
     },
     {
       token: TimePadEventsFetcher,
       factory: r => new TimePadEventsFetcherImpl(
         r.resolve(ApiTimePadEventsFetcher)
-      )
+      ),
     },
     { token: TagAnalyzer, factory: createTagAnalyzer },
     {
@@ -37,7 +38,7 @@ export default function buildDependencyResolver(): DependencyResolver {
       factory: r => new App(
         r.resolve(TimePadEventsFetcher),
         r.resolve(TagAnalyzer)
-      )
+      ),
     },
   ]);
 

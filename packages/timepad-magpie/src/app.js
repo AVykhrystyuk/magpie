@@ -1,4 +1,4 @@
-/* eslint-disable no-console,dot-notation */
+/* eslint-disable no-console */
 // @flow
 
 // lib

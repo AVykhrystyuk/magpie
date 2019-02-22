@@ -1,4 +1,4 @@
-/* eslint-disable no-irregular-whitespace,max-len,camelcase */
+/* eslint-disable camelcase */
 // @flow
 
 // lib
@@ -7,7 +7,9 @@ import os from 'os';
 // app
 import TimePadEventsFetcher from '../events-fetcher';
 import ApiTimePadEventsFetcher from '../api/events-fetcher';
-import { stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty } from './utils';
+import {
+  stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty
+} from './utils';
 import type { IApiTimePadEvent } from '../api/event';
 import type { ITimePadEvent } from '../event';
 

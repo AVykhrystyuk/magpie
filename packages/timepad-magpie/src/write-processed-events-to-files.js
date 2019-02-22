@@ -44,12 +44,11 @@ function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
     whiteWords, blackWords, tagIds, itRelatedWords
   } = event.analysisResult;
 
-  return (
-    tagIds.length === 0 &&
-    whiteWords.length === 0 &&
-    blackWords.length === 0 &&
-    itRelatedWords.length === 0
-  );
+  const isEventEmpty = tagIds.length === 0
+    && whiteWords.length === 0
+    && blackWords.length === 0
+    && itRelatedWords.length === 0;
+  return isEventEmpty;
 }
 
 export async function writeEventsToFile(events: IProcessedTimePadEvent[], filename: string): Promise<*> {

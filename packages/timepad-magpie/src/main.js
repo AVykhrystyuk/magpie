@@ -1,4 +1,3 @@
-/* eslint-disable no-console,arrow-body-style */
 // @flow
 
 // app

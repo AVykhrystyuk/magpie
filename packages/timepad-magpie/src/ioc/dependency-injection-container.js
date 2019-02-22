@@ -5,15 +5,15 @@ import { Container, LifeTime } from 'container-ioc';
 import autobind from 'autobind-decorator';
 
 export interface DependencyResolver {
-  resolve<T: { }> (classAsToken: Class<T>): T;
+  resolve<T: {}>(classAsToken: Class<T>): T;
 }
 
-export type FactoryFunction<T> = (resolver: DependencyResolver) => T
+export type FactoryFunction<T> = (resolver: DependencyResolver) => T;
 export type Registeration<T> = {
-    token: Class<T>;
-    factory: FactoryFunction<T>;
-    singleton?: boolean;
-}
+  token: Class<T>,
+  factory: FactoryFunction<T>,
+  singleton?: boolean,
+};
 
 export default class DependencyInjectionContainer implements DependencyResolver {
   container = new Container();
@@ -29,7 +29,7 @@ export default class DependencyInjectionContainer implements DependencyResolver 
     this.container.register({
       token,
       useFactory: () => factory(this),
-      lifeTime: singleton ? LifeTime.PerRequest : LifeTime.Persistent
+      lifeTime: singleton ? LifeTime.PerRequest : LifeTime.Persistent,
     });
   }
 

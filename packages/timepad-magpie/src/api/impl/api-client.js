@@ -20,7 +20,9 @@ interface IInternalApiTimePadRequestParams {
   starts_at_min?: string;
 }
 
-function commaJoin<T>(array: T[]): string { return array.join(','); }
+function commaJoin<T>(array: T[]): string {
+  return array.join(',');
+}
 
 const MAX_REQUESTS_PER_MINUTE: number = 60; // max limit allowed by timePad
 const MAX_RECORDS_PER_REQUEST: number = 100; // max limit allowed by timePad
