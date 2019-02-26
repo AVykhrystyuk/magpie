@@ -3,25 +3,26 @@
   "version": "0.0.15",
   "main": "dist/index.js",
   "scripts": {
-    "pretest": "yarn build:check",
+    "pretest": "yarn code-check",
     "test": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
     "test-only": "mocha --require @babel/register 'src/**/*.spec.js'",
-    "lint": "yarn eslint 'src/**/*.js'",
+    "lint": "yarn gulp lint",
     "flow:status": "flow status",
-    "prettify": "yarn prettier --write 'src/**/*.js'",
+    "code-check": "yarn run-s lint flow:status",
+    "prettify": "yarn prettier --write 'src/**/*.{js,js.flow}'",
     "format": "yarn run-s prettify 'lint --fix'",
-    "build": "yarn run-s build:clear build:check build:babel",
-    "build:check": "yarn run-s lint flow:status",
-    "build:babel": "babel src/ -d dist/ --ignore 'src/**/*.spec.js'",
-    "build:clear": "rimraf dist",
-    "prepublishOnly": "yarn build",
+    "prebuild": "yarn flow:status",
+    "build": "yarn gulp build",
+    "build:dev": "yarn build",
+    "build:prod": "yarn build -- --production",
+    "build:watch": "yarn build -- watch",
+    "prepublishOnly": "yarn build:prod",
     "sendCoverageToCoveralls": "yarn test && cat coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
@@ -37,6 +38,11 @@
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
     "flow-bin": "^0.93.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "mocha": "^5.2.0",
     "npm-run-all": "^4.1.5",
     "nyc": "^11.9.0",
@@ -48,13 +54,12 @@
     "node": ">=8.11.3"
   },
   "files": [
-    "dist",
-    "flow-types.js"
+    "dist"
   ],
   "nyc": {
     "exclude": [
       "src/**/*.spec.js",
-      "flow-types.js"
+      "src/prepared-flow-files/*.js"
     ],
     "include": [
       "src/**/*.js"

@@ -1,2 +1,2 @@
-flow-types.js
+src/prepared-flow-files/*.js
 .eslintrc.js
