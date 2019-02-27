@@ -7,9 +7,7 @@ import os from 'os';
 // app
 import TimePadEventsFetcher from '../events-fetcher';
 import ApiTimePadEventsFetcher from '../api/events-fetcher';
-import {
-  stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty
-} from './utils';
+import { stripHtml, sanitizeHtml, stripLinks, removeZeroWidthSpace, isWhitespaceOrEmpty } from './utils';
 import type { IApiTimePadEvent } from '../api/event';
 import type { ITimePadEvent } from '../event';
 
@@ -18,9 +16,7 @@ function hasName(apiEvent: IApiTimePadEvent): boolean {
 }
 
 function createEvent(apiEvent: IApiTimePadEvent): ITimePadEvent {
-  const {
-    id, name, description_html, description_short
-  } = apiEvent;
+  const { id, name, description_html, description_short } = apiEvent;
 
   const description = removeZeroWidthSpace(description_short + os.EOL + description_html);
   const descriptionHtml = sanitizeHtml(description);

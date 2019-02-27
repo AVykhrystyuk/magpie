@@ -4,37 +4,53 @@ import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import _if from 'gulp-if';
-import notify from 'gulp-notify';
-import del from 'del';
+import rimraf from 'rimraf';
+import { promisify } from 'util';
 
-const argv = process.argv.slice(2);
-const isProduction = argv.includes('--production');
-const hasFixFlag = argv.includes('--fix');
+const rimrafPromised = promisify(rimraf);
 
-console.log('isProduction:', isProduction);
-console.log('hasFixFlag:', hasFixFlag);
+function getEnvOptions() {
+  const argv = process.argv.slice(2);
+  const isProduction = argv.includes('--production');
+  const eslintShouldFix = argv.includes('--fix');
+  return {
+    isProduction,
+    eslintShouldFix,
+    sourcemaps: !isProduction,
+  };
+}
 
-const paths = {
-  javascript: {
-    src: 'src/**/*.{js,js.flow}',
-    dest: 'build/',
-    fixDest: 'src',
-  },
-  config: {
-    src: 'src/api/impl/config/**/*.*',
-    dest: 'build/api/impl/config/',
-  },
-};
+function getPaths() {
+  const commonDest = 'build/';
 
-const isFileFixed = file => file.eslint != null && file.eslint.fixed;
-const isFileNotFixed = file => !isFileFixed(file);
+  return {
+    dest: commonDest,
+    javascript: {
+      src: 'src/**/*.{js,js.flow}',
+      dest: commonDest,
+      fixDest: 'src',
+    },
+    config: {
+      src: 'src/api/impl/config/**/*.*',
+      dest: `${commonDest}api/impl/config/`,
+    },
+  };
+}
+
+const envOptions = getEnvOptions();
+const paths = getPaths();
+
+console.log('envOptions:', envOptions);
 
 export function lint() {
+  const isFileFixed = file => file.eslint != null && file.eslint.fixed;
+  const isFileNotFixed = file => !isFileFixed(file);
+
   return gulp
     .src(paths.javascript.src)
     .pipe(
       eslint({
-        fix: hasFixFlag,
+        fix: envOptions.hasFixFlag,
       })
     )
     .pipe(eslint.format())
@@ -43,7 +59,7 @@ export function lint() {
 }
 
 export function clean() {
-  return del(['build']);
+  return rimrafPromised(paths.dest);
 }
 
 export function config() {
@@ -55,18 +71,11 @@ export function javascript() {
     .src(paths.javascript.src)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(_if(isProduction, eslint.failAfterError()))
-    .pipe(sourcemaps.init())
+    .pipe(_if(envOptions.eslintShouldFix, eslint.failAfterError()))
+    .pipe(_if(envOptions.sourcemaps, sourcemaps.init()))
     .pipe(babel())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(paths.javascript.dest))
-    .pipe(
-      notify({
-        onLast: true,
-        title: 'Build Notification',
-        message: 'JavaScript is built successfully',
-      })
-    );
+    .pipe(_if(envOptions.sourcemaps, sourcemaps.write('./.maps')))
+    .pipe(gulp.dest(paths.javascript.dest));
 }
 
 export function watch() {
