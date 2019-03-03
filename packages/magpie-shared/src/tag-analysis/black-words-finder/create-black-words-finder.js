@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-// @flow
+// @flow strict
 
 // app
 import BlackListedWordsFinder from './black-words-finder';

@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // app
 import TextCheckableTag from '../../text-checkable-tag';

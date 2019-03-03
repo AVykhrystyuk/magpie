@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // lib
 import { describe, it } from 'mocha';
@@ -26,8 +26,10 @@ describe('TagDetectorImpl', () => {
       // act
       const results: Array<string[]> = [
         tagDetectorImpl.detectAll('   '),
+        // flowlint unclear-type:off
         tagDetectorImpl.detectAll((null: any)),
         tagDetectorImpl.detectAll((undefined: any)),
+        // flowlint unclear-type:error
       ];
 
       // assert

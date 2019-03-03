@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-// @flow
+// @flow strict
 
 // app
 import TagAnalyzer from './tag-analyzer';

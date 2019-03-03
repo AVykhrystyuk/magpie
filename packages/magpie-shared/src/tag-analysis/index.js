@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+// @flow strict
 
 // prettier-ignore
 export { BlackListedWordsFinder, createBlackListedWordsFinder } from './black-words-finder';

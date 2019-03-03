@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 export default class RegExpKeywordsFinder {
   _regExps: RegExp[];

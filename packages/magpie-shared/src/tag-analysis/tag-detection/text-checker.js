@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this, no-unused-vars */
 /* istanbul ignore file */
-// @flow
+// @flow strict
 
 export default class TextChecker {
   check(text: string): boolean {

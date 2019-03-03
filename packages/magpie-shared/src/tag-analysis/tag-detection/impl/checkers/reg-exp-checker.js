@@ -1,17 +1,17 @@
-// @flow
+// @flow strict
 
 import TextChecker from '../../text-checker';
 
 export default class RegExpChecker extends TextChecker {
-  regExps: RegExp[];
+  _regExps: RegExp[];
 
   constructor(regExps: RegExp[]) {
     super();
 
-    this.regExps = regExps;
+    this._regExps = regExps;
   }
 
   check(text: string): boolean {
-    return this.regExps.some(e => e.test(text));
+    return this._regExps.some(e => e.test(text));
   }
 }

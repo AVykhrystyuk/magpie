@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import TagAnalyzer from '../tag-analyzer';
 import type { TagAnalysisResult } from '../tag-analyzer';

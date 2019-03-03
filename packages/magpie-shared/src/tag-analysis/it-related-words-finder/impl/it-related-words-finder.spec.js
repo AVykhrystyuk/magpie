@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // lib
 import { beforeEach, describe, it } from 'mocha';

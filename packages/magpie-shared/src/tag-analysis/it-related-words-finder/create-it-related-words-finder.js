@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-// @flow
+// @flow strict
 
 // app
 import ItRelatedWordsFinder from './it-related-words-finder';

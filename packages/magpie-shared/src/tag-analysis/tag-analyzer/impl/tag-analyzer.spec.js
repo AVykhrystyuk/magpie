@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // lib
 import { describe, it } from 'mocha';
@@ -50,14 +50,21 @@ describe('TagAnalyzerImpl', () => {
     describe('returns invalid result', () => {
       it('for blank text', () => {
         // arrange
-        const tagAnalyzerImpl = new TagAnalyzerImpl(null, null, null, null);
+        const tagAnalyzerImpl = new TagAnalyzerImpl(
+          mockTagDetector([]),
+          mockBlackListedWordsFinder([]),
+          mockWhiteListedWordsFinder([]),
+          mockItRelatedWordsFinder([])
+        );
 
         // act
         const results: Array<TagAnalysisResult> = [
           tagAnalyzerImpl.analyze(''),
           tagAnalyzerImpl.analyze('   '),
+          // flowlint unclear-type:off
           tagAnalyzerImpl.analyze((null: any)),
           tagAnalyzerImpl.analyze((undefined: any)),
+          // flowlint unclear-type:error
         ];
 
         // assert

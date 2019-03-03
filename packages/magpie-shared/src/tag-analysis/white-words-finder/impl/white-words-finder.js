@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // app
 import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
