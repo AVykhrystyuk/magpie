@@ -16,7 +16,7 @@
     "format": "yarn run-s prettify 'lint --fix'",
     "start": "yarn build && node build/main.js",
     "flow:status": "yarn flow status",
-    "flow:deps": "yarn flow-typed install -s --ignoreDeps dev",
+    "flow:deps": "yarn flow-typed install -s",
     "postinstall": "yarn flow:deps"
   },
   "repository": "https://github.com/AVykhrystyuk/timepad-magpie",
@@ -27,7 +27,6 @@
     "axios": "^0.18.0",
     "container-ioc": "^1.7.19",
     "magpie-shared": "^0.0.15",
-    "npm-run-all": "^4.1.5",
     "sanitize-html": "^1.18.2",
     "xlsx": "^0.12.9"
   },
@@ -45,13 +44,14 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
-    "flow-bin": "^0.93.0",
+    "flow-bin": "^0.94.0",
     "flow-typed": "^2.5.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3"
   }
