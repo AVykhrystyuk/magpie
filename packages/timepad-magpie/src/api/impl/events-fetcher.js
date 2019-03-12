@@ -1,5 +1,5 @@
 /* eslint-disable no-console,no-await-in-loop */
-// @flow
+// @flow strict
 
 // lib
 import { promisify } from 'util';

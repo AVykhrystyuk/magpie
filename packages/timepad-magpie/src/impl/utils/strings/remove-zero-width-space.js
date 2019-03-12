@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 /*
   Unicode has the following zero-width characters:
 

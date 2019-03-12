@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // app
 import { writeRowsToFile, groupBy } from './impl/utils';

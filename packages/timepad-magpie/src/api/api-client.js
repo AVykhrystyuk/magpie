@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars,class-methods-use-this */
-// @flow
+// @flow strict
 
 // app
 import type { IApiTimePadEvent } from './event';

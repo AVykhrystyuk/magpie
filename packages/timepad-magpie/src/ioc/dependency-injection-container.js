@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // lib
 import { Container, LifeTime } from 'container-ioc';
@@ -25,11 +25,11 @@ export default class DependencyInjectionContainer implements DependencyResolver 
   @autobind
   register<T>(registration: Registeration<T>): void {
     const { token, factory, singleton } = registration;
-
+    const useSingleton = singleton != null && singleton;
     this.container.register({
       token,
       useFactory: () => factory(this),
-      lifeTime: singleton ? LifeTime.PerRequest : LifeTime.Persistent,
+      lifeTime: useSingleton ? LifeTime.PerRequest : LifeTime.Persistent,
     });
   }
 

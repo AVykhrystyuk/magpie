@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// @flow
+// @flow strict
 
 // lib
 import os from 'os';

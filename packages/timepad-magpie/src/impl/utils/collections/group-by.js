@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 export default function groupBy<TKey, TItem>(
   items: $ReadOnlyArray<TItem>,

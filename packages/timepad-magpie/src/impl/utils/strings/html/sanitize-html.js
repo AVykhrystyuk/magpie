@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // lib
 import sanitizeHtml from 'sanitize-html';

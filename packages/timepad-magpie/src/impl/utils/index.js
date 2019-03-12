@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-// @flow
+// @flow strict
 
 export { default as isWhitespaceOrEmpty } from './strings/is-whitespace-or-empty';
 export { default as removeZeroWidthSpace } from './strings/remove-zero-width-space';

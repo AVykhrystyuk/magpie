@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 // app
 import type { IApiTimePadEvent } from './api/event';

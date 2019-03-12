@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-// @flow
+// @flow strict
 
 // lib
 import os from 'os';

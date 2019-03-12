@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-// @flow
+// @flow strict
 
 // app
 import type { ITimePadEvent } from './event';

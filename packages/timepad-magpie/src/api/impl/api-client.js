@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-// @flow
+// @flow strict
 
 // lib
 import axios from 'axios';
@@ -8,8 +8,11 @@ import type { $AxiosXHR, Axios } from 'axios';
 // app
 import TimePadApiClient from '../api-client';
 import type { IApiTimePadRequestParams, IApiTimePadEventsResponse } from '../api-client';
+// suppressing the follwoing flowlint error until the bug is fixed - https://github.com/facebook/flow/issues/5749
+// flowlint untyped-import:off
 import categories from './config/categories.json';
 import excludedOrganizations from './config/excluded-organizations.json';
+// flowlint untyped-import:error
 
 interface IInternalApiTimePadRequestParams {
   limit: number;

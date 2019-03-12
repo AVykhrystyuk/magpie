@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// @flow
+// @flow strict
 
 // lib
 import { createTagAnalyzer, TagAnalyzer } from 'magpie-shared';
