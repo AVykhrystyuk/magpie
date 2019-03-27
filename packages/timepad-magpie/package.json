@@ -17,7 +17,7 @@
     "start": "npm run build && node build/main.js",
     "flow:status": "flow status",
     "flow:deps": "flow-typed install -s",
-    "postinstall": "npm run flow:deps"
+    "prepublish": "npm run flow:deps"
   },
   "repository": "https://github.com/AVykhrystyuk/timepad-magpie",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
