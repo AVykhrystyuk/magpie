@@ -13,7 +13,7 @@
     "code-check": "run-s lint flow:status",
     "lint": "gulp lint",
     "prettify": "prettier --write 'src/**/*.{js,js.flow}'",
-    "format": "run-s prettify 'lint --fix'",
+    "format": "run-s prettify 'lint -- --fix'",
     "start": "npm run build && node build/main.js",
     "flow:status": "flow status",
     "flow:deps": "flow-typed install -s",
