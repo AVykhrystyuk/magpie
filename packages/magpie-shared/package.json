@@ -18,7 +18,7 @@
     "build:prod": "npm run build -- --production",
     "build:watch": "npm run build -- watch",
     "prepublishOnly": "npm run build:prod",
-    "postinstall": "npm run flow:deps"
+    "prepublish": "npm run flow:deps"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie-shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
