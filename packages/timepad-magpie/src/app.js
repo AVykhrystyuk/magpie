@@ -3,7 +3,7 @@
 
 // lib
 import os from 'os';
-import { TagAnalyzer } from 'magpie-shared';
+import { TagAnalyzer } from '@magpie/shared';
 import autobind from 'autobind-decorator';
 
 // app

@@ -2,9 +2,9 @@
 <PROJECT_ROOT>/build/.*
 
 # workaround as the following local paths are not working with sym-linked package: 
-#<PROJECT_ROOT>/node_modules/magpie-shared/src/.*
-#<PROJECT_ROOT>/../magpie-shared/src/.*
-.*/packages/magpie-shared/src/.*
+#<PROJECT_ROOT>/node_modules/@magpie/shared/src/.*
+#<PROJECT_ROOT>/../shared/src/.*
+.*/packages/shared/src/.*
 
 [include]
 

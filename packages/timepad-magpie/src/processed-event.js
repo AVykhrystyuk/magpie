@@ -1,6 +1,6 @@
 // @flow strict
 // lib
-import type { TagAnalysisResult } from 'magpie-shared';
+import type { TagAnalysisResult } from '@magpie/shared';
 
 // app
 import type { ITimePadEvent } from './event';

@@ -2,7 +2,7 @@
 // @flow strict
 
 // lib
-import { createTagAnalyzer, TagAnalyzer } from 'magpie-shared';
+import { createTagAnalyzer, TagAnalyzer } from '@magpie/shared';
 // app
 import DependencyInjectionContainer from './dependency-injection-container';
 import type { DependencyResolver } from './dependency-injection-container';
