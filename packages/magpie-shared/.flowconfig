@@ -1,6 +1,6 @@
 [ignore]
-.*/dist/.*
-./src/prepared-flow-files/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/src/prepared-flow-files/.*
 
 [include]
 
