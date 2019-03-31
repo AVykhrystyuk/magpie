@@ -9,7 +9,8 @@
     "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "code-check": "lerna run code-check"
+    "code-check": "lerna run code-check",
+    "start": "lerna run start"
   },
   "keywords": [],
   "repository": "https://github.com/AVykhrystyuk/magpie",

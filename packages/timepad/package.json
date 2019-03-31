@@ -1,5 +1,5 @@
 {
-  "name": "timepad-magpie",
+  "name": "@magpie/timepad",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,7 @@
     "flow:deps": "flow-typed install -s",
     "prepare": "npm run flow:deps"
   },
-  "repository": "https://github.com/AVykhrystyuk/timepad-magpie",
+  "repository": "https://github.com/AVykhrystyuk/magpie",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "dependencies": {
