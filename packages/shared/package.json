@@ -1,6 +1,6 @@
 {
-  "name": "magpie-shared",
-  "version": "0.0.18",
+  "name": "@magpie/shared",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
     "pretest": "npm run code-check",
