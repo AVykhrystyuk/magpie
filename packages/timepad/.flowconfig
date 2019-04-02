@@ -1,5 +1,5 @@
 [ignore]
-<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/dist/.*
 
 # workaround as the following local paths are not working with sym-linked package: 
 #<PROJECT_ROOT>/node_modules/@magpie/shared/src/.*

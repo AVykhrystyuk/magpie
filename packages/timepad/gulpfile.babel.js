@@ -21,7 +21,7 @@ function getEnvOptions() {
 }
 
 function getPaths() {
-  const commonDest = 'build/';
+  const commonDest = 'dist/';
 
   return {
     dest: commonDest,

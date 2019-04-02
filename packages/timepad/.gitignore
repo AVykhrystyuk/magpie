@@ -6,7 +6,7 @@ flow-typed
 npm-debug.log
 
 # Build results
-build
+dist
 
 # Local development
 *.env
