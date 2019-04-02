@@ -1,8 +1,7 @@
 {
   "name": "@magpie/timepad",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"[@magpie/timepad]: No test specified yet\"",
     "prebuild": "npm run flow:status",
@@ -14,7 +13,7 @@
     "lint": "gulp lint",
     "prettify": "prettier --write 'src/**/*.{js,js.flow}'",
     "format": "run-s prettify 'lint -- --fix'",
-    "start": "npm run build && node build/main.js",
+    "start": "npm run build && node dist/main.js",
     "flow:status": "flow status",
     "flow:deps": "flow-typed install -s",
     "prepare": "npm run flow:deps"
