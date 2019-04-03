@@ -18,7 +18,7 @@
     "flow:deps": "flow-typed install -s",
     "prepare": "npm run flow:deps"
   },
-  "repository": "https://github.com/AVykhrystyuk/magpie",
+  "repository": "https://github.com/AVykhrystyuk/magpie/tree/master/packages/timepad",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "dependencies": {
