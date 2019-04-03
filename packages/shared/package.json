@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build:prod",
     "prepare": "npm run flow:deps"
   },
-  "repository": "https://github.com/AVykhrystyuk/magpie",
+  "repository": "https://github.com/AVykhrystyuk/magpie/tree/master/packages/shared",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "devDependencies": {
