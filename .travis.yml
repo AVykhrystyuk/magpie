@@ -6,7 +6,7 @@ node_js:
 cache: npm
 
 before_install:
-  - npm i -g npm@latest
+  - if [[ "$(npm -v)" != "$(npm v npm dist-tags.latest)" ]]; then npm i -g npm@latest; fi
 
 before_script:
   - npm run bootstrap
