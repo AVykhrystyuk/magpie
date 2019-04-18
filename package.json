@@ -2,21 +2,23 @@
   "name": "@magpie/root",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/@magpie/*"]
+  },
   "scripts": {
     "test": "lerna run test",
-    "clean": "lerna clean --yes",
-    "bootstrap": "lerna bootstrap --hoist",
+    "clean": "lerna clean --yes && rimraf node_modules",
     "build": "lerna run build",
     "code-check": "lerna run code-check",
-    "start": "lerna run start"
+    "start": "lerna run start",
+    "prepare": "lerna run prepare"
   },
-  "keywords": [],
   "repository": "https://github.com/AVykhrystyuk/magpie",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "lerna": "^3.13.1"
+    "lerna": "^3.13.1",
+    "rimraf": "^2.6.3"
   }
 }

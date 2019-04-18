@@ -4,19 +4,19 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"[@magpie/timepad]: No test specified yet\"",
-    "prebuild": "npm run flow:status",
+    "prebuild": "yarn flow:status",
     "build": "gulp build",
-    "build:dev": "npm run build",
-    "build:prod": "npm run build -- --production",
-    "build:watch": "npm run build -- watch",
+    "build:dev": "yarn build",
+    "build:prod": "yarn build -- --production",
+    "build:watch": "yarn build -- watch",
     "code-check": "run-s lint flow:status",
     "lint": "gulp lint",
     "prettify": "prettier --write 'src/**/*.{js,js.flow}'",
     "format": "run-s prettify 'lint -- --fix'",
-    "start": "npm run build && node dist/main.js",
+    "start": "yarn build && node dist/main.js",
     "flow:status": "flow status",
     "flow:deps": "flow-typed install -s",
-    "prepare": "npm run flow:deps"
+    "prepare": "yarn flow:deps"
   },
   "repository": "https://github.com/AVykhrystyuk/magpie/tree/master/packages/timepad",
   "author": "Alexey Vykhrystyuk <AVykhrystyuk@gmail.com>",
@@ -30,7 +30,6 @@
     "xlsx": "^0.12.9"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/plugin-proposal-decorators": "^7.4.0",
