@@ -7,7 +7,7 @@
     "nohoist": ["**/@magpie/*"]
   },
   "scripts": {
-    "test": "lerna run test",
+    "test": "lerna run test --stream",
     "clean": "lerna clean --yes && rimraf node_modules",
     "build": "lerna run build",
     "code-check": "lerna run code-check",

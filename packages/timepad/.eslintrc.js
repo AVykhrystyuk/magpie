@@ -8,6 +8,10 @@ module.exports = {
     'flowtype'
   ],
 
+  env: {
+    jest: true
+  },
+
   rules: {
     /* es6 related */
     // https://eslint.org/docs/rules/arrow-parens
