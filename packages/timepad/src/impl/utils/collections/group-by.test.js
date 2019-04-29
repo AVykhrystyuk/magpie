@@ -5,14 +5,12 @@ import generateRange from './generate-range';
 
 interface DataRecord {
   id: number,
-  data: string,
   isEven: boolean,
 }
 
 function createDataRecord(id: number): DataRecord {
   return {
     id,
-    data: `data for ${id}`,
     isEven: id % 2 === 0,
   };
 }
@@ -27,7 +25,10 @@ describe('[collections]: group-by', () => {
     expect(groups.size).toBe(2);
     const evenDataRecords = groups.get(true) || [];
     expect(evenDataRecords.length).toBe(3);
+    evenDataRecords.forEach(record => expect(record.isEven).toBe(true));
+
     const oddDataRecords = groups.get(false) || [];
     expect(oddDataRecords.length).toBe(2);
+    oddDataRecords.forEach(record => expect(record.isEven).toBe(false));
   });
 });
