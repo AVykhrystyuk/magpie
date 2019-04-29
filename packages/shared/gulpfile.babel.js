@@ -29,8 +29,8 @@ function getPaths() {
     javascript: {
       src: [
         'src/**/*.{js,js.flow}',
-        '!src/**/*.spec.js',
-        `!${preparedFlowFiles}`
+        '!src/**/*.spec.js', // skip test files
+        `!${preparedFlowFiles}`, // skip prepated flow files
       ],
       dest: commonDest,
       fixDest: 'src',

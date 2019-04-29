@@ -26,7 +26,10 @@ function getPaths() {
   return {
     dest: commonDest,
     javascript: {
-      src: 'src/**/*.{js,js.flow}',
+      src: [
+        'src/**/*.{js,js.flow}',
+        '!src/**/*.spec.js', // skip test files
+      ],
       dest: commonDest,
       fixDest: 'src',
     },
