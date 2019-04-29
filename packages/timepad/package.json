@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config ./jest.config.js",
     "prebuild": "yarn flow:status",
     "build": "gulp build",
     "build:dev": "yarn build",
