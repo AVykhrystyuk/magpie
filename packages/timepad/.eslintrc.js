@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    jest: true
+  },
+
   extends: [
     'airbnb-base',
     'plugin:flowtype/recommended'
@@ -7,10 +11,6 @@ module.exports = {
   plugins: [
     'flowtype'
   ],
-
-  env: {
-    jest: true
-  },
 
   rules: {
     /* es6 related */
