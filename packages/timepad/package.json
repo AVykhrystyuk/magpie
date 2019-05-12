@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --config ./jest.config.js",
+    "test": "run-s code-check test-coverage",
+    "test-coverage": "jest --coverage",
+    "test-code": "jest",
     "gulp:build": "gulp build",
     "build": "run-s flow:status gulp:build",
     "build:prod": "run-s flow:status 'gulp:build -- --production'",
