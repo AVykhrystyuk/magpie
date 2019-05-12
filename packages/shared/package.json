@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "pretest": "yarn code-check",
-    "test": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
-    "test-only": "mocha --require @babel/register 'src/**/*.spec.js'",
+    "test": "run-s code-check test-coverage",
+    "test-coverage": "cross-env NODE_ENV=test nyc mocha 'src/**/*.spec.js'",
+    "test-code": "mocha --require @babel/register 'src/**/*.spec.js'",
     "lint": "gulp lint",
     "flow:status": "flow status",
     "flow:deps": "flow-typed install -s",
