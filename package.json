@@ -11,6 +11,7 @@
     "clean": "lerna clean --yes && rimraf node_modules",
     "build": "lerna run build",
     "code-check": "lerna run code-check",
+    "format": "lerna run format",
     "start": "lerna run start",
     "prepare": "lerna run prepare"
   },

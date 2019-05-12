@@ -3,14 +3,14 @@
 import generateRange from './generate-range';
 
 interface Item {
-  id: number,
-  data: string,
+  id: number;
+  data: string;
 }
 
 function createItem(id: number): Item {
   return {
     id,
-    data: `item data for ${id}`
+    data: `item data for ${id}`,
   };
 }
 

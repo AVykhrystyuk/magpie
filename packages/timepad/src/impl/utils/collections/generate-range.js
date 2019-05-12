@@ -1,4 +1,3 @@
-
 // @flow strict
 
 export type RangeFactory<T> = (index: number) => T;
@@ -24,15 +23,14 @@ function generateRange<T>(
   const actualCount = typeof countOrFactory === 'number' ? countOrFactory : startIndexOrCount;
   const actualFactory = factory || factoryFromSecondArg || ((i: number) => i);
 
-  const indices: Array<number | T> = [];
+  const indicesOrItems: Array<number | T> = [];
 
   for (let index = actualStartIndex; index < actualCount; index++) {
-    indices.push(
-      actualFactory(index)
-    );
+    const indexOrItem = actualFactory(index);
+    indicesOrItems.push(indexOrItem);
   }
 
-  return indices;
+  return indicesOrItems;
 }
 
 export default generateRange;

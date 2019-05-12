@@ -4,8 +4,8 @@ import groupBy from './group-by';
 import generateRange from './generate-range';
 
 interface DataRecord {
-  id: number,
-  isEven: boolean,
+  id: number;
+  isEven: boolean;
 }
 
 function createDataRecord(id: number): DataRecord {
