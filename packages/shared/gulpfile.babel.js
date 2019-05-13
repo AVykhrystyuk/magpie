@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import gulp from 'gulp';
-import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import _if from 'gulp-if';
@@ -69,14 +68,12 @@ export function clean() {
 
 export function buildJavaScript() {
   return gulp
-    .src(paths.javascript.src)
+    .src(paths.javascript.src, { sourcemaps: envOptions.sourcemaps })
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(_if(envOptions.isProduction, eslint.failAfterError()))
-    .pipe(_if(envOptions.sourcemaps, sourcemaps.init()))
     .pipe(babel())
-    .pipe(_if(envOptions.sourcemaps, sourcemaps.write('./.maps')))
-    .pipe(gulp.dest(paths.javascript.dest));
+    .pipe(gulp.dest(paths.javascript.dest, { sourcemaps: envOptions.sourcemaps ? './.maps' : false }));
 }
 
 export function copyPreparedFlowFiles() {
