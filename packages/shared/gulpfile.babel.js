@@ -4,9 +4,6 @@ import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import _if from 'gulp-if';
 import rimraf from 'rimraf';
-import { promisify } from 'util';
-
-const rimrafPromised = promisify(rimraf);
 
 function getEnvOptions() {
   const argv = process.argv.slice(2);
@@ -62,8 +59,8 @@ export function lint() {
     .pipe(_if(isFileFixed, gulp.dest(paths.javascript.fixDest)));
 }
 
-export function clean() {
-  return rimrafPromised(paths.dest);
+export function clean(callback) {
+  return rimraf(paths.dest, callback);
 }
 
 export function buildJavaScript() {
