@@ -17,6 +17,7 @@
     "test:merge-final-coverage": "nyc report --reporter=lcovonly --temp-dir .final_coverage",
     "clean": "lerna clean --yes && rimraf node_modules",
     "build": "lerna run build",
+    "build:prod": "lerna run build:prod",
     "code-check": "lerna run code-check",
     "format": "lerna run format",
     "start": "lerna run start",
