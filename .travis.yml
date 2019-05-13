@@ -19,4 +19,4 @@ script:
   - yarn test
 
 after_success:
-  - test:send-coverage-to-coveralls
+  - yarn test:send-coverage-to-coveralls
