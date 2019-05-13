@@ -71,7 +71,8 @@
     ],
     "reporter": [
       "lcovonly",
-      "text"
+      "text",
+      "json"
     ],
     "sourceMap": false,
     "instrument": false,
