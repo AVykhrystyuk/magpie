@@ -18,6 +18,8 @@
     "flow:deps": "flow-typed install -s",
     "prettify": "prettier --write 'src/**/*.js'",
     "format": "run-s prettify 'gulp:lint -- --fix'",
+    "clean:build": "gulp clean",
+    "clean:coverage": "rimraf coverage",
     "start": "yarn build && node dist/main.js",
     "prepare": "yarn flow:deps"
   },

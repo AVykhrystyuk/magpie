@@ -21,3 +21,4 @@ dist
 # Test coverage
 .final_coverage
 /coverage
+.coveralls.yml

@@ -18,6 +18,8 @@
     "flow:deps": "flow-typed install -s",
     "prettify": "prettier --write 'src/**/*.js'",
     "format": "run-s prettify 'gulp:lint -- --fix'",
+    "clean:build": "gulp clean",
+    "clean:coverage": "rimraf coverage .nyc_output",
     "prepublishOnly": "run-s code-check build:prod test-code",
     "prepare": "yarn flow:deps"
   },
@@ -33,7 +35,6 @@
     "@babel/register": "^7.4.4",
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.4",
-    "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",

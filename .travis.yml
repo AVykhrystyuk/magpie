@@ -17,3 +17,6 @@ install:
 script:
   - yarn build:prod
   - yarn test
+
+after_success:
+  - test:send-coverage-to-coveralls
