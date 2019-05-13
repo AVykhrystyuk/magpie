@@ -13,7 +13,7 @@
   "scripts": {
     "test": "run-s test:run-all-tests test:copy-final-coverage test:merge-final-coverage",
     "test:run-all-tests": "lerna run test --stream",
-    "test:copy-final-coverage": "node ./scripts/coverage/copy-final-coverage.js",
+    "test:copy-final-coverage": "node ./scripts/coverage/copy-final-coverages.js --target-dir .final_coverage",
     "test:merge-final-coverage": "nyc report --reporter=lcovonly --temp-dir .final_coverage",
     "clean": "lerna clean --yes && rimraf node_modules",
     "build": "lerna run build",
