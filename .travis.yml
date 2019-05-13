@@ -15,6 +15,5 @@ install:
   - yarn install --frozen-lockfile
 
 script:
-  - yarn code-check
   - yarn build:prod
   - yarn test

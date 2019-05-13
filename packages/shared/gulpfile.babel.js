@@ -11,10 +11,10 @@ const rimrafPromised = promisify(rimraf);
 function getEnvOptions() {
   const argv = process.argv.slice(2);
   const isProduction = argv.includes('--production');
-  const eslintShouldFix = argv.includes('--fix');
+  const hasFixFlag = argv.includes('--fix');
   return {
-    isProduction,
-    eslintShouldFix,
+    failAfterError: isProduction,
+    eslintFix: hasFixFlag,
     sourcemaps: !isProduction,
   };
 }
@@ -54,7 +54,7 @@ export function lint() {
     .src(paths.javascript.src)
     .pipe(
       eslint({
-        fix: envOptions.eslintShouldFix,
+        fix: envOptions.eslintFix,
       })
     )
     .pipe(eslint.format())
@@ -71,7 +71,7 @@ export function buildJavaScript() {
     .src(paths.javascript.src, { sourcemaps: envOptions.sourcemaps })
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(_if(envOptions.isProduction, eslint.failAfterError()))
+    .pipe(_if(envOptions.failAfterError, eslint.failAfterError()))
     .pipe(babel())
     .pipe(gulp.dest(paths.javascript.dest, { sourcemaps: envOptions.sourcemaps ? './.maps' : false }));
 }
