@@ -16,3 +16,6 @@ dist
 # IDE
 .idea
 .vscode
+
+# Test coverage
+coverage

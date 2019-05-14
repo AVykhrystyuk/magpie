@@ -17,3 +17,8 @@ dist
 .idea
 .vscode/*
 !.vscode/settings.json
+
+# Test coverage
+.final_coverage
+/coverage
+.coveralls.yml

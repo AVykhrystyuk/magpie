@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    jest: true
+  },
+
   extends: [
     'airbnb-base',
     'plugin:flowtype/recommended'
@@ -62,5 +66,9 @@ module.exports = {
 
     // https://eslint.org/docs/rules/lines-between-class-members
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+
+    // disallow use of unary operators, ++ and --
+    // https://eslint.org/docs/rules/no-plusplus
+    'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
   }
 };

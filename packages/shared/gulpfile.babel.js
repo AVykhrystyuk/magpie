@@ -1,21 +1,17 @@
 /* eslint-disable no-console */
 import gulp from 'gulp';
-import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import _if from 'gulp-if';
 import rimraf from 'rimraf';
-import { promisify } from 'util';
-
-const rimrafPromised = promisify(rimraf);
 
 function getEnvOptions() {
   const argv = process.argv.slice(2);
   const isProduction = argv.includes('--production');
-  const eslintShouldFix = argv.includes('--fix');
+  const hasFixFlag = argv.includes('--fix');
   return {
-    isProduction,
-    eslintShouldFix,
+    failAfterError: isProduction,
+    eslintFix: hasFixFlag,
     sourcemaps: !isProduction,
   };
 }
@@ -29,8 +25,8 @@ function getPaths() {
     javascript: {
       src: [
         'src/**/*.{js,js.flow}',
-        '!src/**/*.spec.js',
-        `!${preparedFlowFiles}`
+        '!src/**/*.spec.js', // skip test files
+        `!${preparedFlowFiles}`, // skip prepated flow files
       ],
       dest: commonDest,
       fixDest: 'src',
@@ -55,7 +51,7 @@ export function lint() {
     .src(paths.javascript.src)
     .pipe(
       eslint({
-        fix: envOptions.eslintShouldFix,
+        fix: envOptions.eslintFix,
       })
     )
     .pipe(eslint.format())
@@ -63,20 +59,18 @@ export function lint() {
     .pipe(_if(isFileFixed, gulp.dest(paths.javascript.fixDest)));
 }
 
-export function clean() {
-  return rimrafPromised(paths.dest);
+export function clean(callback) {
+  return rimraf(paths.dest, callback);
 }
 
 export function buildJavaScript() {
   return gulp
-    .src(paths.javascript.src)
+    .src(paths.javascript.src, { sourcemaps: envOptions.sourcemaps })
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(_if(envOptions.isProduction, eslint.failAfterError()))
-    .pipe(_if(envOptions.sourcemaps, sourcemaps.init()))
+    .pipe(_if(envOptions.failAfterError, eslint.failAfterError()))
     .pipe(babel())
-    .pipe(_if(envOptions.sourcemaps, sourcemaps.write('./.maps')))
-    .pipe(gulp.dest(paths.javascript.dest));
+    .pipe(gulp.dest(paths.javascript.dest, { sourcemaps: envOptions.sourcemaps ? './.maps' : false }));
 }
 
 export function copyPreparedFlowFiles() {
