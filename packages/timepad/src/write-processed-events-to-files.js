@@ -40,11 +40,10 @@ function isProcessedEventValid(event: IProcessedTimePadEvent): boolean {
 function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
   const { whiteWords, blackWords, tagIds, itRelatedWords } = event.analysisResult;
 
-  const isEventEmpty =
-    tagIds.length === 0 &&
-    whiteWords.length === 0 &&
-    blackWords.length === 0 &&
-    itRelatedWords.length === 0;
+  const isEventEmpty = tagIds.length === 0
+    && whiteWords.length === 0
+    && blackWords.length === 0
+    && itRelatedWords.length === 0;
   return isEventEmpty;
 }
 

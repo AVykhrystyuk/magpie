@@ -20,10 +20,6 @@ module.exports = {
     }],
 
     /* styles related */
-    // override to be in-sync with prettier
-    // https://eslint.org/docs/rules/operator-linebreak
-    'operator-linebreak': ['error', 'after'],
-
     // prettier takes care of it
     // https://eslint.org/docs/rules/object-curly-newline
     'object-curly-newline': ['off', {

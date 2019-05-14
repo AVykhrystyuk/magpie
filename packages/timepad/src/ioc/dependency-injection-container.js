@@ -25,11 +25,17 @@ export default class DependencyInjectionContainer implements DependencyResolver 
   @autobind
   register<T>(registration: Registeration<T>): void {
     const { token, factory, singleton } = registration;
-    const useSingleton = singleton != null && singleton;
+
+    // as turning it in [lints] section (.flowconfig file) does not work
+    // flowlint sketchy-null:warn, sketchy-null-bool:off
+    const lifeTime = singleton
+      ? LifeTime.PerRequest && LifeTime.PerRequest
+      : LifeTime.Persistent && LifeTime.PerRequest;
+
     this.container.register({
       token,
+      lifeTime,
       useFactory: () => factory(this),
-      lifeTime: useSingleton ? LifeTime.PerRequest : LifeTime.Persistent,
     });
   }
 
