@@ -9,14 +9,18 @@ module.exports = {
   ],
 
   rules: {
-    /* es6 related */
+    /* es6 start */
+
     // require parens in arrow function arguments
     // https://eslint.org/docs/rules/arrow-parens
     'arrow-parens': ['error', 'as-needed', {
       requireForBlockBody: false,
     }],
 
-    /* styles related */
+    /* es6 end */
+
+    /* styles start */
+
     // prettier takes care of it
     // https://eslint.org/docs/rules/object-curly-newline
     'object-curly-newline': ['off', {
@@ -93,5 +97,24 @@ module.exports = {
     // disallow use of unary operators, ++ and --
     // https://eslint.org/docs/rules/no-plusplus
     'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
+
+    /* styles end */
+
+    /* import start */
+
+    // Forbid the use of extraneous packages
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
+    // paths are treated both as absolute paths, and relative to process.cwd()
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: [
+        '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
+        '**/gulpfile.js', // gulp config
+        '**/gulpfile.*.js', // gulp config
+        '**/prettier.config.js', // prettier config
+      ],
+      optionalDependencies: false,
+    }],
+
+    /* import end */
   },
 };

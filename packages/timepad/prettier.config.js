@@ -1,7 +1,1 @@
-module.exports = {
-  printWidth: 105,
-  // parser: 'flow',
-  singleQuote: true,
-  trailingComma: 'es5',
-  bracketSpacing: true,
-};
+module.exports = require('@magpie/code-style/prettier.config.js');
