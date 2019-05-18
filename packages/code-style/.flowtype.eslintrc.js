@@ -116,5 +116,12 @@ module.exports = {
     }],
 
     /* import end */
+
+    /* variables start */
+
+    // disallow use of variables before they are defined
+    'no-use-before-define': ['error', { functions: false, classes: true, variables: true }],
+
+    /* variables end */
   },
 };

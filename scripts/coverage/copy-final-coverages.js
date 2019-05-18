@@ -1,3 +1,5 @@
+/* eslint-disable no-console, import/no-extraneous-dependencies */
+// eslint-disable-next-line strict, lines-around-directive
 'use strict';
 
 const globOriginal = require('glob');
@@ -21,15 +23,14 @@ const TARGET_DIR_OPTION_NAME = '--target-dir';
 
   const copyFileCommands = await copyFinalCoverages(targetFolder);
   if (copyFileCommands.length < 1) {
-    throw new Error(`No final coverage files found. Make sure tests are run for individual packages`);
-    return;
+    throw new Error('No final coverage files found. Make sure tests are run for individual packages');
   }
 
   console.log(`${copyFileCommands.length} files are copied:`);
   copyFileCommands.forEach(({ from, to }) => {
     console.log(`${from} -> ${to}`);
-  })
-})();
+  });
+}());
 
 async function copyFinalCoverages(targetFolder) {
   const inPackagesGlob = 'packages/**/';
