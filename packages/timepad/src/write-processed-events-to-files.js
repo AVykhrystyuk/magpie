@@ -47,7 +47,10 @@ function isProcessedEventEmpty(event: IProcessedTimePadEvent): boolean {
   return isEventEmpty;
 }
 
-export async function writeEventsToFile(events: IProcessedTimePadEvent[], filename: string): Promise<*> {
+export async function writeEventsToFile(
+  events: IProcessedTimePadEvent[],
+  filename: string
+): Promise<*> {
   const rows = convertToRows(events);
   await writeRowsToFile(rows, filename);
 }
