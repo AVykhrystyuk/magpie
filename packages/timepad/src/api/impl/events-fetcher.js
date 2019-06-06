@@ -11,7 +11,7 @@ import TimePadApiClient from '../api-client';
 import type { IApiTimePadEventsResponse } from '../api-client';
 import type { IApiTimePadEvent } from '../event';
 
-const delay = setTimeout[promisify.custom];
+const delay = promisify(setTimeout);
 
 export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
   _timePadApi: TimePadApiClient;
