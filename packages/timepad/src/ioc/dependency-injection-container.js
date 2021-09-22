@@ -2,10 +2,9 @@
 
 // lib
 import { Container, LifeTime } from 'container-ioc';
-import autobind from 'autobind-decorator';
 
 export interface DependencyResolver {
-  resolve<T: {}>(classAsToken: Class<T>): T;
+  resolve<T>(classAsToken: Class<T>): T;
 }
 
 export type FactoryFunction<T> = (resolver: DependencyResolver) => T;
@@ -16,13 +15,12 @@ export type Registeration<T> = {
 };
 
 export default class DependencyInjectionContainer implements DependencyResolver {
-  container = new Container();
+  container: Container = new Container();
 
   registerAll<T>(registrations: Registeration<T>[]): void {
-    registrations.forEach(this.register);
+    registrations.forEach(r => this.register(r));
   }
 
-  @autobind
   register<T>(registration: Registeration<T>): void {
     const { token, factory, singleton } = registration;
 
@@ -39,7 +37,7 @@ export default class DependencyInjectionContainer implements DependencyResolver 
     });
   }
 
-  resolve<T: {}>(classAsToken: Class<T>): T {
+  resolve<T>(classAsToken: Class<T>): T {
     return this.container.resolve(classAsToken);
   }
 }

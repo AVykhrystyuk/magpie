@@ -5,7 +5,7 @@ import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
 import BlackListedWordsFinder from '../black-words-finder';
 
 export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
-  _regExpWordsFinder = new RegExpKeywordsFinder([
+  _regExpWordsFinder: RegExpKeywordsFinder = new RegExpKeywordsFinder([
     /(?:^|\s|[,.;!?])курс[а-яё]*/gi, // курс, но не конкурс
     /тренинг[а-яё]*/gi,
     /бизнес[а-яё]*(?![\s-](логик[а-яё]*|центр[а-яё]*))/gi,

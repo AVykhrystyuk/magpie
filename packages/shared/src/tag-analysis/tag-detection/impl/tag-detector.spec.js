@@ -48,6 +48,7 @@ describe('TagDetectorImpl', () => {
       const [javaTagId, cSharpTagId] = tagDetectorImpl.detectAll(' bla Java and CSharp bla ');
 
       // assert
+      // $FlowExpectedError[method-unbinding]
       tagMocks.forEach(m => m.isApplicableFor.calledOnce);
       assert.equal(javaTagId, 'Java');
       assert.equal(cSharpTagId, 'CSharp');

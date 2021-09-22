@@ -7,21 +7,21 @@ import type { $AxiosXHR, Axios } from 'axios';
 
 // app
 import TimePadApiClient from '../api-client';
-import type { IApiTimePadRequestParams, IApiTimePadEventsResponse } from '../api-client';
+import type { ApiTimePadRequestParams, IApiTimePadEventsResponse } from '../api-client';
 // suppressing the follwoing flowlint error until the bug is fixed - https://github.com/facebook/flow/issues/5749
 // flowlint untyped-import:off
 import categories from './config/categories.json';
 import excludedOrganizations from './config/excluded-organizations.json';
 // flowlint untyped-import:error
 
-interface IInternalApiTimePadRequestParams {
+type InternalApiTimePadRequestParams = {|
   limit: number;
   skip: number;
   category_ids: string;
   fields: string;
   organization_ids_exclude?: string;
   starts_at_min?: string;
-}
+|};
 
 function commaJoin<T>(array: T[]): string {
   return array.join(',');
@@ -35,7 +35,7 @@ export default class TimePadApiClientImpl extends TimePadApiClient {
     baseURL: 'https://api.timepad.ru/v1/',
   });
 
-  _defaultParams: IInternalApiTimePadRequestParams = {
+  _defaultParams: InternalApiTimePadRequestParams = {
     // starts_at_min: '2017-01-01',
     limit: MAX_RECORDS_PER_REQUEST,
     skip: 0,
@@ -52,7 +52,7 @@ export default class TimePadApiClientImpl extends TimePadApiClient {
     return MAX_RECORDS_PER_REQUEST;
   }
 
-  async fetchEvents(params: IApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
+  async fetchEvents(params: ApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
     const requestParams = {
       ...this._defaultParams,
       ...params,
@@ -65,10 +65,16 @@ export default class TimePadApiClientImpl extends TimePadApiClient {
     const requestConfig = {
       params: requestParams,
     };
-    const response: $AxiosXHR<IApiTimePadEventsResponse> = await this._apiClient.get(
-      '/events.json',
-      requestConfig
-    );
-    return response.data;
+    try {
+      const response: $AxiosXHR<IApiTimePadEventsResponse> = await this._apiClient.get(
+        '/events.json',
+        requestConfig
+      );
+      return response.data;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      throw err;
+    }
   }
 }

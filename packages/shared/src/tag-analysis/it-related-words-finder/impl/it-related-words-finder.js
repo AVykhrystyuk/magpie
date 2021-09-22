@@ -5,7 +5,7 @@ import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
 import ItRelatedWordsFinder from '../it-related-words-finder';
 
 export default class ItRelatedWordsFinderImpl extends ItRelatedWordsFinder {
-  _regExpWordsFinder = new RegExpKeywordsFinder([
+  _regExpWordsFinder: RegExpKeywordsFinder = new RegExpKeywordsFinder([
     /develop\w*/gi,
     /software\w*/gi,
     /engineer\w*/gi,

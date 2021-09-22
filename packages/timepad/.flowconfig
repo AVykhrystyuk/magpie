@@ -1,7 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/dist/.*
 
-# workaround as the following local paths are not working with sym-linked package: 
+# workaround as the following local paths are not working with sym-linked package:
 #<PROJECT_ROOT>/node_modules/@magpie/shared/src/.*
 #<PROJECT_ROOT>/../shared/src/.*
 .*/packages/shared/src/.*
@@ -14,7 +14,7 @@
 [lints]
 
 [options]
-esproposal.decorators=ignore
+# esproposal.decorators=ignore
 
 [strict]
 nonstrict-import

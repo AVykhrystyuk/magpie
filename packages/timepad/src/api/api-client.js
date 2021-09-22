@@ -4,10 +4,10 @@
 // app
 import type { IApiTimePadEvent } from './event';
 
-export interface IApiTimePadRequestParams {
+export type ApiTimePadRequestParams = {|
   limit: number;
   skip: number;
-}
+|};
 
 export interface IApiTimePadEventsResponse {
   total: number;
@@ -23,7 +23,7 @@ export default class TimePadApiClient {
     throw new TypeError('Abstract getter');
   }
 
-  fetchEvents(params: IApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
+  fetchEvents(params: ApiTimePadRequestParams): Promise<IApiTimePadEventsResponse> {
     throw new TypeError('Abstract method');
   }
 }

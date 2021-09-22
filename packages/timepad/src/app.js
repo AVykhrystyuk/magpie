@@ -4,7 +4,6 @@
 // lib
 import os from 'os';
 import { TagAnalyzer } from '@magpie/shared';
-import autobind from 'autobind-decorator';
 
 // app
 import type { ITimePadEvent } from './event';
@@ -29,11 +28,10 @@ export default class App {
     console.log();
     console.log(events.slice(0, 2));
 
-    const processedEvents = events.map(this._createProcessedEvent);
+    const processedEvents = events.map(e => this._createProcessedEvent(e));
     await writeProcessedEventsToFiles(processedEvents);
   }
 
-  @autobind
   _createProcessedEvent(event: ITimePadEvent): IProcessedTimePadEvent {
     const { name, sanitizedDescription } = event;
     const text = name + os.EOL + sanitizedDescription;

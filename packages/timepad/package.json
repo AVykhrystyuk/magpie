@@ -28,33 +28,29 @@
   "license": "ISC",
   "dependencies": {
     "@magpie/shared": "^1.0.0",
-    "autobind-decorator": "^2.1.0",
     "axios": "^0.18.1",
     "container-ioc": "^1.7.19",
     "sanitize-html": "^1.18.2",
     "xlsx": "^0.14.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-flow": "^7.0.0",
-    "@babel/register": "^7.4.4",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-flow": "^7.14.5",
+    "@babel/register": "^7.15.3",
     "@magpie/code-style": "^1.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
-    "flow-bin": "^0.100.0",
-    "flow-typed": "^2.5.2",
+    "flow-bin": "^0.160.1",
+    "flow-typed": "^3.3.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
-    "jest": "^24.8.0",
+    "jest": "^27.2.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.1",
-    "rimraf": "^2.6.3"
+    "prettier": "~1.19.1",
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "node": ">=10.16.0"
