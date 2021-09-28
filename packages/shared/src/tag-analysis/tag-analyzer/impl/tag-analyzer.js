@@ -1,6 +1,6 @@
 // @flow strict
 
-import TagAnalyzer from '../tag-analyzer';
+import { TagAnalyzer } from '../tag-analyzer';
 import type { TagAnalysisResult } from '../tag-analyzer';
 import { TagDetector } from '../../tag-detection';
 import { BlackListedWordsFinder } from '../../black-words-finder';
@@ -8,7 +8,7 @@ import { WhiteListedWordsFinder } from '../../white-words-finder';
 import { ItRelatedWordsFinder } from '../../it-related-words-finder';
 import { isWhitespaceOrEmpty } from '../../../utils';
 
-export default class TagAnalyzerImpl extends TagAnalyzer {
+export class TagAnalyzerImpl extends TagAnalyzer {
   _tagDetector: TagDetector;
   _blackListedWordsFinder: BlackListedWordsFinder;
   _whiteListedWordsFinder: WhiteListedWordsFinder;

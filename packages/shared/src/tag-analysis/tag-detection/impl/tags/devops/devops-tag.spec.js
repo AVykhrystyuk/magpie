@@ -5,7 +5,7 @@ import { describe, it, beforeEach } from 'mocha';
 import assert from 'assert';
 
 // app
-import DevOpsTag from './devops-tag';
+import { DevOpsTag } from './devops-tag';
 
 function assertTagIsApplicable(tag: DevOpsTag, text: string): void {
   assert.ok(

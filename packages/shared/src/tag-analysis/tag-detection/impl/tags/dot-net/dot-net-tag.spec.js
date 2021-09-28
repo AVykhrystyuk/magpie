@@ -5,7 +5,7 @@ import { describe, it, beforeEach } from 'mocha';
 import assert from 'assert';
 
 // app
-import DotNetTag from './dot-net-tag';
+import { DotNetTag } from './dot-net-tag';
 
 function assertTagIsApplicable(tag: DotNetTag, text: string): void {
   assert.ok(

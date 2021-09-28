@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 // @flow strict
 
-export default class WhiteListedWordsFinder {
+export class WhiteListedWordsFinder {
   findAll(text: string): string[] {
     throw new TypeError('Abstract method');
   }

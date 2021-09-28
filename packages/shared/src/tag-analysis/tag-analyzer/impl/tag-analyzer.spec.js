@@ -6,7 +6,7 @@ import assert from 'assert';
 import sinon from 'sinon';
 
 // app
-import TagAnalyzerImpl from './tag-analyzer';
+import { TagAnalyzerImpl } from './tag-analyzer';
 import type { TagAnalysisResult } from '../tag-analyzer';
 import { TagDetector } from '../../tag-detection';
 import type { TagId } from '../../tag-detection/tag';

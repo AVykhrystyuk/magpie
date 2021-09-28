@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import Tag from '../tag';
-import TextChecker from '../text-checker';
+import { Tag } from '../tag';
+import { TextChecker } from '../text-checker';
 
-export default class TextCheckableTag extends Tag {
+export class TextCheckableTag extends Tag {
   +checkers: TextChecker[];
 
   isApplicableFor(text: string): boolean {

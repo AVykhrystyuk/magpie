@@ -6,7 +6,7 @@ import axios from 'axios';
 import type { $AxiosXHR, Axios } from 'axios';
 
 // app
-import TimePadApiClient from '../api-client';
+import { TimePadApiClient } from '../api-client';
 import type { ApiTimePadRequestParams, IApiTimePadEventsResponse } from '../api-client';
 // suppressing the follwoing flowlint error until the bug is fixed - https://github.com/facebook/flow/issues/5749
 // flowlint untyped-import:off
@@ -30,7 +30,7 @@ function commaJoin<T>(array: T[]): string {
 const MAX_REQUESTS_PER_MINUTE: number = 60; // max limit allowed by timePad
 const MAX_RECORDS_PER_REQUEST: number = 100; // max limit allowed by timePad
 
-export default class TimePadApiClientImpl extends TimePadApiClient {
+export class TimePadApiClientImpl extends TimePadApiClient {
   _apiClient: Axios = axios.create({
     baseURL: 'https://api.timepad.ru/v1/',
   });

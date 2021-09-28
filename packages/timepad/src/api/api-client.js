@@ -14,7 +14,7 @@ export interface IApiTimePadEventsResponse {
   values: IApiTimePadEvent[];
 }
 
-export default class TimePadApiClient {
+export class TimePadApiClient {
   get maxRequestsPerMinute(): number {
     throw new TypeError('Abstract getter');
   }

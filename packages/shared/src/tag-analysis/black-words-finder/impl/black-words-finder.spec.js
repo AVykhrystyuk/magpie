@@ -5,7 +5,7 @@ import { beforeEach, describe, it } from 'mocha';
 import assert from 'assert';
 
 // app
-import BlackListedWordsFinderImpl from './black-words-finder';
+import { BlackListedWordsFinderImpl } from './black-words-finder';
 
 describe('BlackListedWordsFinderImpl', () => {
   let blackListedWordsFinderImpl: BlackListedWordsFinderImpl;

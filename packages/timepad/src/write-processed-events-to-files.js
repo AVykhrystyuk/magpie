@@ -55,7 +55,7 @@ export async function writeEventsToFile(
   await writeRowsToFile(rows, filename);
 }
 
-export default function writeProcessedEventsToFiles(
+export function writeProcessedEventsToFiles(
   processedEvents: IProcessedTimePadEvent[]
 ): Promise<*> {
   const eventsByValidity: Map<boolean, IProcessedTimePadEvent[]> = groupBy(

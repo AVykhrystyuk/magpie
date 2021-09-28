@@ -1,8 +1,8 @@
 // @flow strict
 
-import TextChecker from '../../text-checker';
+import { TextChecker } from '../../text-checker';
 
-export default class RegExpChecker extends TextChecker {
+export class RegExpChecker extends TextChecker {
   _regExps: RegExp[];
 
   constructor(regExps: RegExp[]) {

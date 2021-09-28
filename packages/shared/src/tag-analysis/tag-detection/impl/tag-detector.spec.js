@@ -6,8 +6,8 @@ import assert from 'assert';
 import sinon from 'sinon';
 
 // app
-import TagDetectorImpl from './tag-detector';
-import Tag from '../tag';
+import { TagDetectorImpl } from './tag-detector';
+import { Tag } from '../tag';
 import type { TagId } from '../tag';
 
 function mockTag(tagId: TagId): Tag {

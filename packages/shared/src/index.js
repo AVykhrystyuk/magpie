@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 // prettier-ignore
 export {
   TagAnalyzer, createTagAnalyzer,

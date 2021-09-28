@@ -4,7 +4,7 @@
 
 import type { TagId } from './tag';
 
-export default class TagDetector {
+export class TagDetector {
   detectAll(text: string): TagId[] {
     throw new TypeError('Abstract method');
   }

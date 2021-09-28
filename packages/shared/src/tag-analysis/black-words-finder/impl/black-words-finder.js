@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
-import BlackListedWordsFinder from '../black-words-finder';
+import { RegExpKeywordsFinder } from '../../reg-exp-keywords-finder';
+import { BlackListedWordsFinder } from '../black-words-finder';
 
-export default class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
+export class BlackListedWordsFinderImpl extends BlackListedWordsFinder {
   _regExpWordsFinder: RegExpKeywordsFinder = new RegExpKeywordsFinder([
     /(?:^|\s|[,.;!?])курс[а-яё]*/gi, // курс, но не конкурс
     /тренинг[а-яё]*/gi,

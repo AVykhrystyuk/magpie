@@ -33,4 +33,4 @@ function generateRange<T>(
   return indicesOrItems;
 }
 
-export default generateRange;
+export { generateRange };

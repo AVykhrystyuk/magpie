@@ -7,7 +7,7 @@ import path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
 // app
-import createTagAnalyzer from '../create-tag-analyzer';
+import { createTagAnalyzer } from '../create-tag-analyzer';
 
 const readFile = promisify(fs.readFile);
 

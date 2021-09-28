@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 // @flow strict
 
-export default class ItRelatedWordsFinder {
+export class ItRelatedWordsFinder {
   findAll(text: string): string[] {
     throw new TypeError('Abstract method');
   }

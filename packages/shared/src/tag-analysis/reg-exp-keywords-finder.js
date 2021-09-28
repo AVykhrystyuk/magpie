@@ -1,6 +1,6 @@
 // @flow strict
 
-export default class RegExpKeywordsFinder {
+export class RegExpKeywordsFinder {
   _regExps: RegExp[];
 
   constructor(keywordRegExps: RegExp[]) {

@@ -1,8 +1,8 @@
 // @flow strict
 
 // app
-import TextCheckableTag from '../../text-checkable-tag';
-import TextChecker from '../../../text-checker';
+import { TextCheckableTag } from '../../text-checkable-tag';
+import { TextChecker } from '../../../text-checker';
 import {
   ECMAScriptChecker,
   FrameworksChecker,
@@ -12,7 +12,7 @@ import {
 import { RegExpChecker } from '../../checkers/index';
 import type { TagId } from '../../../tag';
 
-export default class JsTag extends TextCheckableTag {
+export class JsTag extends TextCheckableTag {
   tagId: TagId = 'JavaScript';
 
   checkers: TextChecker[] = [

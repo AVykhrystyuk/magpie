@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
 // @flow strict
 
-import TextChecker from '../../../../text-checker';
+import { TextChecker } from '../../../../text-checker';
 
-export default class ReactChecker extends TextChecker {
+export class ReactChecker extends TextChecker {
   check(text: string): boolean {
     if (/\breact\b/i.test(text) && ReactChecker._hasHelperWords(text)) {
       return true;

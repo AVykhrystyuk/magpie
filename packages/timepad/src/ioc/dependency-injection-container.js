@@ -1,7 +1,7 @@
-// @flow strict
+// @flow
 
 // lib
-import { Container, LifeTime } from 'container-ioc';
+import { createContainer } from 'try-di';
 
 export interface DependencyResolver {
   resolve<T>(classAsToken: Class<T>): T;
@@ -14,8 +14,8 @@ export type Registeration<T> = {
   singleton?: boolean,
 };
 
-export default class DependencyInjectionContainer implements DependencyResolver {
-  container: Container = new Container();
+export class DependencyInjectionContainer implements DependencyResolver {
+  container: any = createContainer();
 
   registerAll<T>(registrations: Registeration<T>[]): void {
     registrations.forEach(r => this.register(r));
@@ -24,17 +24,7 @@ export default class DependencyInjectionContainer implements DependencyResolver 
   register<T>(registration: Registeration<T>): void {
     const { token, factory, singleton } = registration;
 
-    // as turning it in [lints] section (.flowconfig file) does not work
-    // flowlint sketchy-null:warn, sketchy-null-bool:off
-    const lifeTime = singleton
-      ? LifeTime.PerRequest && LifeTime.PerRequest
-      : LifeTime.Persistent && LifeTime.PerRequest;
-
-    this.container.register({
-      token,
-      lifeTime,
-      useFactory: () => factory(this),
-    });
+    this.container.useFactory({ singleton, for: token, use: () => factory(this) });
   }
 
   resolve<T>(classAsToken: Class<T>): T {

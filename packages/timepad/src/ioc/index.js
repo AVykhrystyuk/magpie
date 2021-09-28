@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-// @flow strict
+// @flow
 
-export { default as buildDependencyResolver } from './build-dependency-resolver';
+export { buildDependencyResolver } from './build-dependency-resolver';

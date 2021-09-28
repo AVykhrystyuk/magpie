@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import Tag from '../../../tag';
+import { Tag } from '../../../tag';
 import type { TagId } from '../../../tag';
 
-export default class DevOpsTag extends Tag {
+export class DevOpsTag extends Tag {
   tagId: TagId = 'DevOps';
 
   // prettier-ignore
