@@ -3487,11 +3487,6 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-container-ioc@^1.7.19:
-  version "1.7.19"
-  resolved "https://registry.yarnpkg.com/container-ioc/-/container-ioc-1.7.19.tgz#a50fc71a69ebc1fda2eb7a326d8bb78cdc1e2046"
-  integrity sha1-pQ/HGmnrwf2i63oybYu3jNweIEY=
-
 conventional-changelog-angular@^5.0.3:
   version "5.0.13"
   resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.13.tgz#896885d63b914a70d4934b59d2fe7bde1832b28c"
@@ -9915,6 +9910,11 @@ trim-newlines@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-3.0.1.tgz#260a5d962d8b752425b32f3a7db0dcacd176c144"
   integrity sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==
+
+try-di@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/try-di/-/try-di-1.0.0.tgz#3967ac9722fb629367ade91a05319a4b35b5c5f9"
+  integrity sha512-gC17YcOGhAHhI3E1ICT7yIydQnSvXunJZl/Jnul7FG36LcCSpTubaW2sQ5YSvLHmYwJDO75VzsCzzOV4OdAmMg==
 
 tsconfig-paths@^3.11.0:
   version "3.11.0"
