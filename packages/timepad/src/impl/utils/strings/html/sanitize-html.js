@@ -36,6 +36,6 @@ export function stripHtml(html: string): string {
   return sanitizeHtml(html, stripOptions);
 }
 
-export default function sanitize(html: string): string {
+export function sanitize(html: string): string {
   return sanitizeHtml(html, sanitizeOptions);
 }

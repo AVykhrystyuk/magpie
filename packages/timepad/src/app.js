@@ -8,10 +8,10 @@ import { TagAnalyzer } from '@magpie/shared';
 // app
 import type { ITimePadEvent } from './event';
 import type { IProcessedTimePadEvent } from './processed-event';
-import TimePadEventsFetcher from './events-fetcher';
-import writeProcessedEventsToFiles from './write-processed-events-to-files';
+import { TimePadEventsFetcher } from './events-fetcher';
+import { writeProcessedEventsToFiles } from './write-processed-events-to-files';
 
-export default class App {
+export class App {
   _timePadEventsFetcher: TimePadEventsFetcher;
   _tagAnalyzer: TagAnalyzer;
 

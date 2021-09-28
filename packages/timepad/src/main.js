@@ -1,7 +1,7 @@
-// @flow strict
+// @flow
 
 // app
-import App from './app';
+import { App } from './app';
 import { buildDependencyResolver } from './ioc';
 
 const resolver = buildDependencyResolver();

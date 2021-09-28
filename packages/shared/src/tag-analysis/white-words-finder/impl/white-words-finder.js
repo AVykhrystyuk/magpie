@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
-import WhiteListedWordsFinder from '../white-words-finder';
+import { RegExpKeywordsFinder } from '../../reg-exp-keywords-finder';
+import { WhiteListedWordsFinder } from '../white-words-finder';
 
-export default class WhiteListedWordsFinderImpl extends WhiteListedWordsFinder {
+export class WhiteListedWordsFinderImpl extends WhiteListedWordsFinder {
   _regExpWordsFinder: RegExpKeywordsFinder = new RegExpKeywordsFinder([
     /meet-?up\w*/gi,
     /conferenc\w*/gi,

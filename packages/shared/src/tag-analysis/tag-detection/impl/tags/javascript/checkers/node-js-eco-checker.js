@@ -1,8 +1,8 @@
 // @flow strict
 
-import TextChecker from '../../../../text-checker';
+import { TextChecker } from '../../../../text-checker';
 
-export default class NodeJsEcoChecker extends TextChecker {
+export class NodeJsEcoChecker extends TextChecker {
   // prettier-ignore
   commonRegExps: RegExp[] = [
     /\b(?:npm|grunt|gulp|webpack)\b/i

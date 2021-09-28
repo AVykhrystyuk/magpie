@@ -5,7 +5,7 @@ import { describe, it, beforeEach } from 'mocha';
 import assert from 'assert';
 
 // app
-import FrontEndTag from './front-end-tag';
+import { FrontEndTag } from './front-end-tag';
 
 function assertTagIsApplicable(tag: FrontEndTag, text: string): void {
   assert.ok(

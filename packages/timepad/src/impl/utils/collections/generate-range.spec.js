@@ -1,6 +1,6 @@
 // @flow strict
 
-import generateRange from './generate-range';
+import { generateRange } from './generate-range';
 
 interface Item {
   id: number;

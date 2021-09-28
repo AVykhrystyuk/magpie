@@ -4,7 +4,7 @@
 // app
 import type { ITimePadEvent } from './event';
 
-export default class TimePadEventsFetcher {
+export class TimePadEventsFetcher {
   fetchEvents(): Promise<ITimePadEvent[]> {
     throw new TypeError('Abstract method');
   }

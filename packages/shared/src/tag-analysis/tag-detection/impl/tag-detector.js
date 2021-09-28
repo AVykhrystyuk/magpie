@@ -1,11 +1,11 @@
 // @flow strict
 
 // app
-import type Tag, { TagId } from '../tag';
-import TagDetector from '../tag-detector';
+import type { Tag, TagId } from '../tag';
+import { TagDetector } from '../tag-detector';
 import { isWhitespaceOrEmpty } from '../../../utils';
 
-export default class TagDetectorImpl extends TagDetector {
+export class TagDetectorImpl extends TagDetector {
   _tags: Tag[];
 
   constructor(tags: Tag[]) {

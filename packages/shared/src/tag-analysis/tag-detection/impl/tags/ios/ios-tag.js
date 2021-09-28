@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import Tag from '../../../tag';
+import { Tag } from '../../../tag';
 import type { TagId } from '../../../tag';
 
-export default class IosTag extends Tag {
+export class IosTag extends Tag {
   tagId: TagId = 'iOS';
 
   // prettier-ignore

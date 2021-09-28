@@ -7,6 +7,6 @@
   U+200D zero width joiner Unicode code point
   U+FEFF zero width no-break space Unicode code point
  */
-export default function removeZeroWidthSpace(text: string): string {
+export function removeZeroWidthSpace(text: string): string {
   return text.replace(/[\u200B-\u200D\uFEFF]/g, '');
 }

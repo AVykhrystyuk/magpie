@@ -5,7 +5,7 @@ import { beforeEach, describe, it } from 'mocha';
 import assert from 'assert';
 
 // app
-import WhiteListedWordsFinderImpl from './white-words-finder';
+import { WhiteListedWordsFinderImpl } from './white-words-finder';
 
 describe('WhiteListedWordsFinderImpl', () => {
   let whiteListedWordsFinderImpl: WhiteListedWordsFinderImpl;

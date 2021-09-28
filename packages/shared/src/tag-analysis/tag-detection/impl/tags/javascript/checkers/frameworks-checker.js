@@ -2,7 +2,7 @@
 
 import { RegExpChecker } from '../../../checkers/index';
 
-export default class FrameworksChecker extends RegExpChecker {
+export class FrameworksChecker extends RegExpChecker {
   constructor() {
     // prettier-ignore
     super([

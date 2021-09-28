@@ -5,7 +5,7 @@ import { describe, it, beforeEach } from 'mocha';
 import assert from 'assert';
 
 // app
-import JsTag from './js-tag';
+import { JsTag } from './js-tag';
 
 function assertTagIsApplicable(tag: JsTag, text: string): void {
   assert.ok(

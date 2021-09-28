@@ -29,8 +29,8 @@
   "dependencies": {
     "@magpie/shared": "^1.0.0",
     "axios": "^0.18.1",
-    "container-ioc": "^1.7.19",
     "sanitize-html": "^1.18.2",
+    "try-di": "^1.0.0",
     "xlsx": "^0.14.3"
   },
   "devDependencies": {

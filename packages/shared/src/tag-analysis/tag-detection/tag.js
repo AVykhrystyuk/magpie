@@ -4,7 +4,7 @@
 
 export type TagId = string;
 
-export default class Tag {
+export class Tag {
   +tagId: TagId;
 
   isApplicableFor(text: string): boolean {

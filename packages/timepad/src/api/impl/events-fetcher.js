@@ -5,15 +5,15 @@
 import { promisify } from 'util';
 
 // app
-import ApiTimePadEventsFetcher from '../events-fetcher';
+import { ApiTimePadEventsFetcher } from '../events-fetcher';
 
-import TimePadApiClient from '../api-client';
+import { TimePadApiClient } from '../api-client';
 import type { IApiTimePadEventsResponse } from '../api-client';
 import type { IApiTimePadEvent } from '../event';
 
 const delay = promisify(setTimeout);
 
-export default class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
+export class ApiTimePadEventsFetcherImpl extends ApiTimePadEventsFetcher {
   _timePadApi: TimePadApiClient;
 
   _fetchedEvents: IApiTimePadEvent[];

@@ -1,6 +1,6 @@
 // @flow strict
 
-export default function groupBy<TKey, TItem>(
+export function groupBy<TKey, TItem>(
   items: $ReadOnlyArray<TItem>,
   keySelector: (item: TItem) => TKey
 ): Map<TKey, TItem[]> {

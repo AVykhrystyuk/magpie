@@ -6,7 +6,7 @@ import { write, utils } from 'xlsx';
 
 const writeFile = promisify(fs.writeFile);
 
-export default function writeRowsToFile(
+export function writeRowsToFile(
   rows: Array<Array<string>>,
   filename: string = 'rows.xlsx'
 ): Promise<*> {

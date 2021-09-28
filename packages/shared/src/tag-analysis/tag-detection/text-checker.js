@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 // @flow strict
 
-export default class TextChecker {
+export class TextChecker {
   check(text: string): boolean {
     throw new TypeError('Abstract method');
   }

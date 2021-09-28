@@ -1,7 +1,7 @@
 // @flow strict
 
-import groupBy from './group-by';
-import generateRange from './generate-range';
+import { groupBy } from './group-by';
+import { generateRange } from './generate-range';
 
 interface DataRecord {
   id: number;

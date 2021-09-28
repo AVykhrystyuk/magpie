@@ -5,8 +5,8 @@
 import os from 'os';
 
 // app
-import TimePadEventsFetcher from '../events-fetcher';
-import ApiTimePadEventsFetcher from '../api/events-fetcher';
+import { TimePadEventsFetcher } from '../events-fetcher';
+import { ApiTimePadEventsFetcher } from '../api/events-fetcher';
 import {
   stripHtml,
   sanitizeHtml,
@@ -42,7 +42,7 @@ function hasDescription(event: ITimePadEvent): boolean {
   return !isWhitespaceOrEmpty(descriptionHtml) && !isWhitespaceOrEmpty(sanitizedDescription);
 }
 
-export default class TimePadEventsFetcherImpl extends TimePadEventsFetcher {
+export class TimePadEventsFetcherImpl extends TimePadEventsFetcher {
   _apiEventsFetcher: ApiTimePadEventsFetcher;
 
   constructor(apiEventsFetcher: ApiTimePadEventsFetcher) {

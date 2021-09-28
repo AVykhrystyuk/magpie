@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 // @flow strict
 
 // prettier-ignore

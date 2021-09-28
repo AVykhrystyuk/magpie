@@ -5,7 +5,7 @@ import { beforeEach, describe, it } from 'mocha';
 import assert from 'assert';
 
 // app
-import ItRelatedWordsFinderImpl from './it-related-words-finder';
+import { ItRelatedWordsFinderImpl } from './it-related-words-finder';
 
 describe('ItRelatedWordsFinderImpl', () => {
   let itRelatedWordsFinderImpl: ItRelatedWordsFinderImpl;

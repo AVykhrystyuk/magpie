@@ -10,7 +10,7 @@ export type TagAnalysisResult = {|
   itRelatedWords: string[],
 |};
 
-export default class TagAnalyzer {
+export class TagAnalyzer {
   analyze(text: string): TagAnalysisResult {
     throw new TypeError('Abstract method');
   }

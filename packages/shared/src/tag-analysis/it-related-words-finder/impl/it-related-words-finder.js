@@ -1,10 +1,10 @@
 // @flow strict
 
 // app
-import RegExpKeywordsFinder from '../../reg-exp-keywords-finder';
-import ItRelatedWordsFinder from '../it-related-words-finder';
+import { RegExpKeywordsFinder } from '../../reg-exp-keywords-finder';
+import { ItRelatedWordsFinder } from '../it-related-words-finder';
 
-export default class ItRelatedWordsFinderImpl extends ItRelatedWordsFinder {
+export class ItRelatedWordsFinderImpl extends ItRelatedWordsFinder {
   _regExpWordsFinder: RegExpKeywordsFinder = new RegExpKeywordsFinder([
     /develop\w*/gi,
     /software\w*/gi,
